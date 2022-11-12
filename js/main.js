@@ -1,10 +1,14 @@
 
-
 // init global variables & switches
-// let myCircleTimeline
+let myCircleTimeline,
+    myPieChart;
 
-
-initVis (){
-
-    //margin
+function updateAllVisualizations(){
+    myPieChart.wrangleData()
 }
+
+
+
+let promises = [
+    d3.csv("data/demographics.csv")
+];
