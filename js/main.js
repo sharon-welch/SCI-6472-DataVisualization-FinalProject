@@ -3,6 +3,7 @@
 let myCircleTimeline,
     myPieChart;
 
+
 function updateAllVisualizations(){
     myPieChart.wrangleData()
 }

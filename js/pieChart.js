@@ -2,13 +2,13 @@
 *          pieChart          *
 * * * * * * * * * * * * * * * * * * * * * */
 
-/*
+// /*
 class PieChart {
 
     // constructor method to initialize Timeline object
     constructor(parentElement) {
         this.parentElement = parentElement;
-        this.circleColors = ['#b2182b', '#d6604d', '#f4a582', '#fddbc7'];
+        this.circleColors = ['#fff460', '#5d67f5'];
 
         // call initVis method
         this.initVis()
@@ -61,8 +61,12 @@ class PieChart {
 
     // wrangleData method
     wrangleData() {
+
+
         let vis = this
 
+        //TODO - convert data types
+        vis.
         vis.displayData = []
 
         // generate random data
@@ -150,4 +154,4 @@ class PieChart {
     }
 }
 
- */
+ // */
