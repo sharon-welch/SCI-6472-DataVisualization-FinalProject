@@ -23,6 +23,30 @@ let promises = [
         d.year = +d.year;
         d.value = +d.value;
         return d;
+    }),
+    d3.csv("data/healthdata.csv", d => {
+        d.Height = +d.Height;
+        d.Weight = +d.Weight;
+        d.BMI = +d.BMI;
+        d.LUTS = +d.LUTS;
+        d.NumbScore = +d.NumbScore;
+        d.UTINum = +d.UTINum;
+        d.IPSS = +d.IPSS;
+        d.UrinaryFill = +d.UrinaryFill;
+        d.UrinaryVoiding = +d.UrinaryFill;
+        return d;
+    }),
+    d3.csv("data/saddlehealthdata.csv", d => {
+        d.LUTS = +d.LUTS;
+        d.NumbScore = +d.NumbScore;
+        d.UTI = +d.UTI;
+        d.UTINum = +d.UTINum;
+        d.Nodules = +d.Nodules;
+        d.SaddleSores = +d.SaddleSores
+        d.IPSS = +d.IPSS;
+        d.UrinaryFill = +d.UrinaryFill;
+        d.UrinaryVoiding = +d.UrinaryFill;
+        return d;
     })
 
     //array for scatterplot
@@ -40,7 +64,7 @@ function initVisualizations (listOfArrays) {
     console.log(listOfArrays);
 
     myPieChart = new PieChart('pie-chart-div', listOfArrays[0])
-    myScatter = new ScatterPlot('scatter-area', listOfArrays[[1])
+    myScatter = new ScatterPlot('scatter-area', listOfArrays[1])
     // mySymbol1 = new SymbolPlot('symbol-area1', listOfArrays[2])
     // mySymbol2 = new SymbolPlot('symbol-area2', listOfArrays[2])
     // mySymbol3 = new SymbolPlot('symbol-area3', listOfArrays[2])
