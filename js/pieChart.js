@@ -6,9 +6,16 @@
 class PieChart {
 
     // constructor method to initialize Timeline object
-    constructor(parentElement) {
+    constructor(parentElement, pieData) {
         this.parentElement = parentElement;
-        this.circleColors = ['#fff460', '#5d67f5'];
+        this.pieData = pieData;
+        //TODO - array of circle colors and call colors below by spot in array
+        // this.circleColors = ['#fff460', '#5d67f5'];
+
+        //female, male, both
+        this.pieColors = ['#7fcdbb', '#2c7fb8', '#edf8b1'];
+
+        console.log(pieData)
 
         // call initVis method
         this.initVis()
@@ -29,16 +36,16 @@ class PieChart {
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-        // add title
+        // TODO - add title
         vis.svg.append('g')
             .attr('class', 'title pie-title')
             .append('text')
-            .text('Title for Pie Chart')
+            .text('Research Disparities: Gender and Seat Health')
             .attr('transform', `translate(${vis.width / 2}, 20)`)
             .attr('text-anchor', 'middle');
 
 
-        // TODO
+        // TODO - add legend
 
         //creat pie chart group
         vis.pieChartGroup = vis.svg.append('g')
@@ -49,34 +56,22 @@ class PieChart {
         //define pie layout
         //set up your path generator
 
-        vis.tooltip = d3.select("body").append('div')
+        vis.tooltip = d3.select("#" + vis.parentElement).append('div')
             .attr('class', "tooltip")
             .attr('id', 'pieTooltip')
 
 
-
         // call next method in pipeline
         this.wrangleData();
+        this.updateVis()
     }
+
+    //TODO - delete wrangle data
 
     // wrangleData method
     wrangleData() {
 
-
-        let vis = this
-
-        //TODO - convert data types
-        vis.
-        vis.displayData = []
-
-        // generate random data
-        for (let i = 0; i < 4; i++) {
-            let random = Math.floor(Math.random() * 100)
-            vis.displayData.push({
-                value: random,
-                color: vis.circleColors[i]
-            })
-        }
+        let vis = this;
 
         vis.updateVis()
 
@@ -85,10 +80,6 @@ class PieChart {
     // updateVis method
     updateVis() {
         let vis = this;
-
-        console.log("displayData: ", vis.displayData)
-
-        // TODO
 
         //define inner and outer radius
         let outerRadius = vis.width / 2;
@@ -104,33 +95,46 @@ class PieChart {
 
         // Bind data
         vis.arcs = vis.pieChartGroup.selectAll(".arc")
-            .data(vis.pie(vis.displayData))
+            .data(vis.pie(vis.pieData))
 
-        console.log(vis.pie(vis.displayData));
+        // console.log(vis.pie(vis.pieData));
 
 
-
-        //set up your path generator
-        //TODO: WHY ARE THERE ONLY 3 ARCS? + change color when I hover over them
+        //set up path generator
         vis.arcs.enter()
             .append("path")
             .attr("d", vis.arc)
             .merge(vis.arcs)
-            // .style("fill", function(d, index) { return vis.displayData.data[index]; });
-            .style("fill", d => d.data.color)
+            .style("fill", function(d,i) {
+                if (vis.pieData[i].gender === "female") {
+                    return vis.pieColors[0];
+                    // return '#7fcdbb';
+                }
+                else if (vis.pieData[i].gender === "male") {
+                    return vis.pieColors[1];
+                }
+                //QUESTION - why can't I put else here?
+                else if (vis.pieData[i].gender === "both") {
+                    return vis.pieColors[2];
+                }
+            })
+            .style("stroke-dasharray", ("4,4"))
+            .style("stroke-width", .25)
+            .style("stroke", "black")
 
-            .on('mouseover', function(event, d){
+
+        .on('mouseover', function(event, d){
                 vis.tooltip
                     .style("opacity", 1)
                     .style("left", event.pageX + 20 + "px")
                     .style("top", event.pageY + "px")
                     .html(`
                          <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
-                             <h3>Arc with index #${d.index}<h3>
-                             <h4> value: ${d.value}</h4>      
-                             <h4> startAngle: ${d.startAngle}</h4>
-                             <h4> endAngle: ${d.endAngle}</h4>   
-                             <h4> data: ${JSON.stringify(d.data)}</h4>                         
+                             <h3> Gender of Study: ${d.data.gender}<h3>
+                             <h4> Study Name: ${d.data.study_name}</h4>
+                             <h4> Study Type: ${d.data.study_type}</h4>
+                             <h4> Publication Year: ${d.data.year}</h4>
+                         
                          </div>`)
             })
 
@@ -145,11 +149,6 @@ class PieChart {
                     .style("top", 0)
                     .html(``);
             })
-
-
-
-
-
 
     }
 }

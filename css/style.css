@@ -2,6 +2,11 @@
 body {
 }
 
+/*TODO : make this responsive */
+#pie-chart-div {
+    height: 360px;
+}
+
 
 
 /*********************/

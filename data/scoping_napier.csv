@@ -1,18 +1,16 @@
-study name ,year,gender
-"Prevalence, prevention and treatment of saddle sores among female competitive cyclists",2020,female
-A saddle sores among female competitive cyclists,2021,female
-Effects of novel bicyle saddle on symptoms and comfort iin cyclists,2002,both
-Perineal nodules caused by bicycling ,2020,male
-Perineal nodule induration: the 'third testicle of the cyclist',2003,male
-Cycling and male sexual urinary function,2018,male
-Perineal nodule swelling in a rrecreational cyclist,2009,male
-A rare case of suspected perineall nodular induration,2017,male
-MR imaging findings in perineal nodular induration,2020,male
-Surgical excision of perineal nodular induration ,2017,male
-Proctology and sports medicine,2020,male
-Cyclist's nodule: no smooth ride,2016,male
-Saddle sores presenting to a genitourinary medicine department,2015,male
-Perineal nodule induration: a report of three cases in France,2017,male
-Acquired Coccygeal Nodule Due to Repeated Stimulation by a Bicycle Saddle,1995,male
-The vicious cycling: bicycling related urogenital disorders,2005,unspecified
-back in the saddle again: flow to prevent cycling saddle sores,2007,unspecified
+study_name,study_type,year,gender,value
+"Prevalence, prevention and treatment of saddle sores among female competitive cyclists",Scoping Systematic Review,2020,female,1
+A saddle sores among female competitive cyclists,Scoping Systematic Review,2021,female,1
+Effects of novel bicyle saddle on symptoms and comfort iin cyclists,One-arm Trial,2002,both,1
+Perineal nodules caused by bicycling ,Case Report,2020,male,1
+Perineal nodule induration: the 'third testicle of the cyclist',Case Report,2003,male,1
+Cycling and male sexual urinary function,Cross-sectional Study,2018,male,1
+Perineal nodule swelling in a recreational cyclist,Case Report,2009,male,1
+A rare case of suspected perineal nodular induration,Letter,2017,male,1
+MR imaging findings in perineal nodular induration,Case Report,2020,male,1
+Surgical excision of perineal nodular induration ,Case Report,2017,male,1
+Proctology and sports medicine,Case Report,2020,male,1
+Cyclist's nodule: no smooth ride,Case Report,2016,male,1
+Saddle sores presenting to a genitourinary medicine department,Case Report,2015,male,1
+Perineal nodule induration: a report of three cases in France,Case Report,2017,male,1
+Acquired Coccygeal Nodule Due to Repeated Stimulation by a Bicycle Saddle,Case Report,1995,male,1

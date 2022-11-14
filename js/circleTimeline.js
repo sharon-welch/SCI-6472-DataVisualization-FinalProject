@@ -2,6 +2,7 @@
 *          CircleTimeline         *
 * * * * * * * * * * * * * * * * * * * * * */
 
+/*
 class MapVis {
 
     // constructor(parentElement, geoData, covidData, usaData) {
@@ -36,3 +37,4 @@ initVis() {
 }
 
 }
+*/
