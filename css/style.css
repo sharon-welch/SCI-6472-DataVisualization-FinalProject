@@ -1,14 +1,58 @@
 
 body {
+    font-family: sans-serif;
+}
+
+.row {
+    padding-top: 25px;
 }
 
 /*TODO : make this responsive */
 #pie-chart-div {
-    height: 360px;
+    height: 450px;
+}
+
+#pie-chart-text {
+    text-align: justify;
+}
+
+
+h1 {
+    padding-top: 25px;
+    text-align: center;
+
 }
 
 
 
 /*********************/
 /*  CIRCLE TIMELINE  */
+/*********************/
+
+#todo-circle {
+    text-align: center;
+    color: red;
+}
+
+/*********************/
+/*  PIE CHART  */
+/*********************/
+
+
+/*********************/
+/*  SCATTER PLOT  */
+/*********************/
+
+#todo-scatter {
+    text-align: center;
+    color: red;
+}
+
+/*********************/
+/* SYMBOL CHARTS  */
+/*********************/
+
+
+/*********************/
+/* BIKE SEAT VIS  */
 /*********************/
