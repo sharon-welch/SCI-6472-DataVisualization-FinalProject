@@ -2,7 +2,10 @@
 // init global variables & switches
 let myCircleTimeline,
     myPieChart,
-    myScatter;
+    myScatter,
+    mySymbol1,
+    mySymbol2,
+    mySymbol3;
 
 
 function updateAllVisualizations(){
@@ -37,4 +40,29 @@ function initVisualizations (listOfArrays) {
     console.log(listOfArrays);
 
     myPieChart = new PieChart('pie-chart-div', listOfArrays[0])
+    myScatter = new ScatterPlot('scatter-area', listOfArrays[[1])
+    // mySymbol1 = new SymbolPlot('symbol-area1', listOfArrays[2])
+    // mySymbol2 = new SymbolPlot('symbol-area2', listOfArrays[2])
+    // mySymbol3 = new SymbolPlot('symbol-area3', listOfArrays[2])
+}
+
+let selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
+let selectedCategoryScatterY =  document.getElementById('categorySelectorScatterY').value;
+
+function categoryChangeScatter() {
+    selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
+    selectedCategoryScatterY =  document.getElementById('categorySelectorScatterY').value;
+    myScatter.wrangleData();
+    console.log(selectedCategoryScatterX)
+    console.log(selectedCategoryScatterY)
+}
+
+let selectedCategorySymbolY =  document.getElementById('categorySelectorSymbolY').value;
+
+function categoryChangeSymbol() {
+    selectedCategorySymbolY =  document.getElementById('categorySelectorSymbolY').value;
+    // mySymbol1.wrangleData();
+    // mySymbol2.wrangleData();
+    // mySymbol3.wrangleData();
+    console.log(selectedCategorySymbolY)
 }

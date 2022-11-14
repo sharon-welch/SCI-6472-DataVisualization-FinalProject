@@ -43,17 +43,71 @@
     </div>
 
     <!-- Viz: Scatterplot -->
-    <div class="row" id="scatter-plot">
-        <div class="row" id="scatter-plot-intro">
-            <p>While existing research (cite this) has shown that women feel less safe while biking and are generally less willing to bike in areas without cycling infrastructure, there has been very little research done to explore whether design of the bike itself influences female ridership. Here, we explore existing factors that influence health of cyclists to search for potential correlations between health, bike seat design, and ridership disparities. This exploration is based on the a hunch that saddle design does in fact influence ridership.</p>
-        </div>
-        <div class ="row" id ="scatter-plot-div">
-            <p id="todo-scatter">[INSERT SCATTERPLOT]</p>
-        </div>
+    <div class="row">
+    <div class="col"> <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+      <option value="RidingHistory" selected>Length of Time Biking</option>
+      <option value="RidingFrequency">Biking Frequency</option>
+      <option value="LongestDist">Longest Distance Traveled</option>
+      <option value="AverageDist">Average Distance Traveled</option>
+      <option value="Speed">Average Speed</option>
+      <option value="Standing">% Time Standing During a Ride</option>
+      <option value="PaddedShorts">How Often Padded Shorts Are Worn</option>
+      <option value="SaddleType">Type of Saddle</option>
+      <option value="SaddleAngle">Angle of Saddle</option>
+      <option value="BikeType">Type of Bike</option>
+      <option value="HandleBars">Height of Handlebars (compared to Saddle)</option>
+      <option value="Surface">Typical Surface for Biking</option>
+    </select>
     </div>
 
+    <div class="col"><select id='categorySelectorScatterY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+      <option value="LUTS" selected>Urinary Wellness</option>
+      <option value="NumbScore">Degree of Genital Numbness</option>
+      <option value="NumbTime">Length of Feeling of Numbness</option>
+      <option value="UTI">History of UTI</option>
+      <option value="UTINum">Number of Prior UTIs</option>
+      <option value="Nodules">History of Genital + Perineal Nodules</option>
+      <option value="SaddleSores">History of Saddle Sores</option>
+      <option value="IPSS">Prostate Symptoms</option>
+      <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
+      <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
+    </select> </div>
+  </div>
+
+  <!-- Parent container for the scatterplot -->
+  <div id="scatter-area" style="height:500px; width: 500px"></div>
+
+  </br>
+    
     <!-- Viz: 3 scatter symbol plots -->
-    <div class="row" id="symbol-plots"></div>
+    
+    <div id="row">
+    <div class="row">
+      <div class="col"> <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeSymbol()">
+        <option value="LUTS" selected>Urinary Wellness</option>
+        <option value="NumbScore">Degree of Genital Numbness</option>
+        <option value="UTI">History of UTI</option>
+        <option value="UTINum">Number of Prior UTIs</option>
+        <option value="Nodules">History of Genital + Perineal Nodules</option>
+        <option value="SaddleSores">History of Saddle Sores</option>
+        <option value="IPSS">Prostate Symptoms</option>
+        <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
+        <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
+      </select>
+      </div>
+    </div>
+  </div>
+
+  </br>
+
+  <div class="row">
+    <div class="col" id="symbol-area1"> Symbol Plot 1 Here</div>
+    <div class="col" id="symbol-area2"> Symbol Plot 2 Here</div>
+    <div class="col" id="symbol-area3"> Symbol Plot 3 Here</div>
+  </div>
+    
+    
+    
 
     <!-- Viz: Bike seat map -->
     <div class="row" id="bike-seat"></div>
@@ -73,7 +127,8 @@
 <script src="js/main.js"></script>
 <script src="js/pieChart.js"></script>
 <!--<script src="js/circleTimeline.js"></script>-->
-<!--<script src="js/scatterPlot.js"></script>-->
+<script src="js/scatterplot.js"></script>
+<script src="js/symbolplot.js"></script>
 <!--<script src="js/seatVis.js"></script>-->
 
 
