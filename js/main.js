@@ -1,6 +1,7 @@
 
 // init global variables & switches
-let myCircleTimeline,
+let myMaleCircleTimeline,
+    myFemaleCircleTimeline,
     myPieChart,
     myScatter,
     mySymbol1,
@@ -15,7 +16,16 @@ function updateAllVisualizations(){
 //NOTE for team: below in initVis each new instance of a viz is created through calling the specific array that is within promises (array of array). This means that EACH ELEMENT IN THE PROMISES BELOW NEEDS TO STAY IN ORDER
 let promises = [
 
-    //array for circle timeline
+    //array for circle timelines
+    d3.csv("data/demographics.csv", d => {
+        d.year = +d.year;
+        d.all_trips = +d.all_trips;
+        d.female_trip_count = +d.female_trip_count;
+        d.female_trip_percentage = +d.female_trip_percentage;
+        d.male_trip_count = +d.male_trip_count;
+        d.male_trip_percentage = +d.male_trip_percentage;
+        return d;
+    }),
 
     //array for pie chart
     d3.csv("data/scoping_napier.csv", d => {
@@ -62,12 +72,13 @@ Promise.all(promises)
 
 function initVisualizations (listOfArrays) {
     console.log(listOfArrays);
-
-    myPieChart = new PieChart('pie-chart-div', listOfArrays[0])
-    myScatter = new ScatterPlot('scatter-area', listOfArrays[1])
-    // mySymbol1 = new SymbolPlot('symbol-area1', listOfArrays[2])
-    // mySymbol2 = new SymbolPlot('symbol-area2', listOfArrays[2])
-    // mySymbol3 = new SymbolPlot('symbol-area3', listOfArrays[2])
+    myMaleCircleTimeline = new CircleTimeline('male-timeline-div', listOfArrays[0], "male")
+    myFemaleCircleTimeline = new CircleTimeline('female-timeline-div', listOfArrays[0], "female")
+    myPieChart = new PieChart('pie-chart-div', listOfArrays[1])
+    myScatter = new ScatterPlot('scatter-area', listOfArrays[2])
+    // mySymbol1 = new SymbolPlot('symbol-area1', listOfArrays[3])
+    // mySymbol2 = new SymbolPlot('symbol-area2', listOfArrays[3])
+    // mySymbol3 = new SymbolPlot('symbol-area3', listOfArrays[3])
 }
 
 let selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;

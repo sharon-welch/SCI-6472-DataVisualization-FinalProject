@@ -22,11 +22,24 @@
     <div class="row" id="intro"></div>
 
     <!-- Viz: Circle timeline -->
-    <div class="row" id="circle-timeline">
+    <div class="row" id="circle-intro">
         <p>Reasons for large existing gender disparities in biking are not fully understood. In the US, only 2.2% of trips are taken by bike. Furthermore, only .6% of that percentage are taken by women.</p>
 
-        <p id="todo-circle">[INSERT CIRCLE TIMELINE]</p>
-
+    </div>
+    <div class="row" id="circle-title">
+        <p>Bike Trips by Gender in the US</p>
+    </div>
+    <div class="row" id="male-title" style="height:20px">
+        <p>Male</p>
+    </div>
+    <div class="row" id="male-circle-timeline" style="height:200px; width: 3000px">
+        <div class="col-12" id="male-timeline-div"></div>
+    </div>
+    <div class="row" id="female-title" style="height:20px">
+        <p>Female</p>
+    </div>
+    <div class="row" id="female-circle-timeline" style="height:300px; width: 3000px">
+        <div class="col-12" id="female-timeline-div"></div>
     </div>
 
     <!-- Viz: Pie chart and description -->
@@ -44,70 +57,70 @@
 
     <!-- Viz: Scatterplot -->
     <div class="row">
-    <div class="col"> <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
-      <option value="RidingHistory" selected>Length of Time Biking</option>
-      <option value="RidingFrequency">Biking Frequency</option>
-      <option value="LongestDist">Longest Distance Traveled</option>
-      <option value="AverageDist">Average Distance Traveled</option>
-      <option value="Speed">Average Speed</option>
-      <option value="Standing">% Time Standing During a Ride</option>
-      <option value="PaddedShorts">How Often Padded Shorts Are Worn</option>
-      <option value="SaddleType">Type of Saddle</option>
-      <option value="SaddleAngle">Angle of Saddle</option>
-      <option value="BikeType">Type of Bike</option>
-      <option value="HandleBars">Height of Handlebars (compared to Saddle)</option>
-      <option value="Surface">Typical Surface for Biking</option>
-    </select>
+        <div class="col"> <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+            <option value="RidingHistory" selected>Length of Time Biking</option>
+            <option value="RidingFrequency">Biking Frequency</option>
+            <option value="LongestDist">Longest Distance Traveled</option>
+            <option value="AverageDist">Average Distance Traveled</option>
+            <option value="Speed">Average Speed</option>
+            <option value="Standing">% Time Standing During a Ride</option>
+            <option value="PaddedShorts">How Often Padded Shorts Are Worn</option>
+            <option value="SaddleType">Type of Saddle</option>
+            <option value="SaddleAngle">Angle of Saddle</option>
+            <option value="BikeType">Type of Bike</option>
+            <option value="HandleBars">Height of Handlebars (compared to Saddle)</option>
+            <option value="Surface">Typical Surface for Biking</option>
+        </select>
+        </div>
+
+        <div class="col"><select id='categorySelectorScatterY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+            <option value="LUTS" selected>Urinary Wellness</option>
+            <option value="NumbScore">Degree of Genital Numbness</option>
+            <option value="NumbTime">Length of Feeling of Numbness</option>
+            <option value="UTI">History of UTI</option>
+            <option value="UTINum">Number of Prior UTIs</option>
+            <option value="Nodules">History of Genital + Perineal Nodules</option>
+            <option value="SaddleSores">History of Saddle Sores</option>
+            <option value="IPSS">Prostate Symptoms</option>
+            <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
+            <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
+        </select> </div>
     </div>
 
-    <div class="col"><select id='categorySelectorScatterY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
-      <option value="LUTS" selected>Urinary Wellness</option>
-      <option value="NumbScore">Degree of Genital Numbness</option>
-      <option value="NumbTime">Length of Feeling of Numbness</option>
-      <option value="UTI">History of UTI</option>
-      <option value="UTINum">Number of Prior UTIs</option>
-      <option value="Nodules">History of Genital + Perineal Nodules</option>
-      <option value="SaddleSores">History of Saddle Sores</option>
-      <option value="IPSS">Prostate Symptoms</option>
-      <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
-      <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
-    </select> </div>
-  </div>
+    <!-- Parent container for the scatterplot -->
+    <div id="scatter-area" style="height:500px; width: 500px"></div>
 
-  <!-- Parent container for the scatterplot -->
-  <div id="scatter-area" style="height:500px; width: 500px"></div>
+    </br>
 
-  </br>
-    
     <!-- Viz: 3 scatter symbol plots -->
-    
+
     <div id="row">
-    <div class="row">
-      <div class="col"> <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeSymbol()">
-        <option value="LUTS" selected>Urinary Wellness</option>
-        <option value="NumbScore">Degree of Genital Numbness</option>
-        <option value="UTI">History of UTI</option>
-        <option value="UTINum">Number of Prior UTIs</option>
-        <option value="Nodules">History of Genital + Perineal Nodules</option>
-        <option value="SaddleSores">History of Saddle Sores</option>
-        <option value="IPSS">Prostate Symptoms</option>
-        <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
-        <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
-      </select>
-      </div>
+        <div class="row">
+            <div class="col"> <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeSymbol()">
+                <option value="LUTS" selected>Urinary Wellness</option>
+                <option value="NumbScore">Degree of Genital Numbness</option>
+                <option value="UTI">History of UTI</option>
+                <option value="UTINum">Number of Prior UTIs</option>
+                <option value="Nodules">History of Genital + Perineal Nodules</option>
+                <option value="SaddleSores">History of Saddle Sores</option>
+                <option value="IPSS">Prostate Symptoms</option>
+                <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
+                <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
+            </select>
+            </div>
+        </div>
     </div>
-  </div>
 
-  </br>
+    </br>
 
-  <div class="row">
-    <div class="col" id="symbol-area1"> Symbol Plot 1 Here</div>
-    <div class="col" id="symbol-area2"> Symbol Plot 2 Here</div>
-    <div class="col" id="symbol-area3"> Symbol Plot 3 Here</div>
-  </div>
-    
-    
-    
+    <div class="row">
+        <div class="col" id="symbol-area1"> Symbol Plot 1 Here</div>
+        <div class="col" id="symbol-area2"> Symbol Plot 2 Here</div>
+        <div class="col" id="symbol-area3"> Symbol Plot 3 Here</div>
+    </div>
+
+
+
 
     <!-- Viz: Bike seat map -->
     <div class="row" id="bike-seat"></div>
@@ -126,7 +139,7 @@
 <!-- Your implementation -->
 <script src="js/main.js"></script>
 <script src="js/pieChart.js"></script>
-<!--<script src="js/circleTimeline.js"></script>-->
+<script src="js/circleTimeline.js"></script>
 <script src="js/scatterplot.js"></script>
 <script src="js/symbolplot.js"></script>
 <!--<script src="js/seatVis.js"></script>-->
