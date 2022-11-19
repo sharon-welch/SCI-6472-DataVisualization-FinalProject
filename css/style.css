@@ -3,6 +3,10 @@ body {
     font-family: sans-serif;
 }
 
+div {
+    border: 1px solid red;
+}
+
 .row {
     padding-top: 25px;
 }

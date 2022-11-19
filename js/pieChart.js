@@ -15,7 +15,7 @@ class PieChart {
         //female, male, both
         this.pieColors = ['#7fcdbb', '#2c7fb8', '#edf8b1'];
 
-        console.log(pieData)
+        // console.log("pieData", pieData)
 
         // call initVis method
         this.initVis()
@@ -62,8 +62,8 @@ class PieChart {
 
 
         // call next method in pipeline
-        this.wrangleData();
-        this.updateVis()
+        // this.wrangleData()
+        this.updateVis();
     }
 
     //TODO - delete wrangle data

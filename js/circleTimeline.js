@@ -13,7 +13,7 @@ class CircleTimeline {
         //     define male and female colors
         this.colors = ["dodgerblue", "hotpink"]
 
-        console.log(timelineData);
+        // console.log(timelineData);
 
         this.initVis()
     }

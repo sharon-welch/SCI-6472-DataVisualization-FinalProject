@@ -6,7 +6,8 @@ let myMaleCircleTimeline,
     myScatter,
     mySymbol1,
     mySymbol2,
-    mySymbol3;
+    mySymbol3,
+    mySeatVis;
 
 
 function updateAllVisualizations(){
@@ -16,7 +17,7 @@ function updateAllVisualizations(){
 //NOTE for team: below in initVis each new instance of a viz is created through calling the specific array that is within promises (array of array). This means that EACH ELEMENT IN THE PROMISES BELOW NEEDS TO STAY IN ORDER
 let promises = [
 
-    //array for circle timelines
+    //array for circle timelines [0]
     d3.csv("data/demographics.csv", d => {
         d.year = +d.year;
         d.all_trips = +d.all_trips;
@@ -27,7 +28,7 @@ let promises = [
         return d;
     }),
 
-    //array for pie chart
+    //array for pie chart [1]
     d3.csv("data/scoping_napier.csv", d => {
         //QUESTION - does year need to be a datetime object? -nah
         d.year = +d.year;
@@ -57,9 +58,15 @@ let promises = [
         d.UrinaryFill = +d.UrinaryFill;
         d.UrinaryVoiding = +d.UrinaryFill;
         return d;
-    })
+    }),
 
     //array for scatterplot
+
+    //array for bike seat vis
+    d3.csv("data/pressure_data.csv", d => {
+            d.value = +d.value;
+            return d;
+    })
 
 
 
@@ -71,7 +78,7 @@ Promise.all(promises)
 
 
 function initVisualizations (listOfArrays) {
-    console.log(listOfArrays);
+    // console.log(listOfArrays);
     myMaleCircleTimeline = new CircleTimeline('male-timeline-div', listOfArrays[0], "male")
     myFemaleCircleTimeline = new CircleTimeline('female-timeline-div', listOfArrays[0], "female")
     myPieChart = new PieChart('pie-chart-div', listOfArrays[1])
@@ -79,6 +86,7 @@ function initVisualizations (listOfArrays) {
     // mySymbol1 = new SymbolPlot('symbol-area1', listOfArrays[3])
     // mySymbol2 = new SymbolPlot('symbol-area2', listOfArrays[3])
     // mySymbol3 = new SymbolPlot('symbol-area3', listOfArrays[3])
+    mySeatVis = new SeatVis('bike-seat-div', listOfArrays[4])
 }
 
 let selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;

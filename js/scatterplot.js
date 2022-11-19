@@ -9,7 +9,7 @@ class ScatterPlot {
 
    initVis(){
         let vis = this;
-        console.log(vis.data)
+        // console.log(vis.data)
 
        vis.margin = {top: 20, right: 20, bottom: 20, left: 40};
        vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
@@ -47,8 +47,8 @@ class ScatterPlot {
 
         let vis = this
 
-        console.log(selectedCategoryScatterX)
-        console.log(selectedCategoryScatterY)
+        // console.log(selectedCategoryScatterX)
+        // console.log(selectedCategoryScatterY)
 
         vis.updateVis()
     }
@@ -56,7 +56,7 @@ class ScatterPlot {
     updateVis(){
 
         let vis = this;
-        console.log("here!")
+        // console.log("here!")
 
         vis.xScale.domain(d3.extent(vis.data, function (d) {return d[selectedCategoryScatterX]}));
 
