@@ -68,6 +68,7 @@ class SeatVis {
 
         let vis = this;
 
+        //TODO - create a radius that isn't hardcoded
         vis.circleRadius = 40
 
         //add circles
@@ -87,14 +88,14 @@ class SeatVis {
             // .attr("width", x.bandwidth() )
             // .attr("height", y.bandwidth() )
             .style("fill", function (d) {
-                return vis.myColor(d.value)
+                return vis.myColor(d.value_female)
             })
-            .style("stroke-width", 2)
+            .style("stroke-width", .5)
             .style("stroke", function (d) {
-                if (d.value === 0) {
+                if (d.value_female === 0) {
                     return "none";
                 } else {
-                    return "black";
+                    return "gray";
                 }
             })
     }

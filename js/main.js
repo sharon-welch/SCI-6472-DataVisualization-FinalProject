@@ -64,7 +64,8 @@ let promises = [
 
     //array for bike seat vis
     d3.csv("data/pressure_data.csv", d => {
-            d.value = +d.value;
+            d.value_female = +d.value_female;
+            d.value_male = +d.value_male;
             return d;
     })
 
