@@ -44,7 +44,7 @@ let promises = [
         d.UTINum = +d.UTINum;
         d.IPSS = +d.IPSS;
         d.UrinaryFill = +d.UrinaryFill;
-        d.UrinaryVoiding = +d.UrinaryFill;
+        d.UrinaryVoiding = +d.UrinaryVoiding;
         return d;
     }),
     d3.csv("data/saddlehealthdata.csv", d => {
@@ -56,7 +56,7 @@ let promises = [
         d.SaddleSores = +d.SaddleSores
         d.IPSS = +d.IPSS;
         d.UrinaryFill = +d.UrinaryFill;
-        d.UrinaryVoiding = +d.UrinaryFill;
+        d.UrinaryVoiding = +d.UrinaryVoiding;
         return d;
     }),
 

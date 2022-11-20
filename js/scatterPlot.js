@@ -23,19 +23,19 @@ class ScatterPlot {
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
         // tooltip
-        vis.tooltip = d3.select("body").append('div')
+        vis.tooltip = d3.select("#" + vis.parentElement).append('div')
             .attr('class', "tooltip")
             .attr('id', 'scatterTooltip')
 
         //scales
         // vis.xScale = d3.scaleLinear()
         //     .range([0,vis.width])
-
-        vis.xScale = d3.scaleBand()
-            .range([0,vis.width])
-
-        vis.yScale = d3.scaleLinear()
-            .range([vis.height,0]);
+        //
+        // vis.xScale = d3.scaleBand()
+        //     .range([0,vis.width])
+        //
+        // vis.yScale = d3.scaleLinear()
+        //     .range([vis.height,0]);
 
         // vis.yScale = d3.scaleBand()
         //     .range([vis.height,0]);
@@ -66,43 +66,28 @@ class ScatterPlot {
         let vis = this;
         console.log("here!")
 
-        vis.xScale.domain(d3.extent(vis.data, function (d) {return d[selectedCategoryScatterX]}));
+        vis.xScale = d3.scaleBand()
+            .range([0,vis.width])
+            .domain(vis.data.map( function (d) {return d[selectedCategoryScatterX]}))
 
-        vis.yScale.domain([(d3.min(vis.data, function (d)  {return d[selectedCategoryScatterY]})),
-            (d3.max(vis.data, function (d)  {return d[selectedCategoryScatterY]}))])
+        vis.yScale = d3.scaleLinear()
+            .domain([0, (d3.max(vis.data, function (d)  {return d[selectedCategoryScatterY]}))])
+            .range([vis.height,0])
+
+        vis.xAxisGroup.transition().duration(300)
+            .attr('transform', `translate (0, ${vis.height})`)
+            .call(d3.axisBottom(vis.xScale));
+        vis.yAxisGroup.call(d3.axisLeft(vis.yScale));
+
 
         vis.circles = vis.svg.selectAll('.circle')
             .data(vis.data)
 
-        vis.circles.exit().remove();
+
 
         vis.circles.enter()
             .append("circle")
             .attr("class", "circle")
-            .on('mouseover', function(event, d){console.log(d);
-                vis.tooltip
-                    .style("opacity", 1)
-                    .style("left", event.pageX + 20 + "px")
-                    .style("top", event.pageY + "px")
-                    .html(`
-                        <div style="border: thin solid grey; border-radius: 5px; background: white; padding: 10px">
-                        <div style="font: 6px">Gender: ${d.Gender}</div> 
-                        <div style="font: 6px">Length of Time Biking: ${d.RidingHistory}</div>     
-                        <div style="font: 6px">Biking Frequency: ${d.RidingFrequency}</div>
-                        <div style="font: 6px">Longest Distance Traveled: ${d.LongestDist}</div>
-                        <div style="font: 6px">Average Distance Traveled: ${d.AverageDist}</div>
-                        <div style="font: 6px">Average Speed: ${d.Speed}</div>
-                        <div style="font: 6px">Saddle Type: ${d.SaddleType}</div>
-                        <div style="font: 6px">Type of Bike: ${d.BikeType}</div>
-                                      
-                    </div>`);
-            })
-            .on('mouseout', function(event, d){
-                vis.tooltip
-                    .style("opacity", 0)
-                    .style("left", 0)
-                    .style("top", 0)
-                    .html(``);})
             .merge(vis.circles)
             .attr("fill", function (d) {
                 if (d.Gender === "Male") {
@@ -111,9 +96,45 @@ class ScatterPlot {
                     return "hotpink"
                 }
             })
-            .attr("cx", d => vis.xScale(d[selectedCategoryScatterX]))
+            .attr("x", d => vis.xScale(d[selectedCategoryScatterX])+vis.margin.left)
+            .attr('y', d => vis.yScale(d[selectedCategoryScatterY]))
+            .attr("cx", function (d){
+                console.log(vis.xScale(d[selectedCategoryScatterX]))
+                vis.xPos = vis.xScale(d[selectedCategoryScatterX])+ (vis.margin.left -6)
+                return vis.xPos;
+            })
             .attr('cy', d => vis.yScale(d[selectedCategoryScatterY]))
             .attr("r", 5)
+            .on('mouseover', function(event, d){
+
+                console.log(event);
+
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", event.pageX + 20 + "px")
+                    .style("top", event.pageY + "px")
+                    .html(`
+                    <div style="border: thin solid grey; border-radius: 5px; background: white; padding: 10px">
+                        <div style="font-size: 6px;">Gender: ${d.Gender}</div> 
+                        <div style="font-size: 6px;">Length of Time Biking: ${d.RidingHistory}</div>     
+                        <div style="font-size: 6px;">Biking Frequency: ${d.RidingFrequency}</div>
+                        <div style="font-size: 6px;">Longest Distance Traveled: ${d.LongestDist}</div>
+                        <div style="font-size: 6px;">Average Distance Traveled: ${d.AverageDist}</div>
+                        <div style="font-size: 6px;">Average Speed: ${d.Speed}</div>
+                        <div style="font-size: 6px;">Saddle Type: ${d.SaddleType}</div>
+                        <div style="font-size: 6px;">Type of Bike: ${d.BikeType}</div>               
+                    </div>`);
+            })
+            .on('mouseout', function(event, d){
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``);})
+            //.merge(vis.circles)
+
+
+
 
         let xText = '';
         if (selectedCategoryScatterX === "RidingHistory") {
@@ -181,8 +202,6 @@ class ScatterPlot {
             .attr('text-anchor', 'middle');
 
 
-        vis.xAxisGroup.call(d3.axisBottom(vis.xScale));
-        vis.yAxisGroup.call(d3.axisLeft(vis.yScale));
 
         vis.svg
             .append('g')
@@ -199,6 +218,9 @@ class ScatterPlot {
             .text(yText)
             .attr('transform', `translate(-30, ${vis.height / 2})rotate(270)`)
             .attr('text-anchor', 'middle');
+
+        vis.circles.exit().remove();
+
     }
 
 }
