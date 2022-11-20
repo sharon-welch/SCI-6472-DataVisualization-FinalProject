@@ -27,7 +27,6 @@ class SeatVis {
 
     initVis() {
 
-        console.log("here!");
         let vis = this
 
         //margins
@@ -45,8 +44,8 @@ class SeatVis {
         vis.myRows = Array.from(new Set(vis.seatData.map(d => d.row)))
         vis.myColumns = Array.from(new Set(vis.seatData.map(d => d.column)))
 
-        console.log(vis.myRows);
-        console.log(vis.myColumns);
+        // console.log(vis.myRows);
+        // console.log(vis.myColumns);
 
         //build x scale
         vis.xScale = d3.scaleBand()
@@ -66,8 +65,6 @@ class SeatVis {
     }
 
     updateVis() {
-
-        console.log("here too!");
 
         let vis = this;
 
