@@ -57,6 +57,12 @@
 
     <!-- Viz: Scatterplot -->
     <div class="row">
+        <div class="col">Predictor</div>
+        <div class="col">Health Outcome</div>
+        <div class="col"></div>
+    </div>
+
+    <div class="row">
         <div class="col"> <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
             <option value="RidingHistory" selected>Length of Time Biking</option>
             <option value="RidingFrequency">Biking Frequency</option>
@@ -68,7 +74,7 @@
             <option value="SaddleType">Type of Saddle</option>
             <option value="SaddleAngle">Angle of Saddle</option>
             <option value="BikeType">Type of Bike</option>
-            <option value="HandleBars">Height of Handlebars (compared to Saddle)</option>
+            <option value="HandleBars">Height of Handlebars (Compared to Saddle)</option>
             <option value="Surface">Typical Surface for Biking</option>
         </select>
         </div>
@@ -85,16 +91,19 @@
             <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
             <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
         </select> </div>
-    </div>
+        <div class="col"></div>
 
+    </div>
+    </br>
     <!-- Parent container for the scatterplot -->
     <div id="scatter-area" style="height:500px; width: 500px"></div>
 
     </br>
 
-    <!-- Viz: 3 scatter symbol plots -->
-
-    <div id="row">
+    <div class="row">
+        <div class="row">
+            <div class="col">Health Outcome</div>
+        </div>
         <div class="row">
             <div class="col"> <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeSymbol()">
                 <option value="LUTS" selected>Urinary Wellness</option>
@@ -108,15 +117,16 @@
                 <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
             </select>
             </div>
+            <div class="col"></div>
         </div>
     </div>
 
     </br>
 
     <div class="row">
-        <div class="col" id="symbol-area1"> Symbol Plot 1 Here</div>
-        <div class="col" id="symbol-area2"> Symbol Plot 2 Here</div>
-        <div class="col" id="symbol-area3"> Symbol Plot 3 Here</div>
+        <div class="col" id="symbol-area1" style="height:300px; width: 300px"> </div>
+        <div class="col" id="symbol-area2" style="height:300px; width: 300px"> </div>
+        <div class="col" id="symbol-area3" style="height:300px; width: 300px"> </div>
     </div>
 
 
