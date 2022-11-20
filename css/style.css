@@ -1,62 +1,21 @@
-
-body {
-    font-family: sans-serif;
+h2 {
+  color: grey;
 }
 
-div {
-    border: 1px solid red;
+#xAxis line {
+  shape-rendering: crispEdges;
 }
 
-.row {
-    padding-top: 25px;
+#yAxis line {
+  shape-rendering: crispEdges;
 }
 
-/*TODO : make this responsive */
-#pie-chart-div {
-    height: 450px;
+#xAxisLab {
+  fill: grey;
+  font: 30 px;
 }
 
-#pie-chart-text {
-    text-align: justify;
+#yAxisLab {
+  fill: grey;
+  font: 30 px;
 }
-
-
-h1 {
-    padding-top: 25px;
-    text-align: center;
-
-}
-
-
-
-/*********************/
-/*  CIRCLE TIMELINE  */
-/*********************/
-
-/*#male-circle-timeline, #female-circle-timeline {
-    text-align: left;
-    color: black;
-}*/
-
-/*********************/
-/*  PIE CHART  */
-/*********************/
-
-
-/*********************/
-/*  SCATTER PLOT  */
-/*********************/
-
-#todo-scatter {
-    text-align: center;
-    color: red;
-}
-
-/*********************/
-/* SYMBOL CHARTS  */
-/*********************/
-
-
-/*********************/
-/* BIKE SEAT VIS  */
-/*********************/
