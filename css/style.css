@@ -17,5 +17,9 @@ h2 {
 
 #yAxisLab {
   fill: grey;
-  font: 30 px;
+  font-size: 30px;
+}
+.tooltip{
+  position: absolute;
+  text-align: center;
 }
