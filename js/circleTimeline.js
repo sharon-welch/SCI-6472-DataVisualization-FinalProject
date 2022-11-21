@@ -34,6 +34,10 @@ class CircleTimeline {
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
+        vis.tooltip = d3.select("#" + vis.parentElement).append('div')
+            .attr('class', "tooltip")
+            .attr('id', 'timelineTooltip')
+
         vis.wrangleData();
     }
 
@@ -66,11 +70,29 @@ class CircleTimeline {
             .attr('cy', 50)
             .attr('r', function(d) {
                 if (vis.gender === "male") {
-                    return d.male_trip_count / 10000;
+                    return d.male_trip_count/10000;
                 }
                 else {
-                    return d.female_trip_count / 10000;
+                    return d.female_trip_count/10000;
                 }
+            })
+            .on('mouseover', function(event, d) {
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", event.pageX + 20 + "px")
+                    .style("top", event.pageY + "px")
+                    .html(`
+                         <div style="border: thin solid grey; border-radius: 5px; background: white; padding: 10px">
+                             <p> Number of bike trips by male riders: ${d.male_trip_count}<p>
+                             <p> Number of bike trips by female riders: ${d.female_trip_count}<p>
+                         </div>`)
+            })
+            .on('mouseout', function(event, d){
+                 vis.tooltip
+                     .style("opacity", 0)
+                     .style("left", 0)
+                     .style("top", 0)
+                     .html(``)
             })
 
         if (vis.gender === "female") {
