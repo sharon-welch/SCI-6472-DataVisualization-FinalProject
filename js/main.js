@@ -44,7 +44,7 @@ let promises = [
         d.UTINum = +d.UTINum;
         d.IPSS = +d.IPSS;
         d.UrinaryFill = +d.UrinaryFill;
-        d.UrinaryVoiding = +d.UrinaryFill;
+        d.UrinaryVoiding = +d.UrinaryVoiding;
         return d;
     }),
     d3.csv("data/saddlehealthdata.csv", d => {
@@ -56,7 +56,7 @@ let promises = [
         d.SaddleSores = +d.SaddleSores
         d.IPSS = +d.IPSS;
         d.UrinaryFill = +d.UrinaryFill;
-        d.UrinaryVoiding = +d.UrinaryFill;
+        d.UrinaryVoiding = +d.UrinaryVoiding;
         return d;
     }),
 
@@ -84,9 +84,9 @@ function initVisualizations (listOfArrays) {
     myFemaleCircleTimeline = new CircleTimeline('female-timeline-div', listOfArrays[0], "female")
     myPieChart = new PieChart('pie-chart-div', listOfArrays[1])
     myScatter = new ScatterPlot('scatter-area', listOfArrays[2])
-    // mySymbol1 = new SymbolPlot('symbol-area1', listOfArrays[3])
-    // mySymbol2 = new SymbolPlot('symbol-area2', listOfArrays[3])
-    // mySymbol3 = new SymbolPlot('symbol-area3', listOfArrays[3])
+    mySymbol1 = new SymbolPlot('symbol-area1', listOfArrays[3])
+    mySymbol2 = new SymbolPlot('symbol-area2', listOfArrays[3])
+    mySymbol3 = new SymbolPlot('symbol-area3', listOfArrays[3])
     mySeatVis = new SeatVis('bike-seat-div', listOfArrays[4])
 }
 
@@ -105,8 +105,8 @@ let selectedCategorySymbolY =  document.getElementById('categorySelectorSymbolY'
 
 function categoryChangeSymbol() {
     selectedCategorySymbolY =  document.getElementById('categorySelectorSymbolY').value;
-    // mySymbol1.wrangleData();
-    // mySymbol2.wrangleData();
-    // mySymbol3.wrangleData();
+    mySymbol1.wrangleData();
+    mySymbol2.wrangleData();
+    mySymbol3.wrangleData();
     console.log(selectedCategorySymbolY)
 }
