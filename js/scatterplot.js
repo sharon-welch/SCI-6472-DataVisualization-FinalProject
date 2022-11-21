@@ -96,6 +96,7 @@ class ScatterPlot {
                     return "hotpink"
                 }
             })
+            .style("opacity", 0.2)
             .attr("x", d => vis.xScale(d[selectedCategoryScatterX])+vis.margin.left)
             .attr('y', d => vis.yScale(d[selectedCategoryScatterY]))
             .attr("cx", function (d){
