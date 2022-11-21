@@ -38,7 +38,7 @@
     <div class="row" id="female-title" style="height:20px">
         <p>Female</p>
     </div>
-    <div class="row" id="female-circle-timeline" style="height:300px; width: 3000px">
+    <div class="row" id="female-circle-timeline" style="height: 300px; width: 3000px">
         <div class="col-12" id="female-timeline-div"></div>
     </div>
 
@@ -48,7 +48,7 @@
 
     </div>
     <div class="row" id="pie-charts">
-        <div class ="col-8" id="pie-chart-div">
+        <div class ="col-8" id="pie-chart-div" style="height: 300px;">
         </div>
         <div class ="col justify-content-center" id="pie-chart-text">
             <p>Furthermore, women's health and comfort when it comes to bicycling are understudied. For example, saddle sores are an issue often reported by cyclists. A review of literature conducted in 2022 showed that only 2/15 of the most prevalent studies on saddle sores focused on women.</p>
@@ -96,10 +96,7 @@
     </div>
     </br>
     <!-- Parent container for the scatterplot -->
-<<<<<<< HEAD
-=======
     <div id="scatter-area" style="height:500px; width: 700px"></div>
->>>>>>> d18deed7e466e3f63fe3a034e370ddaff0cb9923
 
     </br>
 
@@ -137,7 +134,25 @@
 
     <!-- Viz: Bike seat map -->
     <div class="row" id="bike-seat" style="height:1000px; width: 1320px">
-        <div class="col" id="bike-seat-div"></div>
+        <div class="col" id="bike-seat-div">
+            <div class=dropdown">
+                <select id="gender" class="user-control form-control form-group" onchange="updateBikeSeat()">
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                </select>
+            </div>
+            <div class="form-outline">
+                <input type="number" value="25" id="age" class="form-control" onchange="updateBikeSeat()"/>
+                <label class="form-label" for="age">Age (years)</label>
+                <input type="number" value="1.6" id="height" class="form-control" onchange="updateBikeSeat()"/>
+                <label class="form-label" for="height">Height (m)</label>
+                <input type="number" value="68" id="weight" class="form-control" onchange="updateBikeSeat()"/>
+                <label class="form-label" for="weight">Weight (kg)</label>
+            </div>
+            <div class="text" id="metric-text">
+                <p>The average bike seat pressure for people with your metrics was 20.33 kPa, which is 2.13 kPa off from the average pressure for female riders, 18.2 kPa.</p>
+            </div>
+        </div>
     </div>
 
 </div>

@@ -8,9 +8,11 @@
 
 class SeatVis {
 
-    constructor(parentElement, seatData) {
+    constructor(parentElement, seatData, metricsData, gender) {
         this.parentElement = parentElement;
         this.seatData = seatData;
+        this.metricsData = metricsData;
+        this.gender = gender;
         //TODO - array of circle colors and call colors below by spot in array
         // this.circleColors = ['#fff460', '#5d67f5'];
 
@@ -67,6 +69,7 @@ class SeatVis {
     updateVis() {
 
         let vis = this;
+        console.log("actual vis gender is " + vis.gender)
 
         //TODO - create a radius that isn't hardcoded
         vis.circleRadius = 40
@@ -88,16 +91,89 @@ class SeatVis {
             // .attr("width", x.bandwidth() )
             // .attr("height", y.bandwidth() )
             .style("fill", function (d) {
-                return vis.myColor(d.value_female)
+                if (vis.gender === "female") {
+                    console.log("updating female dots")
+                    return vis.myColor(d.value_female)
+                }
+                else {
+                    console.log("updating male dots")
+                    return vis.myColor(d.value_male)
+                }
             })
             .style("stroke-width", .5)
             .style("stroke", function (d) {
-                if (d.value_female === 0) {
-                    return "none";
-                } else {
-                    return "gray";
+                if (vis.gender === "female") {
+                    console.log("updating female circles")
+                    if (d.value_female === 0) {
+                        return "none";
+                    } else {
+                        return "gray";
+                    }
+                }
+                else {
+                    console.log("updating male circles")
+                    if (d.value_male === 0) {
+                        return "none";
+                    } else {
+                        return "gray";
+                    }
                 }
             })
+    }
+
+    updateText() {
+        console.log("here");
+        let vis = this;
+        let selectBox = document.getElementById("gender");
+        let selectedGender = selectBox.options[selectBox.selectedIndex].value;
+        vis.gender = selectedGender;
+        console.log("vis gender is " + vis.gender);
+        vis.updateVis();
+        console.log(selectedGender);
+        let age_metrics = Array.from(new Set (vis.metricsData.map(d => d.age)));
+        let height_metrics = Array.from(new Set (vis.metricsData.map(d => d.height)));
+        let weight_metrics = Array.from(new Set (vis.metricsData.map(d => d.weight)));
+        let pressure_metrics = Array.from(new Set (vis.metricsData.map(d => d.pressure)));
+        console.log(age_metrics, height_metrics, weight_metrics, pressure_metrics);
+        console.log(age_metrics[0]);
+        let inputAge = document.getElementById("age");
+        let selectedAge = inputAge.value;
+        console.log(selectedAge);
+        let inputHeight = document.getElementById("height");
+        let selectedHeight = inputHeight.value;
+        console.log(selectedHeight);
+        let inputWeight = document.getElementById("weight");
+        let selectedWeight = inputWeight.value;
+        console.log(selectedWeight);
+
+        let mean_index, sd_index;
+
+        if(vis.gender === "female") {
+            mean_index = 0;
+            sd_index = 1;
+        }
+        else {
+            mean_index = 2;
+            sd_index = 3;
+        }
+
+        let age_percentage = (selectedAge-age_metrics[mean_index])/age_metrics[sd_index];
+        let height_percentage = (selectedHeight-height_metrics[mean_index])/height_metrics[sd_index];
+        let weight_percentage = (selectedWeight-weight_metrics[mean_index])/weight_metrics[sd_index];
+
+        let avg_percentage = (age_percentage+height_percentage+weight_percentage)/3;
+        let difference = (Math.round((avg_percentage*pressure_metrics[sd_index])*100))/100;
+        let avg_pressure = pressure_metrics[mean_index];
+        let user_pressure = avg_pressure + difference;
+        // the seat pressure can't be negative, so round any seat negative pressures to 0
+        if (user_pressure < 0) {
+            user_pressure = 0;
+            difference = -1*avg_pressure;
+        }
+
+        document.getElementById("metric-text").innerText =
+            "The average bike seat pressure for people with your metrics was " + user_pressure.toFixed(2) + " kPa, which is "
+            + Math.abs(difference) + " kPa off from the average pressure for " + selectedGender + " riders, " + avg_pressure + " kPa."
     }
 
 }

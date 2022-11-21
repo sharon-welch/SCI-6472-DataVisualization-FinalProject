@@ -62,11 +62,18 @@ let promises = [
 
     //array for scatterplot
 
-    //array for bike seat vis
+    //array for bike seat vis [4]
     d3.csv("data/pressure_data.csv", d => {
             d.value_female = +d.value_female;
             d.value_male = +d.value_male;
             return d;
+    }),
+    d3.csv("data/pressuremetrics_data.csv", d => {
+        d.age = +d.age;
+        d.height = +d.height;
+        d.weight = +d.weight;
+        d.pressure = +d.pressure;
+        return d;
     })
 
 
@@ -87,7 +94,11 @@ function initVisualizations (listOfArrays) {
     mySymbol1 = new SymbolPlot('symbol-area1', listOfArrays[3])
     mySymbol2 = new SymbolPlot('symbol-area2', listOfArrays[3])
     mySymbol3 = new SymbolPlot('symbol-area3', listOfArrays[3])
-    mySeatVis = new SeatVis('bike-seat-div', listOfArrays[4])
+    mySeatVis = new SeatVis('bike-seat-div', listOfArrays[4], listOfArrays[5], "female")
+}
+
+function updateBikeSeat () {
+    mySeatVis.updateText();
 }
 
 let selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
