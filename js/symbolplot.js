@@ -3,8 +3,8 @@ class SymbolPlot {
     constructor(parentElement, data, saddleType) {
         this.parentElement = parentElement;
         this.data = data;
-        this.graphdata = data;
         this.saddleType = saddleType;
+        this.displayData = [];
 
         this.initVis()
 
@@ -45,18 +45,6 @@ class SymbolPlot {
 
         let vis = this
 
-
-        vis.data.filter()
-
-        // if (vis.parentElement === 'symbol-area1') {
-        //     vis.graphdata = vis.data[0,1]
-        // } else if (vis.parentElement === 'symbol-area2') {
-        //     vis.graphdata = vis.data[2,3]
-        // } else if (vis.parentElement === 'symbol-area3') {
-        //     vis.graphdata = vis.data[4,5]
-        // }
-
-
         vis.updateVis()
     }
 
@@ -85,6 +73,13 @@ class SymbolPlot {
                     return "hotpink"
                 }
             })
+            // .style("opacity", function (d) {
+            //     if (vis.parentElement === "symbol-area1") {
+            //         if (d.saddleType === "Partial") {
+            //             return 0
+            //         } else { return 1.0}
+            //     }
+            // })
             .attr("stroke", "black")
             .attr("cx", d => vis.xScale(d.Gender))
             .attr('cy', d => vis.yScale(d[selectedCategorySymbolY]))

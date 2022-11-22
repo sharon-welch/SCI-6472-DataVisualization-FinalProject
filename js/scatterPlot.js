@@ -89,7 +89,14 @@ class ScatterPlot {
             .merge(vis.circles)
             .attr("fill", d => color(d.Gender))
             .style("opacity", 0.2)
-            .attr("cx", d=> vis.xScale(d[selectedCategoryScatterX]))
+            //.attr("cx", d=> vis.xScale(d[selectedCategoryScatterX]))
+            .attr("cx", function (d) {
+                if (d.Gender === "Male") {
+                   return (vis.xScale(d[selectedCategoryScatterX]) - 10)
+                } else {
+                    return (vis.xScale(d[selectedCategoryScatterX]) + 10)
+                }
+            })
             .attr('cy', d => vis.yScale(d[selectedCategoryScatterY]))
             .attr("r", 5)
             .on('mouseover', function (event, d) {
