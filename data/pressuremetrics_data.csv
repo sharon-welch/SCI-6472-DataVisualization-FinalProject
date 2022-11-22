@@ -1,0 +1,5 @@
+﻿measure,age,height,weight,pressure
+female_mean,29.8,1.64,67.1,18.2
+female_sd,11.3,0.4,0.9,13.45
+male_mean,32.1,1.88,76.8,27.6
+male_sd,11.5,0.06,16.3,13.48
