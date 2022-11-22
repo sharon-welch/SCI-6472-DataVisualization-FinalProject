@@ -91,6 +91,7 @@ function initVisualizations (listOfArrays) {
 }
 
 let selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
+let ScatterXLabel =  document.getElementById('categorySelectorScatterX').text;
 let selectedCategoryScatterY =  document.getElementById('categorySelectorScatterY').value;
 
 function categoryChangeScatter() {
