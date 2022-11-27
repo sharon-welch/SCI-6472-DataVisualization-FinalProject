@@ -34,18 +34,6 @@ class CircleTimeline {
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-        vis.svg.append("text")
-            .text(function(d) {
-                if (vis.gender === "male") {
-                    return "Male";
-                }
-                else {
-                    return "Female";
-                }
-            })
-            .attr("x", 0)
-            .attr("y", 0);
-
         vis.tooltip = d3.select("#" + vis.parentElement).append('div')
             .attr('class', "tooltip")
             .attr('id', 'timelineTooltip')
@@ -77,7 +65,7 @@ class CircleTimeline {
                 }
             })
             .attr('cx', (d,i) => {
-                return 20 + i*150;
+                return 20 + i*130;
             })
             .attr('cy', 50)
             .attr('r', function(d) {
@@ -115,7 +103,7 @@ class CircleTimeline {
                     return d.year;
                 })
                 .attr('x', (d, i) => {
-                    return i*150;
+                    return i*130;
                 })
                 .attr('y', 100)
         }
