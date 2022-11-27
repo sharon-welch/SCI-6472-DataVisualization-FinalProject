@@ -9,7 +9,7 @@ class ScatterPlot {
 
     initVis(){
         let vis = this;
-        console.log(vis.data)
+        //console.log(vis.data)
 
         vis.margin = {top: 40, right: 20, bottom: 50, left: 50};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
@@ -55,8 +55,8 @@ class ScatterPlot {
 
         let vis = this
 
-        console.log(selectedCategoryScatterX)
-        console.log(selectedCategoryScatterY)
+        //console.log(selectedCategoryScatterX)
+        //console.log(selectedCategoryScatterY)
 
         vis.updateVis()
     }
@@ -64,7 +64,7 @@ class ScatterPlot {
     updateVis(){
 
         let vis = this;
-        console.log("here!")
+        //console.log("here!")
 
         vis.xScale = d3.scaleBand()
             .range([0,vis.width])
@@ -99,7 +99,7 @@ class ScatterPlot {
             .attr("x", d => vis.xScale(d[selectedCategoryScatterX])+vis.margin.left)
             .attr('y', d => vis.yScale(d[selectedCategoryScatterY]))
             .attr("cx", function (d){
-                console.log(vis.xScale(d[selectedCategoryScatterX]))
+                //console.log(vis.xScale(d[selectedCategoryScatterX]))
                 vis.xPos = vis.xScale(d[selectedCategoryScatterX])+ (vis.margin.left -6)
                 return vis.xPos;
             })
@@ -107,7 +107,7 @@ class ScatterPlot {
             .attr("r", 5)
             .on('mouseover', function(event, d){
 
-                console.log(event);
+                //console.log(event);
 
                 vis.tooltip
                     .style("opacity", 1)
@@ -188,7 +188,7 @@ class ScatterPlot {
 
 
         let titletext = 'Effect of ' + xText + " on " + yText;
-        console.log(titletext)
+        //console.log(titletext)
 
         //vis.title = vis.svg.append('g')
 

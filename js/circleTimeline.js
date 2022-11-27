@@ -34,6 +34,18 @@ class CircleTimeline {
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
+        vis.svg.append("text")
+            .text(function(d) {
+                if (vis.gender === "male") {
+                    return "Male";
+                }
+                else {
+                    return "Female";
+                }
+            })
+            .attr("x", 0)
+            .attr("y", 0);
+
         vis.tooltip = d3.select("#" + vis.parentElement).append('div')
             .attr('class', "tooltip")
             .attr('id', 'timelineTooltip')
@@ -70,9 +82,11 @@ class CircleTimeline {
             .attr('cy', 50)
             .attr('r', function(d) {
                 if (vis.gender === "male") {
+                    console.log(d.male_trip_count, d.male_trip_count/10000);
                     return d.male_trip_count/10000;
                 }
                 else {
+                    console.log(d.female_trip_count, d.female_trip_count/10000);
                     return d.female_trip_count/10000;
                 }
             })
@@ -103,7 +117,7 @@ class CircleTimeline {
                 .attr('x', (d, i) => {
                     return i*150;
                 })
-                .attr('y', 150)
+                .attr('y', 100)
         }
 
     }
