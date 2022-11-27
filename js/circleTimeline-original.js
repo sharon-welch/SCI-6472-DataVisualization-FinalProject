@@ -23,7 +23,7 @@ class CircleTimeline {
         let vis = this;
 
         // margin conventions
-        vis.margin = {top: 20, right: 20, bottom: 20, left: 30};
+        vis.margin = {top: 20, right: 20, bottom: 20, left: 40};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
@@ -33,10 +33,6 @@ class CircleTimeline {
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
-
-        vis.tooltip = d3.select("#" + vis.parentElement).append('div')
-            .attr('class', "tooltip")
-            .attr('id', 'timelineTooltip')
 
         vis.wrangleData();
     }
@@ -65,34 +61,16 @@ class CircleTimeline {
                 }
             })
             .attr('cx', (d,i) => {
-                return 20 + i*130;
+                return 20 + i*150;
             })
             .attr('cy', 50)
             .attr('r', function(d) {
                 if (vis.gender === "male") {
-                    return d.male_trip_count/10000;
+                    return d.male_trip_count / 10000;
                 }
                 else {
-                    return d.female_trip_count/10000;
+                    return d.female_trip_count / 10000;
                 }
-            })
-            .on('mouseover', function(event, d) {
-                vis.tooltip
-                    .style("opacity", 1)
-                    .style("left", event.pageX + 20 + "px")
-                    .style("top", event.pageY + "px")
-                    .html(`
-                         <div style="border: thin solid grey; border-radius: 5px; background: white; padding: 10px">
-                             <p> Number of bike trips by male riders: ${d.male_trip_count}<p>
-                             <p> Number of bike trips by female riders: ${d.female_trip_count}<p>
-                         </div>`)
-            })
-            .on('mouseout', function(event, d){
-                 vis.tooltip
-                     .style("opacity", 0)
-                     .style("left", 0)
-                     .style("top", 0)
-                     .html(``)
             })
 
         if (vis.gender === "female") {
@@ -101,9 +79,9 @@ class CircleTimeline {
                     return d.year;
                 })
                 .attr('x', (d, i) => {
-                    return i*130;
+                    return i*150;
                 })
-                .attr('y', 100)
+                .attr('y', 150)
         }
 
     }

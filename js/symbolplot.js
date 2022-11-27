@@ -1,17 +1,18 @@
 class SymbolPlot {
 
-    constructor(parentElement, data) {
+    constructor(parentElement, data, saddleType) {
         this.parentElement = parentElement;
         this.data = data;
-        this.graphdata = data;
+        this.saddleType = saddleType;
+        this.displayData = [];
 
         this.initVis()
+
     }
 
     initVis(){
-        let vis = this;
-        console.log(vis.data)
 
+        let vis = this;
         vis.margin = {top: 40, right: 40, bottom: 40, left: 40};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
@@ -29,9 +30,6 @@ class SymbolPlot {
         vis.yScale = d3.scaleLinear()
             .range([vis.height,0]);
 
-        // vis.yScale = d3.scaleBand()
-        //     .range([vis.height,0]);
-
         // axis groups
         vis.xAxisGroup = vis.svg.append('g')
             .attr('class', 'axis x-axis')
@@ -47,25 +45,12 @@ class SymbolPlot {
 
         let vis = this
 
-        console.log(selectedCategorySymbolY)
-
-        // if (vis.parentElement === 'symbol-area1') {
-        //     vis.graphdata = vis.data[0,1]
-        // } else if (vis.parentElement === 'symbol-area2') {
-        //     vis.graphdata = vis.data[2,3]
-        // } else if (vis.parentElement === 'symbol-area3') {
-        //     vis.graphdata = vis.data[4,5]
-        // }
-
-
         vis.updateVis()
     }
 
     updateVis(){
 
         let vis = this;
-        console.log("here!")
-
         vis.xScale.domain(d3.extent(vis.data, function (d) {return d.Gender}));
 
         vis.yScale.domain([0,
@@ -74,7 +59,6 @@ class SymbolPlot {
         vis.circles = vis.svg.selectAll('.circle')
             .data(vis.data)
 
-        console.log(vis.data)
 
         vis.circles.exit().remove();
 
@@ -89,6 +73,13 @@ class SymbolPlot {
                     return "hotpink"
                 }
             })
+            // .style("opacity", function (d) {
+            //     if (vis.parentElement === "symbol-area1") {
+            //         if (d.saddleType === "Partial") {
+            //             return 0
+            //         } else { return 1.0}
+            //     }
+            // })
             .attr("stroke", "black")
             .attr("cx", d => vis.xScale(d.Gender))
             .attr('cy', d => vis.yScale(d[selectedCategorySymbolY]))

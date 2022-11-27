@@ -12,7 +12,7 @@ h2 {
 
 #xAxisLab {
   fill: grey;
-  font: 30 px;
+  font-soze: 30px;
 }
 
 #yAxisLab {
@@ -22,8 +22,5 @@ h2 {
 .tooltip{
   position: absolute;
   text-align: center;
-}
-
-#gender {
-  margin: 20px 0px;
+  font-size: 12px;
 }

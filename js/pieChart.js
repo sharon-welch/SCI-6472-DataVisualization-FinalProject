@@ -13,7 +13,8 @@ class PieChart {
         // this.circleColors = ['#fff460', '#5d67f5'];
 
         //female, male, both
-        this.pieColors = ['#7fcdbb', '#2c7fb8', '#edf8b1'];
+        //this.pieColors = ['#7fcdbb', '#2c7fb8', '#edf8b1'];
+        this.pieColors = ['hotpink', 'dodgerblue', '#F8F76A'];
 
         // console.log("pieData", pieData)
 
