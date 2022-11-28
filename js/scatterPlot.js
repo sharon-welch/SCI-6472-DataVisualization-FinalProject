@@ -43,7 +43,7 @@ class ScatterPlot {
 
         let vis = this
 
-       vis.data = vis.data.sort((a, b) => {
+        vis.data = vis.data.sort((a, b) => {
             return b[selectedCategoryScatterY] - a[selectedCategoryScatterY]
         })
 
@@ -92,7 +92,7 @@ class ScatterPlot {
             //.attr("cx", d=> vis.xScale(d[selectedCategoryScatterX]))
             .attr("cx", function (d) {
                 if (d.Gender === "Male") {
-                   return (vis.xScale(d[selectedCategoryScatterX]) - 10)
+                    return (vis.xScale(d[selectedCategoryScatterX]) - 10)
                 } else {
                     return (vis.xScale(d[selectedCategoryScatterX]) + 10)
                 }
@@ -168,4 +168,3 @@ class ScatterPlot {
 
 
 }
-
