@@ -14,7 +14,7 @@ class PieChart {
 
         //female, male, both
         //this.pieColors = ['#7fcdbb', '#2c7fb8', '#edf8b1'];
-        this.pieColors = ['hotpink', 'dodgerblue', '#F8F76A'];
+        this.pieColors = ['hotpink', 'dodgerblue', '#8F7DDA'];
 
         // console.log("pieData", pieData)
 
