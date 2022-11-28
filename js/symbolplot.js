@@ -45,6 +45,24 @@ class SymbolPlot {
 
         let vis = this
 
+        for (let i = 0; i < vis.data.length; i++) {
+            if (vis.parentElement === "symbol-area1") {
+                if (vis.data[i].SaddleType === "Standard") {
+                   vis.displayData.push(vis.data[i])
+                }
+            } else if (vis.parentElement === "symbol-area2") {
+                if (vis.data[i].SaddleType === "Partial") {
+                    vis.displayData.push(vis.data[i])
+                }
+            } else if (vis.parentElement === "symbol-area3") {
+                if (vis.data[i].SaddleType === "Complete") {
+                    vis.displayData.push(vis.data[i])
+                }
+            }
+        }
+
+       console.log(vis.displayData)
+
         vis.updateVis()
     }
 
@@ -57,7 +75,7 @@ class SymbolPlot {
             (d3.max(vis.data, function (d)  {return d[selectedCategorySymbolY]}))])
 
         vis.circles = vis.svg.selectAll('.circle')
-            .data(vis.data)
+            .data(vis.displayData)
 
 
         vis.circles.exit().remove();
@@ -73,15 +91,8 @@ class SymbolPlot {
                     return "hotpink"
                 }
             })
-            // .style("opacity", function (d) {
-            //     if (vis.parentElement === "symbol-area1") {
-            //         if (d.saddleType === "Partial") {
-            //             return 0
-            //         } else { return 1.0}
-            //     }
-            // })
             .attr("stroke", "black")
-            .attr("cx", d => vis.xScale(d.Gender))
+            .attr("cx", d => vis.xScale(d.Gender)+ 100)
             .attr('cy', d => vis.yScale(d[selectedCategorySymbolY]))
             .attr("r", 10)
 
@@ -137,6 +148,8 @@ class SymbolPlot {
             .text(yText)
             .attr('transform', `translate(-30, ${vis.height / 2})rotate(270)`)
             .attr('text-anchor', 'middle');
+
+        //vis.yLab.exit().remove();
     }
 
 }
