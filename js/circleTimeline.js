@@ -65,9 +65,16 @@ class CircleTimeline {
                 }
             })
             .attr('cx', (d,i) => {
-                return 20 + i*130;
+                return 30 + i*130;
             })
-            .attr('cy', 50)
+            .attr('cy', function(d) {
+                if(vis.gender === "male") {
+                    return 60;
+                }
+                else {
+                    return 20;
+                }
+            })
             .attr('r', function(d) {
                 if (vis.gender === "male") {
                     return d.male_trip_count/10000;
@@ -101,9 +108,9 @@ class CircleTimeline {
                     return d.year;
                 })
                 .attr('x', (d, i) => {
-                    return i*130;
+                    return 10+i*130;
                 })
-                .attr('y', 100)
+                .attr('y', 70)
         }
 
     }
