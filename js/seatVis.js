@@ -17,8 +17,16 @@ class SeatVis {
         // this.circleColors = ['#fff460', '#5d67f5'];
 
         //color scale
-        this.myColor = d3.scaleLinear()
+        /*this.myColor = d3.scaleLinear()
             .range(["white", "black"])
+            .domain([1,30])*/
+
+        this.myMaleColor = d3.scaleLinear()
+            .range(["white", "dodgerblue"])
+            .domain([1,30])
+
+        this.myFemaleColor = d3.scaleLinear()
+            .range(["white", "hotpink"])
             .domain([1,30])
 
         // console.log(seatData);
@@ -93,11 +101,11 @@ class SeatVis {
             .style("fill", function (d) {
                 if (vis.gender === "female") {
                     console.log("updating female dots")
-                    return vis.myColor(d.value_female)
+                    return vis.myFemaleColor(d.value_female)
                 }
                 else {
                     console.log("updating male dots")
-                    return vis.myColor(d.value_male)
+                    return vis.myMaleColor(d.value_male)
                 }
             })
             .style("stroke-width", .5)
