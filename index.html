@@ -24,178 +24,174 @@
     </head>
 
     <body>
-        <!--TODO - do I need the fluid container?-->
-<!--        <div class="container-fluid">-->
-            <div id="fullpage">
+        <div id="fullpage">
 
-                <!-- INTRO-->
-                <div class="section s1">
-                    <!-- Header -->
-                    <div class = "row d-flex justify-content-center">
-                        <h1>Women's Health and the Bike Seat: A proposal for new saddle design</h1>
-                    </div>
-                    <!-- Text: Introduction-->
-                    <div class="row d-flex justify-content-center" id="intro">
-                        <p>When was the last time you felt comfortable on youur bike?</p>
-                    </div>
+            <!-- INTRO-->
+            <div class="section s1">
+                <!-- Header -->
+                <div class = "row d-flex justify-content-center">
+                    <h1>Women's Health and the Bike Seat: A proposal for new saddle design</h1>
                 </div>
-
-                <!-- CIRCLE TIMELINE and PIE CHART -->
-                <div class="section s2">
-
-                    <!-- CIRCLE TIMELINE -->
-                    <div class ="slide" id="circle-slide">
-                        <div class="container-fluid">
-                            <div class="row" id="circle-intro">
-                                <p>Reasons for large existing gender disparities in biking are not fully understood. In the US, only 2.2% of trips are taken by bike. Furthermore, only .6% of that percentage are taken by women.</p>
-                            </div>
-                            <div class="row" id="circle-title">
-                                <p>Bike Trips by Gender in the US (hover over the circles to see statistics for each year)</p>
-                            </div>
-                            <div class="row" id="male-title" style="height:10px">
-                                <p>Male</p>
-                            </div>
-                            <div class="row" id="male-circle-timeline" style="height:150px; width: 1300px">
-                                <div class="col-12" id="male-timeline-div"></div>
-                            </div>
-                            <div class="row" id="female-title" style="height:10px">
-                                <p>Female</p>
-                            </div>
-                            <div class="row" id="female-circle-timeline" style="height: 150px; width: 1300px">
-                                <div class="col-12" id="female-timeline-div"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PIE CHART AND DESCRIPTION -->
-                    <div class="slide" id ="pie-slide">
-                        <div class="container-fluid">
-                            <div class = "row" id="pie-charts-intro">
-                                <p>In looking at national data on daily commutes, only 27% of trips are made by women.</p>
-                            </div>
-                            <div class="row d-flex" id="pie-charts">
-                                <div class ="col-md-6 text-center" id="pie-chart-div">
-                                </div>
-                                <div class ="col-md-6 justify-content-center" id="pie-chart-text">
-                                    <p>Furthermore, women's health and comfort when it comes to bicycling are understudied. For example, saddle sores are an issue often reported by cyclists. A review of literature conducted in 2022 showed that only 2/15 of the most prevalent studies on saddle sores focused on women.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <!-- Text: Introduction-->
+                <div class="row d-flex justify-content-center" id="intro">
+                    <p>When was the last time you felt comfortable on youur bike?</p>
                 </div>
+            </div>
 
-                <!-- SCATTERPLOT -->
-                <div class="section s3">
+            <!-- CIRCLE TIMELINE and PIE CHART -->
+            <div class="section s2">
+
+                <!-- CIRCLE TIMELINE -->
+                <div class ="slide" id="circle-slide">
                     <div class="container-fluid">
-
-                        <div class="row">
-                            <div class="col">Predictor</div>
-                            <div class="col">Health Outcome</div>
-                            <div class="col"></div>
+                        <div class="row" id="circle-intro">
+                            <p>Reasons for large existing gender disparities in biking are not fully understood. In the US, only 2.2% of trips are taken by bike. Furthermore, only .6% of that percentage are taken by women.</p>
                         </div>
-                        <div class="row">
-                            <div class="col"> <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
-                                <option value="RidingHistory" selected>Length of Time Biking</option>
-                                <option value="RidingFrequency">Biking Frequency</option>
-                                <option value="LongestDist">Longest Distance Traveled</option>
-                                <option value="AverageDist">Average Distance Traveled</option>
-                                <option value="Speed">Average Speed</option>
-                                <option value="Standing">% Time Standing During a Ride</option>
-                                <option value="PaddedShorts">How Often Padded Shorts Are Worn</option>
-                                <option value="SaddleType">Type of Saddle</option>
-                                <option value="SaddleAngle">Angle of Saddle</option>
-                                <option value="BikeType">Type of Bike</option>
-                                <option value="HandleBars">Height of Handlebars (Compared to Saddle)</option>
-                                <option value="Surface">Typical Surface for Biking</option>
-                            </select>
-                            </div>
-                            <div class="col"><select id='categorySelectorScatterY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
-                                <option value="LUTS" selected>Urinary Wellness</option>
-                                <option value="NumbScore">Degree of Genital Numbness</option>
-                                <option value="NumbTime">Length of Feeling of Numbness</option>
-                                <option value="UTI">History of UTI</option>
-                                <option value="UTINum">Number of Prior UTIs</option>
-                                <option value="Nodules">History of Genital + Perineal Nodules</option>
-                                <option value="SaddleSores">History of Saddle Sores</option>
-                                <option value="IPSS">Prostate Symptoms</option>
-                                <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
-                                <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
-                            </select> </div>
-                            <div class="col"></div>
+                        <div class="row" id="circle-title">
+                            <p>Bike Trips by Gender in the US (hover over the circles to see statistics for each year)</p>
+                        </div>
+                        <div class="row" id="male-title" style="height:10px">
+                            <p>Male</p>
+                        </div>
+                        <div class="row" id="male-circle-timeline" style="height:150px; width: 1300px">
+                            <div class="col-12" id="male-timeline-div"></div>
+                        </div>
+                        <div class="row" id="female-title" style="height:10px">
+                            <p>Female</p>
+                        </div>
+                        <div class="row" id="female-circle-timeline" style="height: 150px; width: 1300px">
+                            <div class="col-12" id="female-timeline-div"></div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Parent container for the scatterplot -->
-                    <div id="scatter-area" style="height:600px; width: 700px"></div>
-                    </br>
+                <!-- PIE CHART AND DESCRIPTION -->
+                <div class="slide" id ="pie-slide">
+                    <div class="container-fluid">
+                        <div class = "row" id="pie-charts-intro">
+                            <p>In looking at national data on daily commutes, only 27% of trips are made by women.</p>
+                        </div>
+                        <div class="row d-flex" id="pie-charts">
+                            <div class ="col-md-6 text-center" id="pie-chart-div">
+                            </div>
+                            <div class ="col-md-6 justify-content-center" id="pie-chart-text">
+                                <p>Furthermore, women's health and comfort when it comes to bicycling are understudied. For example, saddle sores are an issue often reported by cyclists. A review of literature conducted in 2022 showed that only 2/15 of the most prevalent studies on saddle sores focused on women.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- SCATTERPLOT -->
+            <div class="section s3">
+                <div class="container-fluid">
+
                     <div class="row">
-                        <div class="row">
-                            <div class="col">Health Outcome</div>
+                        <div class="col">Predictor</div>
+                        <div class="col">Health Outcome</div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"> <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+                            <option value="RidingHistory" selected>Length of Time Biking</option>
+                            <option value="RidingFrequency">Biking Frequency</option>
+                            <option value="LongestDist">Longest Distance Traveled</option>
+                            <option value="AverageDist">Average Distance Traveled</option>
+                            <option value="Speed">Average Speed</option>
+                            <option value="Standing">% Time Standing During a Ride</option>
+                            <option value="PaddedShorts">How Often Padded Shorts Are Worn</option>
+                            <option value="SaddleType">Type of Saddle</option>
+                            <option value="SaddleAngle">Angle of Saddle</option>
+                            <option value="BikeType">Type of Bike</option>
+                            <option value="HandleBars">Height of Handlebars (Compared to Saddle)</option>
+                            <option value="Surface">Typical Surface for Biking</option>
+                        </select>
                         </div>
-                        <div class="row">
-                            <div class="col"> <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeSymbol()">
-                                <option value="LUTS" selected>Urinary Wellness</option>
-                                <option value="NumbScore">Degree of Genital Numbness</option>
-                                <option value="UTI">History of UTI</option>
-                                <option value="UTINum">Number of Prior UTIs</option>
-                                <option value="Nodules">History of Genital + Perineal Nodules</option>
-                                <option value="SaddleSores">History of Saddle Sores</option>
-                                <option value="IPSS">Prostate Symptoms</option>
-                                <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
-                                <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
-                            </select>
+                        <div class="col"><select id='categorySelectorScatterY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+                            <option value="LUTS" selected>Urinary Wellness</option>
+                            <option value="NumbScore">Degree of Genital Numbness</option>
+                            <option value="NumbTime">Length of Feeling of Numbness</option>
+                            <option value="UTI">History of UTI</option>
+                            <option value="UTINum">Number of Prior UTIs</option>
+                            <option value="Nodules">History of Genital + Perineal Nodules</option>
+                            <option value="SaddleSores">History of Saddle Sores</option>
+                            <option value="IPSS">Prostate Symptoms</option>
+                            <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
+                            <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
+                        </select> </div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+
+                <!-- Parent container for the scatterplot -->
+                <div id="scatter-area" style="height:600px; width: 700px"></div>
+                </br>
+                <div class="row">
+                    <div class="row">
+                        <div class="col">Health Outcome</div>
+                    </div>
+                    <div class="row">
+                        <div class="col"> <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeSymbol()">
+                            <option value="LUTS" selected>Urinary Wellness</option>
+                            <option value="NumbScore">Degree of Genital Numbness</option>
+                            <option value="UTI">History of UTI</option>
+                            <option value="UTINum">Number of Prior UTIs</option>
+                            <option value="Nodules">History of Genital + Perineal Nodules</option>
+                            <option value="SaddleSores">History of Saddle Sores</option>
+                            <option value="IPSS">Prostate Symptoms</option>
+                            <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
+                            <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
+                        </select>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SYMBOL PLOTS-->
+            <div class="section s4">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col" id="symbol-area1" style="height:300px; width: 300px"> </div>
+                        <div class="col" id="symbol-area2" style="height:300px; width: 300px"> </div>
+                        <div class="col" id="symbol-area3" style="height:300px; width: 300px"> </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BIKE SEAT MAP -->
+            <div class="section s5">
+                <div class="container-fluid">
+                    <div class="row" id="bike-seat" style="height:1000px; width: 1320px">
+                        <div class="col" id="bike-seat-div">
+                            <div class=dropdown">
+                                <select id="gender" class="user-control form-control form-group" onchange="updateBikeSeat()">
+                                    <option value="female">Female</option>
+                                    <option value="male">Male</option>
+                                </select>
                             </div>
-                            <div class="col"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SYMBOL PLOTS-->
-                <div class="section s4">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col" id="symbol-area1" style="height:300px; width: 300px"> </div>
-                            <div class="col" id="symbol-area2" style="height:300px; width: 300px"> </div>
-                            <div class="col" id="symbol-area3" style="height:300px; width: 300px"> </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BIKE SEAT MAP -->
-                <div class="section s5">
-                    <div class="container-fluid">
-                        <div class="row" id="bike-seat" style="height:1000px; width: 1320px">
-                            <div class="col" id="bike-seat-div">
-                                <div class=dropdown">
-                                    <select id="gender" class="user-control form-control form-group" onchange="updateBikeSeat()">
-                                        <option value="female">Female</option>
-                                        <option value="male">Male</option>
-                                    </select>
-                                </div>
-                                <div class="form-outline">
-                                    <input type="number" value="25" id="age" class="form-control" onchange="updateBikeSeat()"/>
-                                    <label class="form-label" for="age">Age (years)</label>
-                                    <input type="number" value="1.6" id="height" class="form-control" onchange="updateBikeSeat()"/>
-                                    <label class="form-label" for="height">Height (m)</label>
-                                    <input type="number" value="68" id="weight" class="form-control" onchange="updateBikeSeat()"/>
-                                    <label class="form-label" for="weight">Weight (kg)</label>
-                                </div>
-                                <div class="text" id="metric-text">
-                                    <p>The average bike seat pressure for people with your metrics was 20.33 kPa, which is 2.13 kPa off from the average pressure for female riders, 18.2 kPa.</p>
-                                </div>
+                            <div class="form-outline">
+                                <input type="number" value="25" id="age" class="form-control" onchange="updateBikeSeat()"/>
+                                <label class="form-label" for="age">Age (years)</label>
+                                <input type="number" value="1.6" id="height" class="form-control" onchange="updateBikeSeat()"/>
+                                <label class="form-label" for="height">Height (m)</label>
+                                <input type="number" value="68" id="weight" class="form-control" onchange="updateBikeSeat()"/>
+                                <label class="form-label" for="weight">Weight (kg)</label>
+                            </div>
+                            <div class="text" id="metric-text">
+                                <p>The average bike seat pressure for people with your metrics was 20.33 kPa, which is 2.13 kPa off from the average pressure for female riders, 18.2 kPa.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-<!--        </div>-->
+        </div>
+
 
         <!-- embedding JS libraries -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-
         <!-- BOOTSTRAP -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.4.0/nouislider.min.js" integrity="sha512-mZXUH8DAODwCHioWP3gltQwa953LbABMlzTYwYkKqv8eNxOk37B1HgNNuCMfFxgrpW5C34WJbxPDcM58+s1dJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
         <!-- FULLPAGE -->
 <!--        <script type="module" src="js/fullpage/fullpage.js"></script>-->
