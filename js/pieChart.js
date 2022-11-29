@@ -47,6 +47,11 @@ class PieChart {
 
 
         // TODO - add legend
+        // add color legend
+        vis.legend = vis.svg.append("g")
+            .attr('class', 'pie-legend')
+            .attr('transform', `translate(${vis.width * 2.8 / 4}, ${vis.height - 20})`)
+
 
         //creat pie chart group
         vis.pieChartGroup = vis.svg.append('g')

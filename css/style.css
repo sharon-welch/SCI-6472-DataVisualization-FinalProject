@@ -1,5 +1,17 @@
+body {
+  padding: 50px;
+}
+
+h1 {
+  text-align: center;
+  text-size: 100px;
+}
 h2 {
   color: grey;
+}
+
+div {
+  border: solid 1px red;
 }
 
 #xAxis line {
@@ -12,7 +24,7 @@ h2 {
 
 #xAxisLab {
   fill: grey;
-  font-soze: 30px;
+  font-size: 30px;
 }
 
 #yAxisLab {
