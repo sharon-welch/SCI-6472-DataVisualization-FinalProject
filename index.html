@@ -48,7 +48,7 @@
                 <div class ="slide" id="circle-slide">
                     <div class="container-fluid">
                         <div class="row" id="circle-intro">
-                            <h2>In the US, only 2.2% of trips are taken by bike. Furthermore, only .6% of that percentage are taken by women. </br> Reasons for large existing gender disparities in biking are not fully understood.</h2>
+                            <h2>In the US, only 2.2% of trips are taken by bike. Furthermore, only .6% are taken by women. </br> Reasons for large existing gender disparities in biking are not fully understood.</h2>
                         </div>
                         <div class="row" id="circle-title">
                             <h3>Bike Trips by Gender in the US (hover over the circles to see statistics for each year)</h3>
@@ -90,46 +90,81 @@
             <div class="section s3">
                 <div class="container-fluid">
 
-                    <div class="row">
-                        <div class="col">Predictor</div>
-                        <div class="col">Health Outcome</div>
-                        <div class="col"></div>
+                    <div class="row" id="scatter-intro-1">
+                        <h2>One theory is that the comfort of the bike, and especially the saddle, influence ridership</h2>
                     </div>
-                    <div class="row">
-                        <div class="col"> <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
-                            <option value="RidingHistory" selected>Length of Time Biking</option>
-                            <option value="RidingFrequency">Biking Frequency</option>
-                            <option value="LongestDist">Longest Distance Traveled</option>
-                            <option value="AverageDist">Average Distance Traveled</option>
-                            <option value="Speed">Average Speed</option>
-                            <option value="Standing">% Time Standing During a Ride</option>
-                            <option value="PaddedShorts">How Often Padded Shorts Are Worn</option>
-                            <option value="SaddleType">Type of Saddle</option>
-                            <option value="SaddleAngle">Angle of Saddle</option>
-                            <option value="BikeType">Type of Bike</option>
-                            <option value="HandleBars">Height of Handlebars (Compared to Saddle)</option>
-                            <option value="Surface">Typical Surface for Biking</option>
-                        </select>
+                    <div class="row" id="scatter-intro-2">
+                        <h3>While existing research has shown that women feel less safe while biking and are generally less willing to bike in areas without cycling infrastructure, there has been very little research done to explore whether design of the bike itself influences female ridership.</h3>
+                    </div>
+
+
+                    <div class="row" id="scatter-div">
+                        <!-- scatterplot: description and dropdowns -->
+                        <div class="col">
+                            <div class="row">
+                                <p>Here, we explore existing factors that influence health of cyclists to search for potential correlations between health, bike seat design, and ridership disparities. This exploration is based on the hunch that saddle design does in fact influence ridership.</p>
+                            </div>
+
+                            <div class ="row" id="scatter-dropdowns">
+                                <!-- Predictor dropdown and dropdown title-->
+                                <div class="row">
+                                    <!-- title-->
+                                    <div class="col">Predictor</div>
+                                    <!-- dropdown -->
+                                    <div class="col">
+                                        <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+                                            <option value="RidingHistory" selected>Length of Time Biking</option>
+                                            <option value="RidingFrequency">Biking Frequency</option>
+                                            <option value="LongestDist">Longest Distance Traveled</option>
+                                            <option value="AverageDist">Average Distance Traveled</option>
+                                            <option value="Speed">Average Speed</option>
+                                            <option value="Standing">% Time Standing During a Ride</option>
+                                            <option value="PaddedShorts">How Often Padded Shorts Are Worn</option>
+                                            <option value="SaddleType">Type of Saddle</option>
+                                            <option value="SaddleAngle">Angle of Saddle</option>
+                                            <option value="BikeType">Type of Bike</option>
+                                            <option value="HandleBars">Height of Handlebars (Compared to Saddle)</option>
+                                            <option value="Surface">Typical Surface for Biking</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                </div>
+
+                            <!-- Health outcome dropdown and dropdown title-->
+                            <div class="row">
+                                <!-- title-->
+                                <div class="col">Health Outcome</div>
+                                <!-- dropdown -->
+                                <div class="col">
+                                    <select id='categorySelectorScatterY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+                                        <option value="LUTS" selected>Urinary Wellness</option>
+                                        <option value="NumbScore">Degree of Genital Numbness</option>
+                                        <option value="NumbTime">Length of Feeling of Numbness</option>
+                                        <option value="UTI">History of UTI</option>
+                                        <option value="UTINum">Number of Prior UTIs</option>
+                                        <option value="Nodules">History of Genital + Perineal Nodules</option>
+                                        <option value="SaddleSores">History of Saddle Sores</option>
+                                        <option value="IPSS">Prostate Symptoms</option>
+                                        <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
+                                        <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
+                                    </select>
+                                </div>
+
+
+
+                            </div>
                         </div>
-                        <div class="col"><select id='categorySelectorScatterY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
-                            <option value="LUTS" selected>Urinary Wellness</option>
-                            <option value="NumbScore">Degree of Genital Numbness</option>
-                            <option value="NumbTime">Length of Feeling of Numbness</option>
-                            <option value="UTI">History of UTI</option>
-                            <option value="UTINum">Number of Prior UTIs</option>
-                            <option value="Nodules">History of Genital + Perineal Nodules</option>
-                            <option value="SaddleSores">History of Saddle Sores</option>
-                            <option value="IPSS">Prostate Symptoms</option>
-                            <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
-                            <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
-                        </select> </div>
-                        <div class="col"></div>
+
+                        <!-- scatterplot: Parent container -->
+                        <div class= "col" id="scatter-area" style="height:600px; width: 700px"></div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Parent container for the scatterplot -->
-                <div id="scatter-area" style="height:600px; width: 700px"></div>
-                </br>
+            <!-- SYMBOL PLOTS-->
+            <div class="section s4">
+                <div class="container-fluid">
                 <div class="row">
                     <div class="row">
                         <div class="col">Health Outcome</div>
@@ -150,11 +185,7 @@
                         <div class="col"></div>
                     </div>
                 </div>
-            </div>
 
-            <!-- SYMBOL PLOTS-->
-            <div class="section s4">
-                <div class="container-fluid">
                     <div class="row">
                         <div class="col" id="symbol-area1" style="height:300px; width: 300px"> </div>
                         <div class="col" id="symbol-area2" style="height:300px; width: 300px"> </div>
