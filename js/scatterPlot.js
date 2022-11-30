@@ -20,7 +20,13 @@ class ScatterPlot {
             .attr("width", vis.width)
             .attr("height", vis.height)
             .append('g')
-            .attr('transform', `translate (${vis.margin.left + vis.margin.right}, -${vis.margin.top + vis.margin.bottom})`);
+            .attr('transform', `translate (${vis.margin.left + vis.margin.right}, -${vis.margin.top + vis.margin.bottom})`)
+
+        //adding white background to plot
+        // vis.svg.append("rect")
+        //     .attr("width", vis.width)
+        //     .attr("height", vis.height)
+        //     .style("fill", "white")
 
         // tooltip
         vis.tooltip = d3.select("#" + vis.parentElement).append('div')

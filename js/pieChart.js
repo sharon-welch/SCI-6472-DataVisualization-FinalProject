@@ -37,7 +37,7 @@ class PieChart {
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-        // TODO - add title
+        // title
         vis.svg.append('g')
             .attr('class', 'title pie-title')
             .append('text')

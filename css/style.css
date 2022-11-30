@@ -2,25 +2,53 @@ body {
   padding: 50px;
 }
 
-.s1 {
-  background: lightblue;
+.section {
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.s2 {
-  background-color: lightpink;
-}
-
-.s3 {
-  background-color: lightblue;
-}
-
-.s4 {
-  background-color: lightpink;
-}
-
+/*#circle-slide,*/
+/*#pie-slide*/
+/*{*/
+/*  padding-left: 45px;*/
+/*  padding-right: 45px;*/
+/*}*/
+.s1,
+.s3,
 .s5 {
-  background-color: lightblue;
+  background: white;
 }
+
+.s2,
+.s4 {
+  background-color: #faf0e6;
+}
+
+#circle-slide {
+  text-align:center;
+}
+
+/*title slide title*/
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 25px;
+  text-align: center;
+  /*padding-top: 15px;*/
+  padding-bottom: 35px;
+}
+
+h3 {
+  font-size: 15px;
+}
+
+
+
+
 
 /*TODO - why isn't this working? */
 .fp-arrow.fp-controlArrow.fp-prev {
@@ -41,9 +69,9 @@ h2 {
   color: grey;
 }
 
-div {
-  border: solid 1px red;
-}
+/*div {*/
+/*  border: solid 1px red;*/
+/*}*/
 
 #xAxis line {
   shape-rendering: crispEdges;
