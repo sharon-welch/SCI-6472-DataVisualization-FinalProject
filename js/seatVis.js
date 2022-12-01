@@ -16,15 +16,12 @@ class SeatVis {
         //TODO - array of circle colors and call colors below by spot in array
         // this.circleColors = ['#fff460', '#5d67f5'];
 
-        //color scale
-        /*this.myColor = d3.scaleLinear()
-            .range(["white", "black"])
-            .domain([1,30])*/
-
+        //color gradient for male
         this.myMaleColor = d3.scaleLinear()
             .range(["white", "dodgerblue"])
             .domain([1,30])
 
+        //color gradient for female
         this.myFemaleColor = d3.scaleLinear()
             .range(["white", "hotpink"])
             .domain([1,30])
@@ -47,6 +44,7 @@ class SeatVis {
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
+            // TODO - figure out why this isn't working and have to hardcoad height in HTML
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
@@ -70,8 +68,6 @@ class SeatVis {
             .padding(0.05);
 
         vis.updateVis()
-
-
     }
 
     updateVis() {
@@ -79,8 +75,7 @@ class SeatVis {
         let vis = this;
         console.log("actual vis gender is " + vis.gender)
 
-        //TODO - create a radius that isn't hardcoded
-        vis.circleRadius = 40
+        vis.circleRadius = vis.width/28
 
         //add circles
         vis.svg.selectAll()
@@ -94,7 +89,6 @@ class SeatVis {
             .attr("cy", function (d) {
                 return vis.yScale(d.column) + vis.circleRadius
             })
-            //TODO - create a radius that isn't hardcoded
             .attr("r", vis.circleRadius)
             // .attr("width", x.bandwidth() )
             // .attr("height", y.bandwidth() )

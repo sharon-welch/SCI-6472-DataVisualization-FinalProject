@@ -31,12 +31,12 @@
 
                 <!-- Text: Introduction-->
                 <div class="row d-flex justify-content-center" id="intro">
-                    <h2>When was the last time you felt comfortable on your bike?</h2>
+                    <h1>Are your customers really comfortable on their bike?</h1>
                 </div>
 
                 <!-- Title -->
                 <div class = "row d-flex justify-content-center">
-                    <h1>Women's Health and the Bike Seat: A proposal for new saddle design</h1>
+                    <h2>An argument for a new saddle design for women</h2>
                 </div>
 
             </div>
@@ -215,16 +215,38 @@
                             <div class="text" id="metric-text">
                                 <p>The average bike seat pressure for people with your metrics was 20.33 kPa, which is 2.13 kPa off from the average pressure for female riders, 18.2 kPa.</p>
                             </div>
+<!--                            //TODO - remove hardcoding of seat row height, test putting in column instead-->
                             <!--pressure map visualizations-->
                             <div class = "row" id="bike-seat-maps">
-                                <div class="col" id="bike-map1" style="height:300px; width: 300px"> </div>
-                                <div class="col" id="bike-map2" style="height:300px; width: 300px"> </div>
-                                <div class="col" id="bike-map3" style="height:300px; width: 300px"> </div>
+                                <!-- Standard Saddle -->
+                                <div class="col" id="bike-seat1" style="height:300px; width: 300px">
+                                    <div class="row align-content-center">
+                                        <h4>Standard Saddle</h4>
+                                    </div>
+                                    <div class="row" id="bike-map1" style="height:300px"></div>
+                                </div>
+                                <!-- Partial Cutout Saddle -->
+                                <div class="col" id="bike-seat2" style="height:300px; width: 300px">
+                                    <!--saddle title -->
+                                    <div class="row align-content-center">
+                                        <h4>Partial Cutout Saddle</h4>
+                                    </div>
+                                    <div class="row" id="bike-map2" style="height:300px"></div>
+                                </div>
+                                <!-- Full Cutout Saddle -->
+                                <div class="col" id="bike-seat3" style="height:300px; width: 300px">
+                                    <!--saddle title -->
+                                    <div class="row align-content-center">
+                                        <h4>Partial Cutout Saddle</h4>
+                                    </div>
+                                    <div class="row" id="bike-map3" style="height:300px"></div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
         </div>
 
 

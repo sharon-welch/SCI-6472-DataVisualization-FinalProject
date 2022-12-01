@@ -35,6 +35,8 @@ let promises = [
         d.value = +d.value;
         return d;
     }),
+
+    //array for scatter plot [2]
     d3.csv("data/healthdata.csv", d => {
         d.Height = +d.Height;
         d.Weight = +d.Weight;
@@ -47,6 +49,8 @@ let promises = [
         d.UrinaryVoiding = +d.UrinaryVoiding;
         return d;
     }),
+
+    //array for symbol charts [3]
     d3.csv("data/saddlehealthdata.csv", d => {
         d.LUTS = +d.LUTS;
         d.NumbScore = +d.NumbScore;
@@ -60,14 +64,28 @@ let promises = [
         return d;
     }),
 
-    //array for scatterplot
-
-    //array for bike seat vis [4]
-    d3.csv("data/pressure_data.csv", d => {
+    //array for bike seat vis - pressure for standard saddle [4]
+    d3.csv("data/pressure_data_standard.csv", d => {
             d.value_female = +d.value_female;
             d.value_male = +d.value_male;
             return d;
     }),
+
+    //array for bike seat vis - pressure for partial cutout saddle [5]
+    d3.csv("data/pressure_data_partial_cutout.csv", d => {
+        d.value_female = +d.value_female;
+        d.value_male = +d.value_male;
+        return d;
+    }),
+
+    //array for bike seat vis - pressure for complete cutout saddle [6]
+    d3.csv("data/pressure_data_complete_cutout.csv", d => {
+        d.value_female = +d.value_female;
+        d.value_male = +d.value_male;
+        return d;
+    }),
+
+    //array for bike seat vis [7]
     d3.csv("data/pressuremetrics_data.csv", d => {
         d.age = +d.age;
         d.height = +d.height;
@@ -75,9 +93,6 @@ let promises = [
         d.pressure = +d.pressure;
         return d;
     })
-
-
-
 ];
 
 Promise.all(promises)
@@ -94,7 +109,11 @@ function initVisualizations (listOfArrays) {
     mySymbol1 = new SymbolPlot('symbol-area1', listOfArrays[3])
     mySymbol2 = new SymbolPlot('symbol-area2', listOfArrays[3])
     mySymbol3 = new SymbolPlot('symbol-area3', listOfArrays[3])
-    mySeatVis = new SeatVis('bike-seat-div', listOfArrays[4], listOfArrays[5], "female")
+    // mySeatVis = new SeatVis('bike-seat-div', listOfArrays[4], listOfArrays[5], "female")
+    mySeatVis1 = new SeatVis('bike-map1', listOfArrays[4], listOfArrays[7], "female")
+    mySeatVis2 = new SeatVis('bike-map2', listOfArrays[5], listOfArrays[7], "female")
+    mySeatVis3 = new SeatVis('bike-map3', listOfArrays[6], listOfArrays[7], "female")
+
 }
 
 function updateBikeSeat () {
