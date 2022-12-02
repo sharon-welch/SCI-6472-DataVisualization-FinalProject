@@ -75,7 +75,7 @@ class SeatVis {
         let vis = this;
         console.log("actual vis gender is " + vis.gender)
 
-        vis.circleRadius = vis.width/28
+        vis.circleRadius = vis.width/32
 
         //add circles
         vis.svg.selectAll()
