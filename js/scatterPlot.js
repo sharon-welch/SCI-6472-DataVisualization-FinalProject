@@ -51,16 +51,31 @@ class ScatterPlot {
 
         let vis = this
 
-        // sorting the y axis for numeric outcomes
-        vis.data = vis.data.sort((a, b) => {
-            return b[selectedCategoryScatterY] - a[selectedCategoryScatterY]
-        })
+        // sorting the y axis
+        if (selectedCategoryScatterY === "LUTS") {
+            vis.yDomain = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+        } else if (selectedCategoryScatterY === "NumbScore") {
+            vis.yDomain = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        } else if (selectedCategoryScatterY === "NumbTime") {
+            vis.yDomain = ["N/A","Less than 60 Seconds","1-59 Minutes","1- 24 Hours","More than 24 hours"]
+        } else if (selectedCategoryScatterY === "UTI") {
+            vis.yDomain = ["No","Yes"]
+        } else if (selectedCategoryScatterY === "UTINum") {
+            vis.yDomain = [0, 1, 2, 3, 4, 5]
+        } else if (selectedCategoryScatterY === "Nodules") {
+            vis.yDomain = ["No","Yes"]
+        } else if (selectedCategoryScatterY === "SaddleSores") {
+            vis.yDomain = ["No","Yes"]
+        } else if (selectedCategoryScatterY === "IPSS") {
+            vis.yDomain = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+        } else if (selectedCategoryScatterY === "UrinaryFilling") {
+            // there's something wrong with this...
+            vis.yDomain = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+        } else if (selectedCategoryScatterY === "UrinaryVoiding") {
+            vis.yDomain = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+        }
 
-        // sorting the y axis in all other cases -- NEED TO FIGURE OUT WHY THIS DOESNT WORK
-        // if (selectedCategoryScatterY === "LUTS") {
-        //     vis.yDomain = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"]
-        // }
-
+        // sorting the x axis
         if (selectedCategoryScatterX === "RidingHistory") {
             vis.xDomain = ["6 months or less","6 months - 1year", "2 - 5 years", "5 -10 years","More than 10 years"]
         } else if (selectedCategoryScatterX === "RidingFrequency") {
@@ -87,7 +102,6 @@ class ScatterPlot {
             vis.xDomain = ["Stationary bike","Urban streets","Rural streets","Off road"]
         }
 
-
         vis.updateVis()
     }
 
@@ -97,8 +111,6 @@ class ScatterPlot {
 
         vis.xScale = d3.scaleBand()
             .rangeRound([0, vis.width]).padding(1)
-        // THIS LINE BELOW WORKS. NEED TO CREATE A VARIABLE IN WRANGLE DATA THAT DOES THIS
-            //.domain(["6 months or less","6 months - 1year", "2 - 5 years", "5 -10 years","More than 10 years"])
             .domain(vis.xDomain)
             // .domain(vis.data.map(function (d) {
             //     return d[selectedCategoryScatterX]
@@ -106,12 +118,13 @@ class ScatterPlot {
 
 
         vis.yScale = d3.scaleBand()
-            .rangeRound([0, vis.height]).padding(1)
+            //.rangeRound([0, vis.height]).padding(1)
+            .rangeRound([vis.height,0]).padding(1)
             //.domain(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"])
-            .domain(vis.data.map(function (d) {
-                return d[selectedCategoryScatterY]}
-            ))
-            //.domain(vis.yDomain)
+            // .domain(vis.data.map(function (d) {
+            //     return d[selectedCategoryScatterY]}
+            // ))
+            .domain(vis.yDomain)
 
 
 
