@@ -26,6 +26,9 @@ class SeatVis {
             .range(["white", "hotpink"])
             .domain([1,30])
 
+        //initial color
+        this.initialColor = "white";
+
         // console.log(seatData);
 
         // call initVis method
@@ -98,8 +101,13 @@ class SeatVis {
                     return vis.myFemaleColor(d.value_female)
                 }
                 else {
-                    console.log("updating male dots")
-                    return vis.myMaleColor(d.value_male)
+                    if (vis.gender === "male") {
+                        console.log("updating male dots")
+                        return vis.myMaleColor(d.value_male)
+                    }
+                    else {
+                        return vis.initialColor;
+                    }
                 }
             })
             .style("stroke-width", .5)
@@ -113,11 +121,17 @@ class SeatVis {
                     }
                 }
                 else {
-                    console.log("updating male circles")
-                    if (d.value_male === 0) {
+                    if (vis.gender === "male") {
+                        console.log("updating male circles")
+                        if (d.value_male === 0) {
+                            return "none";
+                        } else {
+                            return "gray";
+                        }
+                    }
+                    else {
+                        console.log("choose gender")
                         return "none";
-                    } else {
-                        return "gray";
                     }
                 }
             })
@@ -173,9 +187,11 @@ class SeatVis {
             difference = -1*avg_pressure;
         }
 
-        document.getElementById("metric-text").innerText =
-            "The average bike seat pressure for people with your metrics was " + user_pressure.toFixed(2) + " kPa, which is "
-            + Math.abs(difference) + " kPa off from the average pressure for " + selectedGender + " riders, " + avg_pressure + " kPa."
+        if (selectedGender !== "chooseGender" && selectedAge >0 && selectedHeight > 0 && selectedWeight > 0) {
+            document.getElementById("metric-text").innerText =
+                "The average bike seat pressure for " + selectedGender + " riders with your metrics was " + user_pressure.toFixed(2) + " kPa, which is "
+                + Math.abs(difference) + " kPa off from the average pressure for " + selectedGender + " riders, " + avg_pressure + " kPa."
+        }
     }
 
 }

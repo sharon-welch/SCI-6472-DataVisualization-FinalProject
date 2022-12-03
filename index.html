@@ -201,23 +201,24 @@
                     <div class="row" id="bike-seat" style="height:1000px; width: 1320px">
                         <div class="col" id="bike-seat-div">
                             <div class="row" id="bike-seat-dropdowns">
-                                <div class=dropdown">
-                                    <select id="gender" class="user-control form-control form-group" onchange="updateBikeSeat()">
-                                        <option value="female">Female</option>
-                                        <option value="male">Male</option>
-                                    </select>
-                                </div>
                                 <div class="form-outline">
-                                    <input type="number" value="25" id="age" class="form-control" onchange="updateBikeSeat()"/>
+                                    <input type="number" value="0" id="age" class="form-control" onchange="updateBikeSeat()"/>
                                     <label class="form-label" for="age">Age (years)</label>
-                                    <input type="number" value="1.6" id="height" class="form-control" onchange="updateBikeSeat()"/>
+                                    <input type="number" value="0" id="height" class="form-control" onchange="updateBikeSeat()"/>
                                     <label class="form-label" for="height">Height (m)</label>
-                                    <input type="number" value="68" id="weight" class="form-control" onchange="updateBikeSeat()"/>
+                                    <input type="number" value="0" id="weight" class="form-control" onchange="updateBikeSeat()"/>
                                     <label class="form-label" for="weight">Weight (kg)</label>
                                 </div>
                             </div>
+                            <div class=dropdown">
+                                <select id="gender" class="user-control form-control form-group" onchange="updateBikeSeat()">
+                                    <option value="chooseGender">Choose Gender</option>
+                                    <option value="female">Female</option>
+                                    <option value="male">Male</option>
+                                </select>
+                            </div>
                             <div class="text" id="metric-text">
-                                <p>The average bike seat pressure for people with your metrics was 20.33 kPa, which is 2.13 kPa off from the average pressure for female riders, 18.2 kPa.</p>
+                                <p></p>
                             </div>
 <!--                            //TODO - remove hardcoding of seat row height, test putting in column instead-->
                             <!--pressure map visualizations-->

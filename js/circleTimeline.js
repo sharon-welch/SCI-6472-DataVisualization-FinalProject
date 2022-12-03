@@ -65,7 +65,7 @@ class CircleTimeline {
                 }
             })
             .attr('cx', (d,i) => {
-                return 30 + i*130;
+                return 25 + i*135;
             })
             .attr('cy', function(d) {
                 if(vis.gender === "male") {
@@ -108,7 +108,7 @@ class CircleTimeline {
                     return d.year;
                 })
                 .attr('x', (d, i) => {
-                    return 10+i*130;
+                    return 5+i*135;
                 })
                 .attr('y', 70)
         }

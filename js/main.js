@@ -7,7 +7,9 @@ let myMaleCircleTimeline,
     mySymbol1,
     mySymbol2,
     mySymbol3,
-    mySeatVis;
+    mySeatVis1,
+    mySeatVis2,
+    mySeatVis3;
 
 
 function updateAllVisualizations(){
@@ -110,14 +112,16 @@ function initVisualizations (listOfArrays) {
     mySymbol2 = new SymbolPlot('symbol-area2', listOfArrays[3])
     mySymbol3 = new SymbolPlot('symbol-area3', listOfArrays[3])
     // mySeatVis = new SeatVis('bike-seat-div', listOfArrays[4], listOfArrays[5], "female")
-    mySeatVis1 = new SeatVis('bike-map1', listOfArrays[4], listOfArrays[7], "female")
-    mySeatVis2 = new SeatVis('bike-map2', listOfArrays[5], listOfArrays[7], "female")
-    mySeatVis3 = new SeatVis('bike-map3', listOfArrays[6], listOfArrays[7], "female")
+    mySeatVis1 = new SeatVis('bike-map1', listOfArrays[4], listOfArrays[7], "chooseGender")
+    mySeatVis2 = new SeatVis('bike-map2', listOfArrays[5], listOfArrays[7], "chooseGender")
+    mySeatVis3 = new SeatVis('bike-map3', listOfArrays[6], listOfArrays[7], "chooseGender")
 
 }
 
 function updateBikeSeat () {
-    mySeatVis.updateText();
+    mySeatVis1.updateText();
+    mySeatVis2.updateText();
+    mySeatVis3.updateText();
 }
 
 let selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
