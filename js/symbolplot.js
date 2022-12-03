@@ -69,7 +69,8 @@ class SymbolPlot {
     updateVis(){
 
         let vis = this;
-        vis.xScale.domain(d3.extent(vis.data, function (d) {return d.Gender}));
+        vis.xScale.domain(["Male","Female"]) // allows control over order
+            //.domain(d3.extent(vis.data, function (d) {return d.Gender}));
 
         vis.yScale.domain([0,
             (d3.max(vis.data, function (d)  {return d[selectedCategorySymbolY]}))])
@@ -138,7 +139,9 @@ class SymbolPlot {
 
 
         vis.xAxisGroup.call(d3.axisBottom(vis.xScale).ticks(2));
-        vis.yAxisGroup.call(d3.axisLeft(vis.yScale).ticks(5));
+
+        vis.yAxisGroup.transition().duration(500)
+            .call(d3.axisLeft(vis.yScale).ticks(5));
 
         vis.yLab = vis.svg.append('g')
 
