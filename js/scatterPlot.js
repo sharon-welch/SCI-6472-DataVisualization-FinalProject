@@ -10,6 +10,7 @@ class ScatterPlot {
     initVis() {
         let vis = this;
 
+        // setting margins
         vis.margin = {top: 30, right: 20, bottom: 20, left: 50};
 
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
@@ -27,7 +28,6 @@ class ScatterPlot {
             .attr('class', "tooltip")
             .attr('id', 'scatterTooltip')
 
-
         // axis groups
         vis.xAxisGroup = vis.svg.append('g')
             .attr('class', 'axis x-axis')
@@ -43,6 +43,7 @@ class ScatterPlot {
 
         let vis = this
 
+        // sorting the numeric data on the y-axis
        vis.data = vis.data.sort((a, b) => {
             return b[selectedCategoryScatterY] - a[selectedCategoryScatterY]
         })
@@ -62,8 +63,7 @@ class ScatterPlot {
 
 
         vis.yScale = d3.scaleBand()
-            .rangeRound([0, vis.height])
-            //.padding(1)
+            .rangeRound([0, vis.height]).padding(1)
             //.domain(["6 months or less", "6 months - 1year", "2 - 5 years", "5 -10 years", "More than 10 years"])
             .domain(vis.data.map(function (d) {
                 return d[selectedCategoryScatterY]}
@@ -83,9 +83,27 @@ class ScatterPlot {
         vis.yAxisGroup.call(d3.axisLeft(vis.yScale));
 
 
+        //vis.yTextLab = vis.svg.selectAll('.axisText')
+
+        //vis.yTextLab.enter()
+        vis.svg
+            .append('g')
+            .attr('class', 'yAxisLabel')
+            .append('text')
+            //.join('text')
+            .attr('class', "axisText")
+            .attr('transform', `translate(-30, ${vis.height / 2})rotate(270)`)
+            .attr('text-anchor', 'middle')
+            //.merge(vis.yTextLab)
+            //.text(" ")
+            .text(yText)
+
+
+        //vis.yTextLab.exit().remove()
+
+
         vis.circles = vis.svg.selectAll('.circle')
             .data(vis.data)
-
 
         vis.circles.enter()
             .append("circle")
@@ -93,6 +111,7 @@ class ScatterPlot {
             .merge(vis.circles)
             .attr("fill", d => color(d.Gender))
             .style("opacity", 0.2)
+            .attr("stroke", "black")
             //.attr("cx", d=> vis.xScale(d[selectedCategoryScatterX]))
             .attr("cx", function (d) {
                 if (d.Gender === "Male") {
@@ -104,7 +123,6 @@ class ScatterPlot {
             .attr('cy', d => vis.yScale(d[selectedCategoryScatterY]))
             .attr("r", 5)
             .on('mouseover', function (event, d) {
-
                 vis.tooltip
                     .style("opacity", 1)
                     .style("left", event.pageX + 20 + "px")
@@ -148,13 +166,13 @@ class ScatterPlot {
             .attr('transform', `translate(${vis.width / 2}, ${vis.height + 40})`)
             .attr('text-anchor', 'middle');
 
-        vis.svg
-            .append('g')
-            .attr('class', 'yAxisLabel')
-            .append('text')
-            .text(yText)
-            .attr('transform', `translate(-30, ${vis.height / 2})rotate(270)`)
-            .attr('text-anchor', 'middle');
+        // vis.svg
+        //     .append('g')
+        //     .attr('class', 'yAxisLabel')
+        //     .append('text')
+        //     .text(yText)
+        //     .attr('transform', `translate(-30, ${vis.height / 2})rotate(270)`)
+        //     .attr('text-anchor', 'middle');
 
         vis.circles.exit().remove();
 

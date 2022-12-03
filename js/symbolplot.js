@@ -25,10 +25,11 @@ class SymbolPlot {
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
         vis.xScale = d3.scaleBand()
-            .range([0,vis.width])
+            .rangeRound([0,vis.width]).padding(1)
 
         vis.yScale = d3.scaleLinear()
-            .range([vis.height,0]);
+            .rangeRound([vis.height,0])
+            //.padding(1)
 
         // axis groups
         vis.xAxisGroup = vis.svg.append('g')
@@ -92,7 +93,7 @@ class SymbolPlot {
                 }
             })
             .attr("stroke", "black")
-            .attr("cx", d => vis.xScale(d.Gender)+ 100)
+            .attr("cx", d => vis.xScale(d.Gender))
             .attr('cy', d => vis.yScale(d[selectedCategorySymbolY]))
             .attr("r", 10)
 

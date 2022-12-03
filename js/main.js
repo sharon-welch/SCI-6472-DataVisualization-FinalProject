@@ -35,6 +35,7 @@ let promises = [
         d.value = +d.value;
         return d;
     }),
+    //array for scatterplot
     d3.csv("data/healthdata.csv", d => {
         d.Height = +d.Height;
         d.Weight = +d.Weight;
@@ -47,6 +48,7 @@ let promises = [
         d.UrinaryVoiding = +d.UrinaryVoiding;
         return d;
     }),
+    //array for symbolplot
     d3.csv("data/saddlehealthdata.csv", d => {
         d.LUTS = +d.LUTS;
         d.NumbScore = +d.NumbScore;
@@ -59,9 +61,6 @@ let promises = [
         d.UrinaryVoiding = +d.UrinaryVoiding;
         return d;
     }),
-
-    //array for scatterplot
-
     //array for bike seat vis
     d3.csv("data/pressure_data.csv", d => {
             d.value_female = +d.value_female;
@@ -93,6 +92,8 @@ function initVisualizations (listOfArrays) {
 let selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
 let ScatterXLabel =  document.getElementById('categorySelectorScatterX').text;
 let selectedCategoryScatterY =  document.getElementById('categorySelectorScatterY').value;
+//new -- not sure if we are even actually using this...
+let ScatterYLabel =  document.getElementById('categorySelectorScatterY').text;
 
 function categoryChangeScatter() {
     selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
@@ -103,6 +104,8 @@ function categoryChangeScatter() {
 }
 
 let selectedCategorySymbolY =  document.getElementById('categorySelectorSymbolY').value;
+//new -- not sure if we are even actually using this...
+let SymbolYLabel =  document.getElementById('categorySelectorSymbolY').text;
 
 function categoryChangeSymbol() {
     selectedCategorySymbolY =  document.getElementById('categorySelectorSymbolY').value;
