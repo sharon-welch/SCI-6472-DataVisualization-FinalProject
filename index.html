@@ -31,7 +31,7 @@
 
                 <!-- Text: Introduction-->
                 <div class="row d-flex justify-content-center" id="intro">
-                    <h1>Are your customers really comfortable on their bike?</h1>
+                    <h1>Are your customers comfortable on their bikes?</h1>
                 </div>
 
                 <!-- Title -->
@@ -62,17 +62,20 @@
                     </div>
                 </div>
 
-                <!-- PIE CHART AND DESCRIPTION -->
+                <!-- PIE CHART -->
                 <div class="slide" id ="pie-slide">
                     <div class="container-fluid">
+                        <!-- pie chart intro -->
                         <div class = "row" id="pie-charts-intro">
                             <h2>In looking at national data on daily commutes, only 27% of trips are made by women.</h2>
                         </div>
+                        <!-- pie chart description -->
                         <div class="row d-flex" id="pie-chart">
                             <div class ="col-md-6 justify-content-center" id="pie-chart-text">
                                 <p>Furthermore, women's health and comfort when it comes to bicycling are understudied. For example, saddle sores are an issue often reported by cyclists. A review of literature conducted in 2022 showed that only 2/15 of the most prevalent studies on saddle sores focused on women.</p>
                             </div>
 <!--                            TODO: figure out how not to hard code this-->
+                            <!-- pie chart -->
                             <div class ="col-md-6 text-center" id="pie-chart-div" style="height:500px">
                             </div>
 
@@ -95,7 +98,9 @@
                         <!-- scatterplot: description and dropdowns -->
                         <div class="col">
                             <div class="row">
-                                <p>Here, we explore existing factors that influence health of cyclists to search for potential correlations between health, bike seat design, and ridership disparities. This exploration is based on the hunch that saddle design does in fact influence ridership.</p>
+                                <p>Here, we explore existing factors that influence health of cyclists to search for potential correlations between health, bike seat design, and ridership disparities. This exploration is based on the hunch that saddle design does in fact influence ridership.
+                                <br><br>
+                                A variety of factors related to cycling (cycling intensity, saddle type, % time standing, etc.) affect a variety of health outcomes (saddle sores, genital numbness, sexual pleasure). Further, these relationships vary as a matter of sex, with worse outcomes in women.</p>
                             </div>
 
                             <div class ="row" id="scatter-dropdowns">
@@ -158,11 +163,13 @@
             <!-- SYMBOL PLOTS-->
             <div class="section s4">
                 <div class="container-fluid">
-                <div class="row">
+                    <!-- symbol plot intro-->
+                    <div class="row">
+                        <h3>In particular, saddle type interacts with the body of the rider, in a way that differs between males and females. We examine how pressure differs by saddle type (stratified by gender) and how that related to reported health outcomes.</h3>
+                    </div>
+                    <!-- symbol plot dropdown-->
                     <div class="row">
                         <div class="col">Health Outcome</div>
-                    </div>
-                    <div class="row">
                         <div class="col"> <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeSymbol()">
                             <option value="LUTS" selected>Urinary Wellness</option>
                             <option value="NumbScore">Degree of Genital Numbness</option>
@@ -175,10 +182,8 @@
                             <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
                         </select>
                         </div>
-                        <div class="col"></div>
                     </div>
-                </div>
-
+                    <!-- symbol plot visualizations-->
                     <div class="row">
                         <div class="col" id="symbol-area1" style="height:300px; width: 300px"> </div>
                         <div class="col" id="symbol-area2" style="height:300px; width: 300px"> </div>
@@ -190,6 +195,9 @@
             <!-- BIKE SEAT MAP -->
             <div class="section s5">
                 <div class="container-fluid">
+                    <div class="row">
+                        <h3>Scientific research shows that women have worse health outcomes following cycling, which in part is an effect of pressure distribution resulting from saddle design. Moving forward, it is critical to take into account pressure distribution in saddle design. </h3>
+                    </div>
                     <div class="row" id="bike-seat" style="height:1000px; width: 1320px">
                         <div class="col" id="bike-seat-div">
                             <div class="row" id="bike-seat-dropdowns">

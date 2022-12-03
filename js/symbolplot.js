@@ -25,7 +25,7 @@ class SymbolPlot {
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
         vis.xScale = d3.scaleBand()
-            .range([0,vis.width])
+            .rangeRound([0,vis.width]).padding(1)
 
         vis.yScale = d3.scaleLinear()
             .range([vis.height,0]);
@@ -69,7 +69,8 @@ class SymbolPlot {
     updateVis(){
 
         let vis = this;
-        vis.xScale.domain(d3.extent(vis.data, function (d) {return d.Gender}));
+        vis.xScale.domain(["Male","Female"]) // allows control over order
+            //.domain(d3.extent(vis.data, function (d) {return d.Gender}));
 
         vis.yScale.domain([0,
             (d3.max(vis.data, function (d)  {return d[selectedCategorySymbolY]}))])
@@ -92,7 +93,7 @@ class SymbolPlot {
                 }
             })
             .attr("stroke", "black")
-            .attr("cx", d => vis.xScale(d.Gender)+ 100)
+            .attr("cx", d => vis.xScale(d.Gender))
             .attr('cy', d => vis.yScale(d[selectedCategorySymbolY]))
             .attr("r", 10)
 
@@ -138,7 +139,9 @@ class SymbolPlot {
 
 
         vis.xAxisGroup.call(d3.axisBottom(vis.xScale).ticks(2));
-        vis.yAxisGroup.call(d3.axisLeft(vis.yScale).ticks(5));
+
+        vis.yAxisGroup.transition().duration(500)
+            .call(d3.axisLeft(vis.yScale).ticks(5));
 
         vis.yLab = vis.svg.append('g')
 
