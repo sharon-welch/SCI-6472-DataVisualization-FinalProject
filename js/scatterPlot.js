@@ -24,12 +24,6 @@ class ScatterPlot {
             .append('g')
             .attr('transform', `translate (${vis.margin.left + vis.margin.right}, -${vis.margin.top + vis.margin.bottom})`)
 
-        //adding white background to plot
-        // vis.svg.append("rect")
-        //     .attr("width", vis.width)
-        //     .attr("height", vis.height)
-        //     .style("fill", "white")
-
         // tooltip
         vis.tooltip = d3.select("#" + vis.parentElement).append('div')
             .attr('class', "tooltip")
@@ -150,6 +144,7 @@ class ScatterPlot {
             .attr("class", "circle")
             .merge(vis.circles)
             .attr("fill", d => color(d.Gender))
+            .style("stroke", "black")
             .style("opacity", 0.2)
             //.attr("cx", d=> vis.xScale(d[selectedCategoryScatterX]))
             .attr("cx", function (d) {
