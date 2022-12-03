@@ -68,8 +68,7 @@ class ScatterPlot {
 
 
         vis.yScale = d3.scaleBand()
-            .rangeRound([0, vis.height])
-            //.padding(1)
+            .rangeRound([0, vis.height]).padding(1)
             //.domain(["6 months or less", "6 months - 1year", "2 - 5 years", "5 -10 years", "More than 10 years"])
             .domain(vis.data.map(function (d) {
                 return d[selectedCategoryScatterY]}
