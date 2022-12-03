@@ -112,7 +112,7 @@
                                     <div class="col">Predictor</div>
                                     <!-- dropdown -->
                                     <div class="col">
-                                        <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+                                        <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 100%" onchange="categoryChangeScatter()">
                                             <option value="RidingHistory" selected>Length of Time Biking</option>
                                             <option value="RidingFrequency">Biking Frequency</option>
                                             <option value="LongestDist">Longest Distance Traveled</option>
@@ -128,7 +128,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 </div>
 
                             <!-- Health outcome dropdown and dropdown title-->
@@ -137,7 +136,7 @@
                                 <div class="col">Health Outcome</div>
                                 <!-- dropdown -->
                                 <div class="col">
-                                    <select id='categorySelectorScatterY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+                                    <select id='categorySelectorScatterY' class="custom-select align-self-center" style="width: 100%" onchange="categoryChangeScatter()">
                                         <option value="LUTS" selected>Urinary Wellness</option>
                                         <option value="NumbScore">Degree of Genital Numbness</option>
                                         <option value="NumbTime">Length of Feeling of Numbness</option>
@@ -146,7 +145,7 @@
                                         <option value="Nodules">History of Genital + Perineal Nodules</option>
                                         <option value="SaddleSores">History of Saddle Sores</option>
                                         <option value="IPSS">Prostate Symptoms</option>
-                                        <option value="UrinaryFilling">Urinary Filling Dysfunction</option>
+                                        <!-- DOESNT POPULATE RIGHT <option value="UrinaryFilling">Urinary Filling Dysfunction</option> -->
                                         <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
                                     </select>
                                 </div>
@@ -157,7 +156,7 @@
                         </div>
 
                         <!-- scatterplot: Parent container -->
-                        <div class= "col" id="scatter-area" style="height:600px; width: 700px"></div>
+                        <div class= "col" id="scatter-area" style="height:650px; width: 650px"></div>
                     </div>
                 </div>
             </div>
@@ -172,7 +171,7 @@
                     <!-- symbol plot dropdown-->
                     <div class="row">
                         <div class="col">Health Outcome</div>
-                        <div class="col"> <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeSymbol()">
+                        <div class="col"> <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 45%" onchange="categoryChangeSymbol()">
                             <option value="LUTS" selected>Urinary Wellness</option>
                             <option value="NumbScore">Degree of Genital Numbness</option>
                             <option value="UTI">History of UTI</option>
@@ -185,6 +184,7 @@
                         </select>
                         </div>
                     </div>
+                    </br>
                     <!-- symbol plot visualizations-->
                     <div class="row">
                         <div class="col" id="symbol-area1" style="height:300px; width: 300px"> </div>

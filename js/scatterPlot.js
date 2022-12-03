@@ -12,7 +12,7 @@ class ScatterPlot {
     initVis() {
         let vis = this;
 
-        vis.margin = {top: 30, right: 20, bottom: 20, left: 50};
+        vis.margin = {top: 30, right: 0, bottom: 0, left: 50};
 
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
@@ -28,7 +28,6 @@ class ScatterPlot {
         vis.tooltip = d3.select("#" + vis.parentElement).append('div')
             .attr('class', "tooltip")
             .attr('id', 'scatterTooltip')
-
 
         // axis groups
         vis.xAxisGroup = vis.svg.append('g')
@@ -106,32 +105,22 @@ class ScatterPlot {
         vis.xScale = d3.scaleBand()
             .rangeRound([0, vis.width]).padding(1)
             .domain(vis.xDomain)
-            // .domain(vis.data.map(function (d) {
-            //     return d[selectedCategoryScatterX]
-            // }))
-
 
         vis.yScale = d3.scaleBand()
             //.rangeRound([0, vis.height]).padding(1)
             .rangeRound([vis.height,0]).padding(1)
-            //.domain(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"])
-            // .domain(vis.data.map(function (d) {
-            //     return d[selectedCategoryScatterY]}
-            // ))
             .domain(vis.yDomain)
-
-
 
         xText, yText =  getText(selectedCategoryScatterX,selectedCategoryScatterY)
         // Get the Title for the selected category
         vis.titletext = 'Effect of ' + xText + " on " + yText;
 
 
-        vis.xAxisGroup.transition().duration(500)
+        vis.xAxisGroup.transition().duration(300)
             .attr('transform', `translate (0, ${vis.height})`)
             .call(d3.axisBottom(vis.xScale));
 
-        vis.yAxisGroup.transition().duration(500)
+        vis.yAxisGroup.transition().duration(300)
             .call(d3.axisLeft(vis.yScale));
 
 
@@ -143,10 +132,11 @@ class ScatterPlot {
             .append("circle")
             .attr("class", "circle")
             .merge(vis.circles)
+            // .transition()
+            // .duration(200)
             .attr("fill", d => color(d.Gender))
             .style("stroke", "black")
             .style("opacity", 0.2)
-            //.attr("cx", d=> vis.xScale(d[selectedCategoryScatterX]))
             .attr("cx", function (d) {
                 if (d.Gender === "Male") {
                     return (vis.xScale(d[selectedCategoryScatterX]) - 10)
@@ -157,13 +147,13 @@ class ScatterPlot {
             .attr('cy', d => vis.yScale(d[selectedCategoryScatterY]))
             .attr("r", 5)
             .on('mouseover', function (event, d) {
-
+                console.log(event)
                 vis.tooltip
                     .style("opacity", 1)
-                    .style("left", event.pageX + 20 + "px")
-                    .style("top", event.pageY + "px")
+                    .style("left", event.offsetX + 20 + "px")
+                    .style("top", event.offsetY + "px")
                     .html(`
-                    <div style="border: thin solid grey; border-radius: 5px; background: white; padding: 10px">
+                    <div style="border: thin solid grey; border-radius: 5px; background: white; font-size: 15px; padding: 10px">
                         <div style="font-size: 6px;">Gender: ${d.Gender}</div> 
                         <div style="font-size: 6px;">Length of Time Biking: ${d.RidingHistory}</div>     
                         <div style="font-size: 6px;">Biking Frequency: ${d.RidingFrequency}</div>
@@ -184,14 +174,13 @@ class ScatterPlot {
         //.merge(vis.circles)
 
 
-        vis.svg.selectAll(".title")
+        vis.svg
             .append('g')
             .attr('class', 'title')
             .append('text')
             .text(vis.titletext)
-            .attr('transform', `translate(${vis.width / 2}, -20)`)
+            .attr('transform', `translate(${vis.width / 2}, 60)`)
             .attr('text-anchor', 'middle');
-
 
         vis.svg
             .append('g')
