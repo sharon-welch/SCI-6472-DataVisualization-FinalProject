@@ -92,8 +92,6 @@ function initVisualizations (listOfArrays) {
 let selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
 let ScatterXLabel =  document.getElementById('categorySelectorScatterX').text;
 let selectedCategoryScatterY =  document.getElementById('categorySelectorScatterY').value;
-//new -- not sure if we are even actually using this...
-let ScatterYLabel =  document.getElementById('categorySelectorScatterY').text;
 
 function categoryChangeScatter() {
     selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
@@ -104,8 +102,6 @@ function categoryChangeScatter() {
 }
 
 let selectedCategorySymbolY =  document.getElementById('categorySelectorSymbolY').value;
-//new -- not sure if we are even actually using this...
-let SymbolYLabel =  document.getElementById('categorySelectorSymbolY').text;
 
 function categoryChangeSymbol() {
     selectedCategorySymbolY =  document.getElementById('categorySelectorSymbolY').value;
