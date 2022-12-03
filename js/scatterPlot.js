@@ -3,6 +3,8 @@ class ScatterPlot {
     constructor(parentElement, data) {
         this.parentElement = parentElement;
         this.data = data;
+        this.yDomain = [];
+        this.xDomain = [];
 
         this.initVis()
     }
@@ -49,9 +51,42 @@ class ScatterPlot {
 
         let vis = this
 
+        // sorting the y axis for numeric outcomes
         vis.data = vis.data.sort((a, b) => {
             return b[selectedCategoryScatterY] - a[selectedCategoryScatterY]
         })
+
+        // sorting the y axis in all other cases -- NEED TO FIGURE OUT WHY THIS DOESNT WORK
+        // if (selectedCategoryScatterY === "LUTS") {
+        //     vis.yDomain = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"]
+        // }
+
+        if (selectedCategoryScatterX === "RidingHistory") {
+            vis.xDomain = ["6 months or less","6 months - 1year", "2 - 5 years", "5 -10 years","More than 10 years"]
+        } else if (selectedCategoryScatterX === "RidingFrequency") {
+            vis.xDomain = ["Yearly","Monthly","Once/ week","Twice/ week","3-5 times/ week", "Daily"]
+        } else if (selectedCategoryScatterX === "LongestDist") {
+            vis.xDomain = ["Less than 1 mile","1-5 miles","5-10 miles","10-25 miles","25-50 miles","More than 50 miles"]
+        } else if (selectedCategoryScatterX === "AverageDist") {
+            vis.xDomain = ["Less than 1 mile","1-5 miles","5-10 miles","10-25 miles","25-50 miles","More than 50 miles"]
+        } else if (selectedCategoryScatterX === "Speed") {
+            vis.xDomain = ["Less than 5miles/hr","5 miles/hr","6-10 miles/hr","11-15 miles/hr","16-20 miles/hr","More than 20 miles/hr","Dont know"]
+        } else if (selectedCategoryScatterX === "Standing") {
+            vis.xDomain = ["0%","5%","10%","20%","More than 20%"]
+        } else if (selectedCategoryScatterX === "PaddedShorts") {
+            vis.xDomain = ["Never","Rarely","Sometimes","Mostly","Always"]
+        } else if (selectedCategoryScatterX === "SaddleType") {
+            vis.xDomain = ["(A) Wide, unpadded seat","(B) Long, narrow, with minimal padding seat","(C) Narrow, medium padded seat","(D) Wide, heavily padded seat","(E) Wide, well padded cruiser seat","(F) Noseless seat","(G) Dual pad seat"]
+        } else if (selectedCategoryScatterX === "SaddleAngle") {
+            vis.xDomain = ["Level","Nose up","Nose down","Dont know"]
+        } else if (selectedCategoryScatterX === "BikeType") {
+            vis.xDomain = ["Road bike","Mountain bike","BMX Bike","Folding bike","Hybrid bike","Electric bike","Other","Dont know"]
+        } else if (selectedCategoryScatterX === "HandleBars") {
+            vis.xDomain = ["Lower than saddle","Higher or even with saddle"]
+        } else if (selectedCategoryScatterX === "Surface") {
+            vis.xDomain = ["Stationary bike","Urban streets","Rural streets","Off road"]
+        }
+
 
         vis.updateVis()
     }
@@ -62,17 +97,21 @@ class ScatterPlot {
 
         vis.xScale = d3.scaleBand()
             .rangeRound([0, vis.width]).padding(1)
-            .domain(vis.data.map(function (d) {
-                return d[selectedCategoryScatterX]
-            }))
+        // THIS LINE BELOW WORKS. NEED TO CREATE A VARIABLE IN WRANGLE DATA THAT DOES THIS
+            //.domain(["6 months or less","6 months - 1year", "2 - 5 years", "5 -10 years","More than 10 years"])
+            .domain(vis.xDomain)
+            // .domain(vis.data.map(function (d) {
+            //     return d[selectedCategoryScatterX]
+            // }))
 
 
         vis.yScale = d3.scaleBand()
             .rangeRound([0, vis.height]).padding(1)
-            //.domain(["6 months or less", "6 months - 1year", "2 - 5 years", "5 -10 years", "More than 10 years"])
+            //.domain(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"])
             .domain(vis.data.map(function (d) {
                 return d[selectedCategoryScatterY]}
             ))
+            //.domain(vis.yDomain)
 
 
 
@@ -81,11 +120,12 @@ class ScatterPlot {
         vis.titletext = 'Effect of ' + xText + " on " + yText;
 
 
-        vis.xAxisGroup.transition().duration(300)
+        vis.xAxisGroup.transition().duration(500)
             .attr('transform', `translate (0, ${vis.height})`)
             .call(d3.axisBottom(vis.xScale));
 
-        vis.yAxisGroup.call(d3.axisLeft(vis.yScale));
+        vis.yAxisGroup.transition().duration(500)
+            .call(d3.axisLeft(vis.yScale));
 
 
         vis.circles = vis.svg.selectAll('.circle')
