@@ -1,4 +1,4 @@
-
+// Main JS Document
 // init global variables & switches
 let myMaleCircleTimeline,
     myFemaleCircleTimeline,
@@ -124,10 +124,13 @@ function updateBikeSeat () {
     mySeatVis3.updateText();
 }
 
+
+// getting the input for the dropdowns for the scatter plot
+// ie the selected categories for the x and y axes
 let selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
-let ScatterXLabel =  document.getElementById('categorySelectorScatterX').text;
 let selectedCategoryScatterY =  document.getElementById('categorySelectorScatterY').value;
 
+// calling the scatter wrangle data to ensure figure updates
 function categoryChangeScatter() {
     selectedCategoryScatterX =  document.getElementById('categorySelectorScatterX').value;
     selectedCategoryScatterY =  document.getElementById('categorySelectorScatterY').value;
@@ -136,8 +139,11 @@ function categoryChangeScatter() {
     console.log(selectedCategoryScatterY)
 }
 
+// getting the input for the dropdowns for the symbol plot
+// ie the selected categories for the y axis
 let selectedCategorySymbolY =  document.getElementById('categorySelectorSymbolY').value;
 
+// calling the symbol wrangle data to ensure figures update
 function categoryChangeSymbol() {
     selectedCategorySymbolY =  document.getElementById('categorySelectorSymbolY').value;
     mySymbol1.wrangleData();

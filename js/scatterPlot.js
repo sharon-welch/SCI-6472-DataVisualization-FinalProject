@@ -13,10 +13,9 @@ class ScatterPlot {
     initVis() {
         let vis = this;
 
+        // setting the margins
         vis.margin = {top: 30, right: 20, bottom: 50, left: 50};
 
-        //vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        //vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - 20;
 
@@ -47,6 +46,7 @@ class ScatterPlot {
         let vis = this
 
         // sorting the y axis
+        // Because not all of the elements are numeric, there is no straightforward way to sort and order the data
         if (selectedCategoryScatterY === "LUTS") {
             vis.yDomain = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
         } else if (selectedCategoryScatterY === "NumbScore") {
@@ -71,6 +71,7 @@ class ScatterPlot {
         }
 
         // sorting the x axis
+        // Because all of the elements are numeric, there is no straightforward way to sort and order the data
         if (selectedCategoryScatterX === "RidingHistory") {
             vis.xDomain = ["6 months or less","6 months - 1year", "2 - 5 years", "5 -10 years","More than 10 years"]
         } else if (selectedCategoryScatterX === "RidingFrequency") {
@@ -97,7 +98,10 @@ class ScatterPlot {
             vis.xDomain = ["Stationary bike","Urban streets","Rural streets","Off road"]
         }
 
-        // getting proper alignment for the x axis domain
+        // getting proper alignment for the x axis
+        // ran into an issue with the alignment on the x axis. I tried to modify the scale etc but was unable to
+        // to find a value that would be able to control for the variety in the data
+        // I added these manual values to control the positioning
         if (selectedCategoryScatterX === "RidingHistory") {
             vis.xBump = 0;
         } else if (selectedCategoryScatterX === "RidingFrequency") {
@@ -133,24 +137,26 @@ class ScatterPlot {
 
         let vis = this;
 
+        // x axis scale (band)
         vis.xScale = d3.scaleBand()
             .rangeRound([vis.margin.left, vis.width-vis.margin.right])
-            //.rangeRound(vis.xRange)
             .domain(vis.xDomain)
 
+        // y axis scale (band)
         vis.yScale = d3.scaleBand()
             .rangeRound([vis.height-vis.margin.top -vis.margin.bottom,0]).padding(1)
-            //.rangeRound([vis.height,0]).padding(1)
             .domain(vis.yDomain)
 
+        // getting the text labels for the selected predictor and outcome
         xText, yText =  getText(selectedCategoryScatterX,selectedCategoryScatterY)
         // Get the Title for the selected category
         vis.titletext = 'Effect of ' + xText + " on " + yText;
 
-
+        // create my circles
         vis.circles = vis.svg.selectAll('.circle')
             .data(vis.data)
 
+        // circles enter
         vis.circles.enter()
             .append("circle")
             .attr("class", "circle")
@@ -160,10 +166,8 @@ class ScatterPlot {
             .style("opacity", 0.2)
             .attr("cx", function (d) {
                 if (d.Gender === "Male") {
-                    //return (vis.xScale(d[selectedCategoryScatterX]) - 10)
                     return (vis.xScale(d[selectedCategoryScatterX]) - 10 + vis.xBump)
                 } else {
-                    //return (vis.xScale(d[selectedCategoryScatterX]) + 10)
                     return (vis.xScale(d[selectedCategoryScatterX]) + 10 + vis.xBump)
                 }
             })
@@ -196,10 +200,11 @@ class ScatterPlot {
                     .html(``);
             })
 
+        // title
         vis.title = vis.svg.selectAll('.title')
             .data(vis.data)
 
-
+        // appending the title
         vis.title.enter().append("text")
             .attr('class', 'title')
             .merge(vis.title)
@@ -208,10 +213,13 @@ class ScatterPlot {
             .attr('transform', `translate(${(vis.width-vis.margin.left) / 2}, -10)`)
             .attr('text-anchor', 'middle');
 
+        // adding the x axis group
         vis.xAxisGroup
             .attr('transform', `translate (${- vis.margin.left}, ${vis.height - vis.margin.top - vis.margin.bottom})`)
             .transition().duration(300)
             .call(d3.axisBottom(vis.xScale));
+
+        // adding the y axis group
         vis.yAxisGroup.transition().duration(300)
             .call(d3.axisLeft(vis.yScale));
 
@@ -243,7 +251,7 @@ class ScatterPlot {
 
         vis.circles.exit().remove();
 
-        // color function
+        // color function to calculate based on gender
         function
 
         color(gender) {
@@ -255,6 +263,5 @@ class ScatterPlot {
         }
 
     }
-
 
 }
