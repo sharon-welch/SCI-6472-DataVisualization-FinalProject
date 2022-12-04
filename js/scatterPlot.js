@@ -126,7 +126,6 @@ class ScatterPlot {
 
         console.log(vis.xBump)
 
-
         vis.updateVis()
     }
 
