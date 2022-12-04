@@ -5,7 +5,7 @@
 // /*
 class PieChart {
 
-    // constructor method to initialize Timeline object
+    // constructor method to initialize PieChart object
     constructor(parentElement, pieData) {
         this.parentElement = parentElement;
         this.pieData = pieData;
@@ -48,10 +48,13 @@ class PieChart {
 
         // TODO - add legend
         // add color legend
-        vis.legend = vis.svg.append("g")
-            .attr('class', 'pie-legend')
-            .attr('transform', `translate(${vis.width * 2.8 / 4}, ${vis.height - 20})`)
-
+    vis.legend = vis.svg.append("g");
+        vis.maleLegend = vis.legend.append("circle").attr("cx", vis.width/2).attr("cy", vis.height-40).attr("r", 6).attr('stroke', 'black').style("fill", "dodgerblue")
+        vis.maleLegendText = vis.legend.append("text").attr("x", vis.width/2+10).attr("y", vis.height-40).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
+        vis.femaleLegend = vis.legend.append("circle").attr("cx",vis.width/2).attr("cy", vis.height-20).attr("r", 6).attr('stroke', 'black').style("fill", "hotpink")
+        vis.femaleLegendText = vis.legend.append("text").attr("x", vis.width/2+10).attr("y", vis.height-20).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
+        vis.bothLegend = vis.legend.append("circle").attr("cx",vis.width/2).attr("cy", vis.height).attr("r", 6).attr('stroke', 'black').style("fill", '#8F7DDA')
+        vis.bothLegendText = vis.legend.append("text").attr("x", vis.width/2+10).attr("y", vis.height).text("Both").style("font-size", "15px").attr("alignment-baseline","middle")
 
         //creat pie chart group
         vis.pieChartGroup = vis.svg.append('g')
@@ -138,14 +141,14 @@ class PieChart {
             .on('mouseover', function(event, d){
                 vis.tooltip
                     .style("opacity", 1)
-                    .style("left", event.pageX + 20 + "px")
-                    .style("top", event.pageY + "px")
+                    .style("left", event.offsetX - 100 + "px")
+                    .style("top", event.offsetY + 5 + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
-                             <h3> Gender of Study: ${d.data.gender}<h3>
-                             <h4> Study Name: ${d.data.study_name}</h4>
-                             <h4> Study Type: ${d.data.study_type}</h4>
-                             <h4> Publication Year: ${d.data.year}</h4>
+                         <div style="border: thin solid grey; border-radius: 5px; background: white; padding: 10px">
+                             <p> Gender of Study: ${d.data.gender}<p>
+                             <p> Study Name: ${d.data.study_name}</p>
+                             <p> Study Type: ${d.data.study_type}</p>
+                             <p> Publication Year: ${d.data.year}</p>
                          
                          </div>`)
             })

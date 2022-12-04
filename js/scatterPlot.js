@@ -141,18 +141,18 @@ class ScatterPlot {
                 vis.tooltip
                     .style("opacity", 1)
                     .style("left", event.offsetX-90 + "px")
-                    .style("top", event.offsetY + "px")
-                    //.style("font", 30px)
+                    .style("top", event.offsetY + 5+ "px")
+                    .style("font-size", "10px")
                     .html(`
                     <div style="border: thin solid grey; border-radius: 5px;  background: white; padding: 10px">
-                        <div style="font-size: 6px;">Gender: ${d.Gender}</div> 
-                        <div style="font-size: 6px;">Length of Time Biking: ${d.RidingHistory}</div>     
-                        <div style="font-size: 6px;">Biking Frequency: ${d.RidingFrequency}</div>
-                        <div style="font-size: 6px;">Longest Distance Traveled: ${d.LongestDist}</div>
-                        <div style="font-size: 6px;">Average Distance Traveled: ${d.AverageDist}</div>
-                        <div style="font-size: 6px;">Average Speed: ${d.Speed}</div>
-                        <div style="font-size: 6px;">Saddle Type: ${d.SaddleType}</div>
-                        <div style="font-size: 6px;">Type of Bike: ${d.BikeType}</div>               
+                        <div>Gender: ${d.Gender}</div> 
+                        <div>Length of Time Biking: ${d.RidingHistory}</div>     
+                        <div>Biking Frequency: ${d.RidingFrequency}</div>
+                        <div>Longest Distance Traveled: ${d.LongestDist}</div>
+                        <div>Average Distance Traveled: ${d.AverageDist}</div>
+                        <div>Average Speed: ${d.Speed}</div>
+                        <div>Saddle Type: ${d.SaddleType}</div>
+                        <div>Type of Bike: ${d.BikeType}</div>               
                     </div>`);
             })
             .on('mouseout', function (event, d) {

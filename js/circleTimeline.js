@@ -65,7 +65,7 @@ class CircleTimeline {
                 }
             })
             .attr('cx', (d,i) => {
-                return 25 + i*135;
+                return 25 + i*110;
             })
             .attr('cy', function(d) {
                 if(vis.gender === "male") {
@@ -77,24 +77,17 @@ class CircleTimeline {
             })
             .attr('r', function(d) {
                 if (vis.gender === "male") {
-                    return d.male_trip_count/10000;
+                    return (d.male_trip_count/10000)/1.5;
                 }
                 else {
-                    return d.female_trip_count/10000;
+                    return (d.female_trip_count/10000)/1.5;
                 }
             })
             .on('mouseover', function(event, d) {
                 vis.tooltip
                     .style("opacity", 1)
-                    .style("left", event.pageX -70 + "px")
-                    .style("top", function (d) {
-                        if (vis.gender === "male") {
-                            return event.pageY - 300 + "px";
-                        }
-                        else {
-                            return event.pageY - 500 + "px";
-                        }
-                    })
+                    .style("left", event.offsetX - 80 + "px")
+                    .style("top", event.offsetY + 5 + "px")
                     .html(`
                          <div style="border: thin solid grey; border-radius: 5px; background: white; padding: 10px">
                              <p> Number of bike trips by male riders: ${d.male_trip_count}<p>
@@ -115,9 +108,17 @@ class CircleTimeline {
                     return d.year;
                 })
                 .attr('x', (d, i) => {
-                    return 5+i*135;
+                    return 5+i*110;
                 })
                 .attr('y', 70)
+        }
+
+        if (vis.gender === "female") {
+            vis.legend = vis.svg.append("g");
+            vis.maleLegend = vis.legend.append("circle").attr("cx", vis.width/2).attr("cy", vis.height-20).attr("r", 6).attr('stroke', 'black').style("fill", "dodgerblue")
+            vis.maleLegendText = vis.legend.append("text").attr("x", vis.width/2+10).attr("y", vis.height-20).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
+            vis.femaleLegend = vis.legend.append("circle").attr("cx",vis.width/2).attr("cy", vis.height).attr("r", 6).attr('stroke', 'black').style("fill", "hotpink")
+            vis.femaleLegendText = vis.legend.append("text").attr("x", vis.width/2+10).attr("y", vis.height).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
         }
 
     }
