@@ -177,10 +177,12 @@ class ScatterPlot {
 
         vis.xAxisGroup
             .attr('transform', `translate (${- vis.margin.left}, ${vis.height - vis.margin.top - vis.margin.bottom})`)
+            .transition().duration(300)
             .call(d3.axisBottom(vis.xScale));
-        vis.yAxisGroup
+        vis.yAxisGroup.transition().duration(300)
             .call(d3.axisLeft(vis.yScale));
 
+        // x axis label
         vis.xAxisLabel = vis.svg.selectAll('.xAxisLabel')
             .data(xText)
 
@@ -193,6 +195,7 @@ class ScatterPlot {
 
         vis.xAxisLabel.exit().remove()
 
+        // y axis label
         vis.yAxisLabel = vis.svg.selectAll('.yAxisLabel')
             .data(yText)
 
@@ -205,34 +208,9 @@ class ScatterPlot {
 
         vis.yAxisLabel.exit().remove()
 
-
-
-
-        // vis.svg
-        //     .append('g')
-        //     .attr('class', 'xAxisLabel')
-        //     .append('text')
-        //     .text(xText)
-        //     //.attr('transform', `translate(${vis.width / 2}, ${vis.height})`)
-        //     .attr('transform', `translate(${(vis.width-vis.margin.left) / 2}, ${vis.height - vis.margin.top - vis.margin.right + 10})`)
-        //     .attr('text-anchor', 'middle');
-        //
-        // vis.svg
-        //     .append('g')
-        //     .attr("color", "white")
-        //     .attr('class', 'yAxisLabel')
-        //     .append('text')
-        //     .text(yText)
-        //
-        //     .attr('text-anchor', 'middle');
-
-
-
         vis.circles.exit().remove();
 
-
-       //vis.circles.exit().remove();
-
+        // color function
         function
 
         color(gender) {
