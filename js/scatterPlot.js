@@ -15,8 +15,6 @@ class ScatterPlot {
 
         vis.margin = {top: 30, right: 20, bottom: 50, left: 50};
 
-        //vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        //vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - 20;
 
