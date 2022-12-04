@@ -9,10 +9,10 @@ body {
   padding-bottom: 30px;
 }
 
-
-/*.row {*/
-/*  padding-top: 20px;*/
-/*}*/
+.scatternote {
+  color: grey;
+  font-size: smaller;
+}
 
 /*#circle-slide,*/
 /*#pie-slide*/
@@ -22,7 +22,8 @@ body {
 /*}*/
 .s1,
 .s3,
-.s5 {
+.s5
+.s6{
   background: white;
 }
 
