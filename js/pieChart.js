@@ -13,6 +13,7 @@ class PieChart {
         //female, male, both
         //this.pieColors = ['#7fcdbb', '#2c7fb8', '#edf8b1'];
         this.pieColors = ['hotpink', 'dodgerblue', '#8F7DDA'];
+        this.id = "pie-legend";
 
         // console.log("pieData", pieData)
 
@@ -45,17 +46,20 @@ class PieChart {
             .attr('text-anchor', 'middle');
 
 
-        // TODO - add legend
         // add color legend
-    vis.legend = vis.svg.append("g");
-        vis.maleLegend = vis.legend.append("circle").attr("cx", vis.width/2).attr("cy", vis.height-40).attr("r", 6).attr('stroke', 'black').style("fill", "dodgerblue")
-        vis.maleLegendText = vis.legend.append("text").attr("x", vis.width/2+10).attr("y", vis.height-40).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
-        vis.femaleLegend = vis.legend.append("circle").attr("cx",vis.width/2).attr("cy", vis.height-20).attr("r", 6).attr('stroke', 'black').style("fill", "hotpink")
-        vis.femaleLegendText = vis.legend.append("text").attr("x", vis.width/2+10).attr("y", vis.height-20).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
-        vis.bothLegend = vis.legend.append("circle").attr("cx",vis.width/2).attr("cy", vis.height).attr("r", 6).attr('stroke', 'black').style("fill", '#8F7DDA')
-        vis.bothLegendText = vis.legend.append("text").attr("x", vis.width/2+10).attr("y", vis.height).text("Both").style("font-size", "15px").attr("alignment-baseline","middle")
+        vis.legend = d3.select("#" + vis.id).append("svg")
+            .attr("width", 80)
+            .attr("height", 60)
+            .attr("style", "outline: thin solid black;");
 
-        //creat pie chart group
+        vis.maleLegend = vis.legend.append("circle").attr("cx", 10).attr("cy", 10).attr("r", 6).attr('stroke', 'black').style("fill", "dodgerblue")
+        vis.maleLegendText = vis.legend.append("text").attr("x", 20).attr("y", 10).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
+        vis.femaleLegend = vis.legend.append("circle").attr("cx",10).attr("cy", 30).attr("r", 6).attr('stroke', 'black').style("fill", "hotpink")
+        vis.femaleLegendText = vis.legend.append("text").attr("x", 20).attr("y", 30).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
+        vis.bothLegend = vis.legend.append("circle").attr("cx",10).attr("cy", 50).attr("r", 6).attr('stroke', 'black').style("fill", '#8F7DDA')
+        vis.bothLegendText = vis.legend.append("text").attr("x", 20).attr("y", 50).text("Both").style("font-size", "15px").attr("alignment-baseline","middle")
+
+        //create pie chart group
         vis.pieChartGroup = vis.svg.append('g')
             .attr('class', 'pie-chart')
             .attr("transform", "translate(" + vis.width / 2 + "," + vis.height / 2 + ")");

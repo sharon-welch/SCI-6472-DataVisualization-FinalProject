@@ -73,13 +73,16 @@
                         </div>
                         <div class="row" id="circle-title">
                             <h3>Bike Trips by Gender in the US</h3>
+                            </br>
                             <h6>Hover over the circles to see statistics for each year</h6>
+                            </br>
+                            <div id="circle-legend"></div>
                         </div>
                         <div class="row d-flex" id="male-circle-timeline" style="height:150px; width: 1500px">
-                            <div class="col-12" id="male-timeline-div"></div>
+                            <div class="col-12 justify-content-center" id="male-timeline-div"></div>
                         </div>
                         <div class="row d-flex" id="female-circle-timeline" style="height: 200px; width: 1300px">
-                            <div class="col-12" id="female-timeline-div"></div>
+                            <div class="col-12 justify-content-center" id="female-timeline-div"></div>
                         </div>
                     </div>
                 </div>
@@ -98,7 +101,7 @@
                                 </br>
                                 <p>Each pie segment represents a single study</p>
                                 </br>
-                                <p>[INSERT LEGEND HERE]</p>
+                                <div id="pie-legend"></div>
                             </div>
 <!--                            TODO: figure out how not to hard code this-->
                             <!-- pie chart -->
@@ -228,11 +231,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <h3>Scientific research shows that women have worse health outcomes following cycling, which in part is an effect of pressure distribution resulting from saddle design. Moving forward, it is critical to take into account pressure distribution in saddle design. </h3>
-                        <h6>Enter in your metrics below to see how your average bike seat pressure would compare to other riders and view average pressure maps for your gender</h6>
+                        <h6 id="instructions">Enter in your metrics below to see how your average bike seat pressure would compare to other riders and view average pressure maps for your gender</h6>
                     </div>
                     <div class="row" id="bike-seat" style="height:1000px; width: 1320px">
                         <div class="col" id="bike-seat-div">
-                            <div class="col-5" id="bike-seat-dropdowns">
+                            <div class="col-5 align-self-center" id="bike-seat-dropdowns">
                                 <div class="form-outline">
                                     <input type="number" value="0" id="age" class="form-control" style="width: 15%" onchange="updateBikeSeat()"/>
                                     <label class="form-label" for="age">Age (years)</label>
@@ -242,14 +245,14 @@
                                     <label class="form-label" for="weight">Weight (kg)</label>
                                 </div>
                             </div>
-                            <div class="dropdown col-10">
+                            <div class="dropdown col-10 align-self-center">
                                 <select id="gender" class="user-control form-control form-group" style="width: 15%" onchange="updateBikeSeat()">
                                     <option value="chooseGender">Choose Gender</option>
                                     <option value="female">Female</option>
                                     <option value="male">Male</option>
                                 </select>
                             </div>
-                            <div class="text" id="metric-text">
+                            <div class="col-6 text align-self-right" id="metric-text">
                                 <p></p>
                             </div>
 <!--                            //TODO - remove hardcoding of seat row height, test putting in column instead-->

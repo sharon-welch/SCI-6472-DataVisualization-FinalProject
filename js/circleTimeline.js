@@ -9,6 +9,7 @@ class CircleTimeline {
         this.parentElement = parentElement;
         this.timelineData = timelineData;
         this.gender = gender;
+        this.id = "circle-legend";
 
         //     define male and female colors
         this.colors = ["dodgerblue", "hotpink"]
@@ -26,6 +27,18 @@ class CircleTimeline {
         vis.margin = {top: 20, right: 20, bottom: 20, left: 30};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
+
+        if (vis.gender === "male") {
+            vis.legend = d3.select("#" + vis.id).append("svg")
+                .attr("width", 80)
+                .attr("height", 40)
+                .attr("style", "outline: thin solid black;");
+
+            vis.maleLegend = vis.legend.append("circle").attr("cx", 10).attr("cy", 10).attr("r", 6).attr('stroke', 'black').style("fill", "dodgerblue")
+            vis.maleLegendText = vis.legend.append("text").attr("x", 20).attr("y", 10).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
+            vis.femaleLegend = vis.legend.append("circle").attr("cx",10).attr("cy", 30).attr("r", 6).attr('stroke', 'black').style("fill", "hotpink")
+            vis.femaleLegendText = vis.legend.append("text").attr("x", 20).attr("y", 30).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
+        }
 
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -111,14 +124,6 @@ class CircleTimeline {
                     return 5+i*110;
                 })
                 .attr('y', 70)
-        }
-
-        if (vis.gender === "female") {
-            vis.legend = vis.svg.append("g");
-            vis.maleLegend = vis.legend.append("circle").attr("cx", vis.width/2).attr("cy", vis.height-20).attr("r", 6).attr('stroke', 'black').style("fill", "dodgerblue")
-            vis.maleLegendText = vis.legend.append("text").attr("x", vis.width/2+10).attr("y", vis.height-20).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
-            vis.femaleLegend = vis.legend.append("circle").attr("cx",vis.width/2).attr("cy", vis.height).attr("r", 6).attr('stroke', 'black').style("fill", "hotpink")
-            vis.femaleLegendText = vis.legend.append("text").attr("x", vis.width/2+10).attr("y", vis.height).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
         }
 
     }

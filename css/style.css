@@ -72,6 +72,11 @@ h6 {
   padding-bottom: 30px;
 }
 
+#instructions {
+  text-align: left;
+  padding-bottom: 10px;
+}
+
 /*#saddle-imgs {*/
 /*  */
 /*}*/
