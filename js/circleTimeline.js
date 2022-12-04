@@ -86,8 +86,15 @@ class CircleTimeline {
             .on('mouseover', function(event, d) {
                 vis.tooltip
                     .style("opacity", 1)
-                    .style("left", event.pageX + 20 + "px")
-                    .style("top", event.pageY + "px")
+                    .style("left", event.pageX -70 + "px")
+                    .style("top", function (d) {
+                        if (vis.gender === "male") {
+                            return event.pageY - 300 + "px";
+                        }
+                        else {
+                            return event.pageY - 500 + "px";
+                        }
+                    })
                     .html(`
                          <div style="border: thin solid grey; border-radius: 5px; background: white; padding: 10px">
                              <p> Number of bike trips by male riders: ${d.male_trip_count}<p>
