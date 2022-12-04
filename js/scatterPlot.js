@@ -34,8 +34,6 @@ class ScatterPlot {
         // axis groups
         vis.xAxisGroup = vis.svg.append('g')
             .attr('class', 'axis x-axis')
-            //.attr('transform', `translate (0,${vis.height-100})`);
-            .attr('transform', `translate (0,400)`);
         vis.yAxisGroup = vis.svg.append('g')
             .attr('class', 'axis y-axis');
 
@@ -89,9 +87,9 @@ class ScatterPlot {
         } else if (selectedCategoryScatterX === "SaddleType") {
             vis.xDomain = ["Narrow, unpad","Narrow, mid pad","Wide, unpad","Wide, heavy pad","Wide, cruiser","Noseless","Dual pad"]
         } else if (selectedCategoryScatterX === "SaddleAngle") {
-            vis.xDomain = ["Level","Nose up","Nose down","Dont know"]
+            vis.xDomain = ["Level","Nose up","Nose down","Don't know"]
         } else if (selectedCategoryScatterX === "BikeType") {
-            vis.xDomain = ["Road bike","Mountain bike","BMX Bike","Folding bike","Hybrid bike","Electric bike","Other","Dont know"]
+            vis.xDomain = ["Road bike","Mountain bike","BMX Bike","Folding bike","Hybrid bike","Electric bike", "Rcumbent bike", "Other","Don't know"]
         } else if (selectedCategoryScatterX === "HandleBars") {
             vis.xDomain = ["Lower than saddle","Higher or even with saddle"]
         } else if (selectedCategoryScatterX === "Surface") {
@@ -106,9 +104,7 @@ class ScatterPlot {
         let vis = this;
 
         vis.xScale = d3.scaleBand()
-            //.rangeRound([0, vis.width]).padding(1)
-            .rangeRound([vis.margin.left, vis.width - vis.margin.right])
-            //.padding(0.07)
+            .rangeRound([vis.margin.left, vis.width-vis.margin.right])
             .domain(vis.xDomain)
 
         vis.yScale = d3.scaleBand()
@@ -121,12 +117,7 @@ class ScatterPlot {
         vis.titletext = 'Effect of ' + xText + " on " + yText;
 
 
-        vis.xAxisGroup.transition().duration(300)
-            .attr('transform', `translate (${- vis.margin.left}, ${vis.height - vis.margin.top - vis.margin.bottom})`)
-            .call(d3.axisBottom(vis.xScale));
 
-        vis.yAxisGroup.transition().duration(300)
-            .call(d3.axisLeft(vis.yScale));
 
 
         vis.circles = vis.svg.selectAll('.circle')
@@ -137,8 +128,6 @@ class ScatterPlot {
             .append("circle")
             .attr("class", "circle")
             .merge(vis.circles)
-            // .transition()
-            // .duration(200)
             .attr("fill", d => color(d.Gender))
             .style("stroke", "black")
             .style("opacity", 0.2)
@@ -177,33 +166,75 @@ class ScatterPlot {
                     .html(``);
             })
 
-        vis.svg
-            .append('g')
+        vis.title = vis.svg.selectAll('.title')
+            .data(vis.data)
+
+
+        vis.title.enter().append("text")
             .attr('class', 'title')
-            .append('text')
+            .merge(vis.title)
             .text(vis.titletext)
+            .attr('class', 'title')
             .attr('transform', `translate(${(vis.width-vis.margin.left) / 2}, -10)`)
             .attr('text-anchor', 'middle');
 
-        vis.svg
-            .append('g')
-            .attr('class', 'xAxisLabel')
-            .append('text')
+        vis.xAxisGroup
+            .attr('transform', `translate (${- vis.margin.left}, ${vis.height - vis.margin.top - vis.margin.bottom})`)
+            .call(d3.axisBottom(vis.xScale));
+        vis.yAxisGroup
+            .call(d3.axisLeft(vis.yScale));
+
+        vis.xAxisLabel = vis.svg.selectAll('.xAxisLabel')
+            .data(vis.data)
+
+        vis.xAxisLabel.enter()
+            .append("text")
+            .attr('class', 'xAxislabel')
+            .attr("fill", "black")
+            .merge(vis.xAxisLabel)
             .text(xText)
-            //.attr('transform', `translate(${vis.width / 2}, ${vis.height})`)
             .attr('transform', `translate(${(vis.width-vis.margin.left) / 2}, ${vis.height - vis.margin.top - vis.margin.right + 10})`)
             .attr('text-anchor', 'middle');
 
-        vis.svg
-            .append('g')
-            .attr("color", "white")
-            .attr('class', 'yAxisLabel')
-            .append('text')
+        vis.yAxisLabel = vis.svg.selectAll('.yAxisLabel').append("g")
+            .data(yText)
+
+        vis.yAxisLabel.enter().append("text")
+            .attr('class', 'yAxislabel')
+            .merge(vis.yAxisLabel)
             .text(yText)
             .attr('transform', `translate(-30, ${vis.height / 2})rotate(270)`)
             .attr('text-anchor', 'middle');
 
+
+
+
+
+
+        // vis.svg
+        //     .append('g')
+        //     .attr('class', 'xAxisLabel')
+        //     .append('text')
+        //     .text(xText)
+        //     //.attr('transform', `translate(${vis.width / 2}, ${vis.height})`)
+        //     .attr('transform', `translate(${(vis.width-vis.margin.left) / 2}, ${vis.height - vis.margin.top - vis.margin.right + 10})`)
+        //     .attr('text-anchor', 'middle');
+        //
+        // vis.svg
+        //     .append('g')
+        //     .attr("color", "white")
+        //     .attr('class', 'yAxisLabel')
+        //     .append('text')
+        //     .text(yText)
+        //
+        //     .attr('text-anchor', 'middle');
+
+
+
         vis.circles.exit().remove();
+
+
+       //vis.circles.exit().remove();
 
         function
 

@@ -78,7 +78,9 @@ class SymbolPlot {
         vis.circles = vis.svg.selectAll('.circle')
             .data(vis.displayData)
 
-        vis.circles.exit().remove();
+        vis.circles.exit()
+            .transition()
+            .duration(500).remove();
 
         vis.circles.enter()
             .append("circle")
