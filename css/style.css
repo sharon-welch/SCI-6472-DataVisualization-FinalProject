@@ -1,13 +1,11 @@
 body {
   padding: 50px;
 }
-
 .section {
   padding-left: 80px;
   padding-right: 80px;
   padding-top: 20px;
   padding-bottom: 20px;
-  border: 1px solid yellow;
 }
 
 /*#circle-slide,*/
@@ -16,7 +14,9 @@ body {
 /*  padding-left: 45px;*/
 /*  padding-right: 45px;*/
 /*}*/
-.s1,
+.s1 {
+  background: #f7f9ff;
+}
 .s3,
 .s5 {
   background: white;
@@ -109,4 +109,10 @@ h2 {
   position: absolute;
   text-align: center;
   font-size: 15px;
+}
+.xAxisLabel{
+  fill:black;
+}
+.whitelabel{
+  fill:white;
 }
