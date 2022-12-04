@@ -41,13 +41,23 @@
                     <h2>An argument for a new saddle design for women</h2>
                 </div>
 
+                <!-- saddle outlines -->
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col align-self-right"> <div class="text-center"><img class= "center" id="standardsaddleimg" src="/img/saddle_standard.png" height="175"> </div></div>
+                    <div class="col align-self-center"> <div class="text-center"><img class= "align-self-center" id="partialsaddleimg" src="/img/saddle_partial.png" height="175"> </div></div>
+                    <div class="col align-self-left"> <div class="text-center"><img class= "align-self-center" id="completesaddleimg" src="/img/saddle_complete.png" height="175"></div> </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                </br>
+
                 <!-- More Info -->
                 <div class = "row d-flex justify-content-center">
                     <h3>Cycling is associated with a host of chronic health problems. These issues might <br> be exacerbated in women — increasing their discomfort, decreasing their ridership, <br> and ultimately hurting your bottom line.</h3>
                     <h3>But what is it that is negatively affecting female cyclists?</h3>
                 </div>
-
-                <div class="col align-self-center"> <div class="text-center"><img class= "align-self-center" id="bikegif" src="/gif/bike.gif" height=100%></div> </div>
 
 
             </div>
@@ -169,12 +179,12 @@
                     <!-- symbol plot intro-->
                     <div class="row">
                         <h2>In particular, saddle type interacts with the body of the rider, in a way that differs between males and females. We examine how pressure differs by saddle type (stratified by gender) and how that related to reported health outcomes.</h2>
-                        <h3>The data below reflects the following saddle types: Standard Saddle (right), Partial Cutout Saddle (center), Complete Cutout Saddle (left).</h3>
+                        <h3>The data below reflects the following saddle types: Standard Saddle (left), Partial Cutout Saddle (center), Complete Cutout Saddle (right).</h3>
                     </div>
                     <!-- symbol plot dropdown-->
                     <div class="row">
                         <!-- <div class="col"> <div class="text-right">Health Outcome</div></div> -->
-                        <div class="col"> Health Outcomes <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 24%" onchange="categoryChangeSymbol()">
+                        <div class="col-4"> Health Outcomes <select id='categorySelectorSymbolY' class="custom-select align-self-center" style="width: 80%" onchange="categoryChangeSymbol()">
                             <option value="LUTS" selected>Urinary Wellness</option>
                             <option value="NumbScore">Degree of Genital Numbness</option>
                             <option value="UTI">History of UTI</option>
@@ -186,23 +196,15 @@
                             <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
                         </select>
                         </div>
+                        <div class="col-8"><p>As you click through the different Health Outcomes, you will observe that although the rate of these issues changes as a function of saddle type, a higher rate of many of these issues in female cyclists. An interesting exception to this is the Full Cutout Saddle, reinforcing the fact that the saddle may be one of the most effective ways to improve health outcomes in female cyclists.</p></div>
                     </div>
                     </br>
-                    <!-- saddle outlines -->
-                    <div class="row justify-content-center">
-                        <div class="col align-self-center"> <div class="text-center"><img class= "center" id="standardsaddleimg" src="/img/saddle_standard.png" height="150"> </div></div>
-                        <div class="col align-self-center"> <div class="text-center"><img class= "align-self-center" id="partialsaddleimg" src="/img/saddle_partial.png" height="150"> </div></div>
-                        <div class="col align-self-center"> <div class="text-center"><img class= "align-self-center" id="completesaddleimg" src="/img/saddle_complete.png" height="150"></div> </div>
-                    </div>
                     <!-- symbol plot visualizations-->
                     <div class="row">
                         <div class="col" id="symbol-area1" style="height:300px; width: 300px"> </div>
                         <div class="col" id="symbol-area2" style="height:300px; width: 300px"> </div>
                         <div class="col" id="symbol-area3" style="height:300px; width: 300px"> </div>
                     </div>
-                </div>
-                <div class="row">
-                    <p style = "text-align: center">As you click through the different Health Outcomes, you will observe that although the rate of these issues changes as a function of saddle type, a higher rate of many of these issues in female cyclists. An interesting exception to this is the Full Cutout Saddle, reinforcing the fact that the saddle may be one of the most effective ways to improve health outcomes in female cyclists.</p>
                 </div>
             </div>
 
