@@ -1,5 +1,8 @@
 let xText = '';
 let yText = '';
+let yTextSymbol = '';
+
+
 function getText(selectedCategoryScatterX,selectedCategoryScatterY) {
     if (selectedCategoryScatterX === "RidingHistory") {
         xText = "Length of Time Biking"
@@ -50,4 +53,30 @@ function getText(selectedCategoryScatterX,selectedCategoryScatterY) {
         yText = "Urinary Voiding Dysfunction"
     }
 return xText, yText;
+}
+
+
+function getTextSymbol(selectedCategoryScatterX,selectedCategoryScatterY) {
+    if (selectedCategorySymbolY === "LUTS") {
+        yTextSymbol = "Urinary Wellness"
+    } else if (selectedCategorySymbolY === "NumbScore") {
+        yTextSymbol = "Degree of Genital Numbness"
+    } else if (selectedCategorySymbolY === "NumbTime") {
+        yTextSymbol = "Length of Feeling of Numbness"
+    } else if (selectedCategorySymbolY === "UTI") {
+        yTextSymbol = "History of UTI"
+    } else if (selectedCategorySymbolY === "UTINum") {
+        yTextSymbol = "Number of Prior UTIs"
+    } else if (selectedCategorySymbolY === "Nodules") {
+        yTextSymbol = "History of Genital + Perineal Nodules"
+    } else if (selectedCategorySymbolY === "SaddleSores") {
+        yTextSymbol = "History of Saddle Sores"
+    } else if (selectedCategorySymbolY === "IPSS") {
+        yTextSymbol = "Prostate Symptoms"
+    } else if (selectedCategorySymbolY === "UrinaryFilling") {
+        yTextSymbol = "Urinary Filling Dysfunction"
+    } else if (selectedCategorySymbolY === "UrinaryVoiding") {
+        yTextSymbol = "Urinary Voiding Dysfunction"
+    }
+    return yTextSymbol;
 }
