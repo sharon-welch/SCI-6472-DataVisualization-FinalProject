@@ -47,7 +47,7 @@ class SeatVis {
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            // TODO - figure out why this isn't working and have to hardcoad height in HTML
+            // TODO - figure out why this isn't working and have to hardcode height in HTML
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
@@ -121,17 +121,11 @@ class SeatVis {
                     }
                 }
                 else {
-                    if (vis.gender === "male") {
-                        console.log("updating male circles")
-                        if (d.value_male === 0) {
-                            return "none";
-                        } else {
-                            return "gray";
-                        }
-                    }
-                    else {
-                        console.log("choose gender")
+                    console.log("updating male circles")
+                    if (d.value_male === 0) {
                         return "none";
+                    } else {
+                        return "gray";
                     }
                 }
             })
@@ -187,9 +181,9 @@ class SeatVis {
             difference = -1*avg_pressure;
         }
 
-        if (selectedGender !== "chooseGender" && selectedAge >0 && selectedHeight > 0 && selectedWeight > 0) {
+        if (selectedGender !== "chooseGender") {
             document.getElementById("metric-text").innerText =
-                "The average bike seat pressure for " + selectedGender + " riders with your metrics was " + user_pressure.toFixed(2) + " kPa, which is "
+                "The average standard saddle pressure for " + selectedGender + " riders with your metrics was " + user_pressure.toFixed(2) + " kPa, which is "
                 + Math.abs(difference) + " kPa off from the average pressure for " + selectedGender + " riders, " + avg_pressure + " kPa."
         }
     }
