@@ -81,13 +81,13 @@ class ScatterPlot {
         } else if (selectedCategoryScatterX === "AverageDist") {
             vis.xDomain = ["Less than 1 mile","1-5 miles","5-10 miles","10-25 miles","25-50 miles","More than 50 miles"]
         } else if (selectedCategoryScatterX === "Speed") {
-            vis.xDomain = ["Less than 5miles/hr","5 miles/hr","6-10 miles/hr","11-15 miles/hr","16-20 miles/hr","More than 20 miles/hr","Dont know"]
+            vis.xDomain = ["< 5 miles/hr","5 miles/hr","6-10 miles/hr","11-15 miles/hr","16-20 miles/hr","> 20 miles/hr","Don't know"]
         } else if (selectedCategoryScatterX === "Standing") {
             vis.xDomain = ["0%","5%","10%","20%","More than 20%"]
         } else if (selectedCategoryScatterX === "PaddedShorts") {
             vis.xDomain = ["Never","Rarely","Sometimes","Mostly","Always"]
         } else if (selectedCategoryScatterX === "SaddleType") {
-            vis.xDomain = ["(A) Wide, unpadded seat","(B) Long, narrow, with minimal padding seat","(C) Narrow, medium padded seat","(D) Wide, heavily padded seat","(E) Wide, well padded cruiser seat","(F) Noseless seat","(G) Dual pad seat"]
+            vis.xDomain = ["Narrow, unpad","Narrow, mid pad","Wide, unpad","Wide, heavy pad","Wide, cruiser","Noseless","Dual pad"]
         } else if (selectedCategoryScatterX === "SaddleAngle") {
             vis.xDomain = ["Level","Nose up","Nose down","Dont know"]
         } else if (selectedCategoryScatterX === "BikeType") {
@@ -108,7 +108,7 @@ class ScatterPlot {
         vis.xScale = d3.scaleBand()
             //.rangeRound([0, vis.width]).padding(1)
             .rangeRound([vis.margin.left, vis.width - vis.margin.right])
-            //.padding(1)
+            //.padding(0.07)
             .domain(vis.xDomain)
 
         vis.yScale = d3.scaleBand()
@@ -176,15 +176,13 @@ class ScatterPlot {
                     .style("top", 0)
                     .html(``);
             })
-        //.merge(vis.circles)
-
 
         vis.svg
             .append('g')
             .attr('class', 'title')
             .append('text')
             .text(vis.titletext)
-            .attr('transform', `translate(${(vis.width-vis.margin.left) / 2}, 0)`)
+            .attr('transform', `translate(${(vis.width-vis.margin.left) / 2}, -10)`)
             .attr('text-anchor', 'middle');
 
         vis.svg
