@@ -9,8 +9,6 @@ class PieChart {
     constructor(parentElement, pieData) {
         this.parentElement = parentElement;
         this.pieData = pieData;
-        //TODO - array of circle colors and call colors below by spot in array
-        // this.circleColors = ['#fff460', '#5d67f5'];
 
         //female, male, both
         //this.pieColors = ['#7fcdbb', '#2c7fb8', '#edf8b1'];
@@ -42,6 +40,7 @@ class PieChart {
             .attr('class', 'title pie-title')
             .append('text')
             .text('Research Disparities: Gender and Seat Health')
+
             .attr('transform', `translate(${vis.width / 2}, 20)`)
             .attr('text-anchor', 'middle');
 
@@ -61,30 +60,16 @@ class PieChart {
             .attr('class', 'pie-chart')
             .attr("transform", "translate(" + vis.width / 2 + "," + vis.height / 2 + ")");
 
-        //define inner and outer radius
-        //define pie layout
-        //set up your path generator
-
+        // tooltip
         vis.tooltip = d3.select("#" + vis.parentElement).append('div')
             .attr('class', "tooltip")
             .attr('id', 'pieTooltip')
 
 
         // call next method in pipeline
-        // this.wrangleData()
         this.updateVis();
     }
 
-    //TODO - delete wrangle data
-
-    // wrangleData method
-    wrangleData() {
-
-        let vis = this;
-
-        vis.updateVis()
-
-    }
 
     // updateVis method
     updateVis() {
@@ -93,8 +78,8 @@ class PieChart {
         //TODO - fix width of pie chart
 
         //define inner and outer radius
-        // let outerRadius = vis.width / 2;
-        let outerRadius = 150;
+        let outerRadius = vis.height/2.5;
+        // let outerRadius = 150;
         let innerRadius = 0;
 
         //define pie layout
@@ -111,7 +96,6 @@ class PieChart {
 
         // console.log(vis.pie(vis.pieData));
 
-
         //set up path generator
         vis.arcs.enter()
             .append("path")
@@ -120,7 +104,6 @@ class PieChart {
             .style("fill", function(d,i) {
                 if (vis.pieData[i].gender === "female") {
                     return vis.pieColors[0];
-                    // return '#7fcdbb';
                 }
                 else if (vis.pieData[i].gender === "male") {
                     return vis.pieColors[1];
@@ -130,14 +113,12 @@ class PieChart {
                     return vis.pieColors[2];
                 }
             })
-            .style("stroke-dasharray", ("4,4"))
             .style("stroke-width", .25)
             .style("stroke", "black")
 
 
             //TODO - fix position
-
-
+            //tooltip
             .on('mouseover', function(event, d){
                 vis.tooltip
                     .style("opacity", 1)

@@ -77,16 +77,12 @@ class SymbolPlot {
         vis.circles = vis.svg.selectAll('.circle')
             .data(vis.displayData)
 
-        vis.circles.exit()
-            .transition()
-            .duration(500).remove();
+        vis.circles.exit().remove();
 
         vis.circles.enter()
             .append("circle")
             .attr("class", "circle")
             .merge(vis.circles)
-            .transition()
-            .duration(500)
             .attr("fill", function (d) {
                 if (d.Gender === "Male") {
                     return "dodgerblue"

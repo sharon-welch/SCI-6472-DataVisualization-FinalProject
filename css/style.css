@@ -1,11 +1,17 @@
 body {
   padding: 50px;
 }
+
 .section {
-  padding-left: 80px;
-  padding-right: 80px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-left: 90px;
+  padding-right: 90px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.scatternote {
+  color: grey;
+  font-size: smaller;
 }
 
 /*#circle-slide,*/
@@ -16,7 +22,8 @@ body {
 /*}*/
 .s1,
 .s3,
-.s5 {
+.s5
+.s6{
   background: white;
 }
 
@@ -25,12 +32,10 @@ body {
   background-color: #faf0e6;
 }
 
-#circle-slide {
-  text-align:center;
-}
+
 
 p {
-  font-size: 15px;
+  font-size: 18px;
   text-align: justify;
 }
 
@@ -38,6 +43,9 @@ p {
 /*title slide title*/
 h1 {
   font-size: 40px;
+  text-align: center;
+  padding-bottom:30px;
+
 }
 
 h2 {
@@ -45,6 +53,7 @@ h2 {
   text-align: center;
   /*padding-top: 15px;*/
   padding-bottom: 30px;
+  color: grey;
 }
 
 h3 {
@@ -54,7 +63,7 @@ h3 {
 }
 
 h4 {
-  font-size: 25px;
+  font-size: 15px;
   text-align: center;
   padding-bottom: 30px;
 }
@@ -63,8 +72,18 @@ h6 {
   padding-bottom: 30px;
 }
 
+/*#saddle-imgs {*/
+/*  */
+/*}*/
 
 
+#pie-chart-text {
+  padding-left: 200px;
+}
+
+#circle-slide {
+  text-align:center;
+}
 
 
 /*TODO - why isn't this working? */
@@ -76,14 +95,6 @@ h6 {
 #fp-nav {
   text-color: black;
   text-size: 50;
-}
-
-h1 {
-  text-align: center;
-  text-size: 100px;
-}
-h2 {
-  color: grey;
 }
 
 /*div {*/

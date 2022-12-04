@@ -5,6 +5,7 @@ class ScatterPlot {
         this.data = data;
         this.yDomain = [];
         this.xDomain = [];
+        this.xBump = 0;
 
         this.initVis()
     }
@@ -96,6 +97,35 @@ class ScatterPlot {
             vis.xDomain = ["Stationary bike","Urban streets","Rural streets","Off road"]
         }
 
+        // getting proper alignment for the x axis domain
+        if (selectedCategoryScatterX === "RidingHistory") {
+            vis.xBump = 0;
+        } else if (selectedCategoryScatterX === "RidingFrequency") {
+            vis.xBump = -8;
+        } else if (selectedCategoryScatterX === "LongestDist") {
+            vis.xBump = -8;
+        } else if (selectedCategoryScatterX === "AverageDist") {
+            vis.xBump = -8;
+        } else if (selectedCategoryScatterX === "Speed") {
+            vis.xBump = -12;
+        } else if (selectedCategoryScatterX === "Standing") {
+            vis.xBump = 0;
+        } else if (selectedCategoryScatterX === "PaddedShorts") {
+            vis.xBump = 0;
+        } else if (selectedCategoryScatterX === "SaddleType") {
+            vis.xBump = -12;
+        } else if (selectedCategoryScatterX === "SaddleAngle") {
+            vis.xBump = 16;
+        } else if (selectedCategoryScatterX === "BikeType") {
+            vis.xBump = -20;
+        } else if (selectedCategoryScatterX === "HandleBars") {
+            vis.xBump = 60;
+        } else if (selectedCategoryScatterX === "Surface") {
+            vis.xBump = 16;
+        }
+
+        console.log(vis.xBump)
+
         vis.updateVis()
     }
 
@@ -105,6 +135,7 @@ class ScatterPlot {
 
         vis.xScale = d3.scaleBand()
             .rangeRound([vis.margin.left, vis.width-vis.margin.right])
+            //.rangeRound(vis.xRange)
             .domain(vis.xDomain)
 
         vis.yScale = d3.scaleBand()
@@ -129,9 +160,11 @@ class ScatterPlot {
             .style("opacity", 0.2)
             .attr("cx", function (d) {
                 if (d.Gender === "Male") {
-                    return (vis.xScale(d[selectedCategoryScatterX]) - 10)
+                    //return (vis.xScale(d[selectedCategoryScatterX]) - 10)
+                    return (vis.xScale(d[selectedCategoryScatterX]) - 10 + vis.xBump)
                 } else {
-                    return (vis.xScale(d[selectedCategoryScatterX]) + 10)
+                    //return (vis.xScale(d[selectedCategoryScatterX]) + 10)
+                    return (vis.xScale(d[selectedCategoryScatterX]) + 10 + vis.xBump)
                 }
             })
             .attr('cy', d => vis.yScale(d[selectedCategoryScatterY]))
