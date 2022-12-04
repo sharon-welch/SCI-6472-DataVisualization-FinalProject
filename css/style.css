@@ -8,6 +8,11 @@ body {
   padding-bottom: 20px;
 }
 
+.scatternote {
+  color: grey;
+  font-size: smaller;
+}
+
 /*#circle-slide,*/
 /*#pie-slide*/
 /*{*/

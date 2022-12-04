@@ -32,7 +32,7 @@ function getText(selectedCategoryScatterX,selectedCategoryScatterY) {
 
 
     if (selectedCategoryScatterY === "LUTS") {
-        yText = "Urinary Wellness"
+        yText = "Urinary Symptoms"
     } else if (selectedCategoryScatterY === "NumbScore") {
         yText = "Degree of Genital Numbness"
     } else if (selectedCategoryScatterY === "NumbTime") {
@@ -58,7 +58,7 @@ return xText, yText;
 
 function getTextSymbol(selectedCategoryScatterX,selectedCategoryScatterY) {
     if (selectedCategorySymbolY === "LUTS") {
-        yTextSymbol = "Urinary Wellness"
+        yTextSymbol = "Urinary Symptoms"
     } else if (selectedCategorySymbolY === "NumbScore") {
         yTextSymbol = "Degree of Genital Numbness"
     } else if (selectedCategorySymbolY === "NumbTime") {
