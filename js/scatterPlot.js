@@ -89,7 +89,7 @@ class ScatterPlot {
         } else if (selectedCategoryScatterX === "SaddleAngle") {
             vis.xDomain = ["Level","Nose up","Nose down","Don't know"]
         } else if (selectedCategoryScatterX === "BikeType") {
-            vis.xDomain = ["Road bike","Mountain bike","BMX Bike","Folding bike","Hybrid bike","Electric bike", "Rcumbent bike", "Other","Don't know"]
+            vis.xDomain = ["Road","Mountain","BMX","Folding","Hybrid","Electric", "Recumbent", "Other","Don't know"]
         } else if (selectedCategoryScatterX === "HandleBars") {
             vis.xDomain = ["Lower than saddle","Higher or even with saddle"]
         } else if (selectedCategoryScatterX === "Surface") {
@@ -120,7 +120,6 @@ class ScatterPlot {
         vis.circles = vis.svg.selectAll('.circle')
             .data(vis.data)
 
-
         vis.circles.enter()
             .append("circle")
             .attr("class", "circle")
@@ -143,8 +142,9 @@ class ScatterPlot {
                     .style("opacity", 1)
                     .style("left", event.offsetX-90 + "px")
                     .style("top", event.offsetY + "px")
+                    //.style("font", 30px)
                     .html(`
-                    <div style="border: thin solid grey; border-radius: 5px; background: white; font-size: 15px; padding: 10px">
+                    <div style="border: thin solid grey; border-radius: 5px;  background: white; padding: 10px">
                         <div style="font-size: 6px;">Gender: ${d.Gender}</div> 
                         <div style="font-size: 6px;">Length of Time Biking: ${d.RidingHistory}</div>     
                         <div style="font-size: 6px;">Biking Frequency: ${d.RidingFrequency}</div>
