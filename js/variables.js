@@ -2,8 +2,9 @@ let xText = '';
 let yText = '';
 let yTextSymbol = '';
 
-
+// Getting text for the selected categories for the scatterplot
 function getText(selectedCategoryScatterX,selectedCategoryScatterY) {
+    // text for the predictor (x axis)
     if (selectedCategoryScatterX === "RidingHistory") {
         xText = "Length of Time Biking"
     } else if (selectedCategoryScatterX === "RidingFrequency") {
@@ -30,7 +31,7 @@ function getText(selectedCategoryScatterX,selectedCategoryScatterY) {
         xText = "Typical Surface for Biking"
     }
 
-
+    // text for the outcome (y axis)
     if (selectedCategoryScatterY === "LUTS") {
         yText = "Urinary Symptoms"
     } else if (selectedCategoryScatterY === "NumbScore") {
@@ -55,8 +56,9 @@ function getText(selectedCategoryScatterX,selectedCategoryScatterY) {
 return xText, yText;
 }
 
-
-function getTextSymbol(selectedCategoryScatterX,selectedCategoryScatterY) {
+// Getting text for the selected categories for the symbolplot
+function getTextSymbol(selectedCategorySymbolY) {
+    // text for the outcome (y axis)
     if (selectedCategorySymbolY === "LUTS") {
         yTextSymbol = "Urinary Symptoms"
     } else if (selectedCategorySymbolY === "NumbScore") {

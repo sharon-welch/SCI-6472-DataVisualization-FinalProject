@@ -12,6 +12,7 @@ class SymbolPlot {
 
     initVis(){
 
+        // setting the margins
         let vis = this;
         vis.margin = {top: 40, right: 40, bottom: 40, left: 50};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
@@ -24,9 +25,11 @@ class SymbolPlot {
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
+        // setting scale for x axis (band)
         vis.xScale = d3.scaleBand()
             .rangeRound([0,vis.width]).padding(1)
 
+        // setting the scale for y axis (linear)
         vis.yScale = d3.scaleLinear()
             .range([vis.height,0]);
 
@@ -45,6 +48,7 @@ class SymbolPlot {
 
         let vis = this
 
+        // filtering data so each graph only displays one saddle type
         for (let i = 0; i < vis.data.length; i++) {
             if (vis.parentElement === "symbol-area1") {
                 if (vis.data[i].SaddleType === "Standard") {
@@ -69,17 +73,22 @@ class SymbolPlot {
     updateVis(){
 
         let vis = this;
+        // x scale domain
         vis.xScale.domain(["Male","Female"]) // allows control over order
 
+        // y scale domain
         vis.yScale.domain([0,
             (d3.max(vis.data, function (d)  {return d[selectedCategorySymbolY]}))])
 
+        // circles
         vis.circles = vis.svg.selectAll('.circle')
             .data(vis.displayData)
 
+        // circles exit
         vis.circles.exit()
             .remove();
 
+        // circles enter
         vis.circles.enter()
             .append("circle")
             .attr("class", "circle")
@@ -96,6 +105,7 @@ class SymbolPlot {
             .attr('cy', d => vis.yScale(d[selectedCategorySymbolY]))
             .attr("r", 10)
 
+        // title (static -- does not change)
         let title = '';
         if (vis.parentElement === 'symbol-area1') {
             title = "Health Outcomes for Standard Saddle"
@@ -115,15 +125,20 @@ class SymbolPlot {
 
         console.log(selectedCategorySymbolY)
 
+        // getting proper text for the y value
         yTextSymbol =  getTextSymbol(selectedCategorySymbolY)
 
+        // confirming the y text is working
         console.log("test - " + yText)
 
+        // x axis groupd
         vis.xAxisGroup.call(d3.axisBottom(vis.xScale).ticks(2));
 
+        // y axis group
         vis.yAxisGroup.transition().duration(500)
             .call(d3.axisLeft(vis.yScale).ticks(5));
 
+        // appending y axis label so that it will dynamically update
         vis.yAxisLabel = vis.svg.selectAll('.yAxisLabel1')
             .data(yTextSymbol)
 
@@ -135,7 +150,5 @@ class SymbolPlot {
             .attr('text-anchor', 'middle');
 
         vis.yAxisLabel.exit().remove();
-
     }
-
 }
