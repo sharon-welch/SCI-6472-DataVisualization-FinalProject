@@ -12,17 +12,19 @@ class ScatterPlot {
     initVis() {
         let vis = this;
 
-        vis.margin = {top: 30, right: 0, bottom: 0, left: 50};
+        vis.margin = {top: 30, right: 20, bottom: 50, left: 50};
 
-        vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
+        //vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
+        //vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
+        vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width;
+        vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - 20;
 
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width)
             .attr("height", vis.height)
             .append('g')
-            .attr('transform', `translate (${vis.margin.left + vis.margin.right}, -${vis.margin.top + vis.margin.bottom})`)
+            .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`)
 
         // tooltip
         vis.tooltip = d3.select("#" + vis.parentElement).append('div')
@@ -32,7 +34,8 @@ class ScatterPlot {
         // axis groups
         vis.xAxisGroup = vis.svg.append('g')
             .attr('class', 'axis x-axis')
-            .attr('transform', `translate (0,${vis.height})`);
+            //.attr('transform', `translate (0,${vis.height-100})`);
+            .attr('transform', `translate (0,400)`);
         vis.yAxisGroup = vis.svg.append('g')
             .attr('class', 'axis y-axis');
 
@@ -46,7 +49,7 @@ class ScatterPlot {
 
         // sorting the y axis
         if (selectedCategoryScatterY === "LUTS") {
-            vis.yDomain = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+            vis.yDomain = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
         } else if (selectedCategoryScatterY === "NumbScore") {
             vis.yDomain = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         } else if (selectedCategoryScatterY === "NumbTime") {
@@ -103,12 +106,14 @@ class ScatterPlot {
         let vis = this;
 
         vis.xScale = d3.scaleBand()
-            .rangeRound([0, vis.width]).padding(1)
+            //.rangeRound([0, vis.width]).padding(1)
+            .rangeRound([vis.margin.left, vis.width - vis.margin.right])
+            //.padding(1)
             .domain(vis.xDomain)
 
         vis.yScale = d3.scaleBand()
-            //.rangeRound([0, vis.height]).padding(1)
-            .rangeRound([vis.height,0]).padding(1)
+            .rangeRound([vis.height-vis.margin.top -vis.margin.bottom,0]).padding(1)
+            //.rangeRound([vis.height,0]).padding(1)
             .domain(vis.yDomain)
 
         xText, yText =  getText(selectedCategoryScatterX,selectedCategoryScatterY)
@@ -117,7 +122,7 @@ class ScatterPlot {
 
 
         vis.xAxisGroup.transition().duration(300)
-            .attr('transform', `translate (0, ${vis.height})`)
+            .attr('transform', `translate (${- vis.margin.left}, ${vis.height - vis.margin.top - vis.margin.bottom})`)
             .call(d3.axisBottom(vis.xScale));
 
         vis.yAxisGroup.transition().duration(300)
@@ -150,7 +155,7 @@ class ScatterPlot {
                 console.log(event)
                 vis.tooltip
                     .style("opacity", 1)
-                    .style("left", event.offsetX + 20 + "px")
+                    .style("left", event.offsetX-90 + "px")
                     .style("top", event.offsetY + "px")
                     .html(`
                     <div style="border: thin solid grey; border-radius: 5px; background: white; font-size: 15px; padding: 10px">
@@ -179,7 +184,7 @@ class ScatterPlot {
             .attr('class', 'title')
             .append('text')
             .text(vis.titletext)
-            .attr('transform', `translate(${vis.width / 2}, 60)`)
+            .attr('transform', `translate(${(vis.width-vis.margin.left) / 2}, 0)`)
             .attr('text-anchor', 'middle');
 
         vis.svg
@@ -187,11 +192,13 @@ class ScatterPlot {
             .attr('class', 'xAxisLabel')
             .append('text')
             .text(xText)
-            .attr('transform', `translate(${vis.width / 2}, ${vis.height + 40})`)
+            //.attr('transform', `translate(${vis.width / 2}, ${vis.height})`)
+            .attr('transform', `translate(${(vis.width-vis.margin.left) / 2}, ${vis.height - vis.margin.top - vis.margin.right + 10})`)
             .attr('text-anchor', 'middle');
 
         vis.svg
             .append('g')
+            .attr("color", "white")
             .attr('class', 'yAxisLabel')
             .append('text')
             .text(yText)

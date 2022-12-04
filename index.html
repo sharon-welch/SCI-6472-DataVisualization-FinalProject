@@ -74,7 +74,7 @@
                         <!-- pie chart description -->
                         <div class="row d-flex" id="pie-chart">
                             <div class ="col-md-6 justify-content-center" id="pie-chart-text">
-                                <p>Furthermore, women's health and comfort when it comes to bicycling are understudied. For example, saddle sores are an issue often reported by cyclists. A review of literature conducted in 2022 showed that only 2/15 of the most prevalent studies on saddle sores focused on women.</p>
+                                <p style = "text-align: center">Furthermore, women's health and comfort when it comes to bicycling are understudied. For example, saddle sores are an issue often reported by cyclists. A review of literature conducted in 2022 showed that only 2/15 of the most prevalent studies on saddle sores focused on women.</p>
                             </div>
 <!--                            TODO: figure out how not to hard code this-->
                             <!-- pie chart -->
@@ -100,7 +100,7 @@
                         <!-- scatterplot: description and dropdowns -->
                         <div class="col">
                             <div class="row">
-                                <p>Here, we explore existing factors that influence health of cyclists to search for potential correlations between health, bike seat design, and ridership disparities. This exploration is based on the hunch that saddle design does in fact influence ridership.
+                                <p style = "text-align: center">Here, we explore existing factors that influence health of cyclists to search for potential correlations between health, bike seat design, and ridership disparities. This exploration is based on the hunch that saddle design does in fact influence ridership.
                                 <br><br>
                                 A variety of factors related to cycling (cycling intensity, saddle type, % time standing, etc.) affect a variety of health outcomes (saddle sores, genital numbness, sexual pleasure). Further, these relationships vary as a matter of sex, with worse outcomes in women.</p>
                             </div>
@@ -109,7 +109,7 @@
                                 <!-- Predictor dropdown and dropdown title-->
                                 <div class="row">
                                     <!-- dropdown -->
-                                    <div class="col"> Predictor     <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
+                                    <div class="col"> Predictor   &emsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <select id='categorySelectorScatterX' class="custom-select align-self-center" style="width: 52%" onchange="categoryChangeScatter()">
                                             <option value="RidingHistory" selected>Length of Time Biking</option>
                                             <option value="RidingFrequency">Biking Frequency</option>
                                             <option value="LongestDist">Longest Distance Traveled</option>
@@ -126,11 +126,12 @@
                                     </div>
                                 </div>
                                 </div>
+                            </br>
 
                             <!-- Health outcome dropdown and dropdown title-->
                             <div class="row">
                                 <!-- dropdown -->
-                                <div class="col"> Health Outcome
+                                <div class="col"> Health Outcome &nbsp;&nbsp;
                                     <select id='categorySelectorScatterY' class="custom-select align-self-center" style="width: 50%" onchange="categoryChangeScatter()">
                                         <option value="LUTS" selected>Urinary Wellness</option>
                                         <option value="NumbScore">Degree of Genital Numbness</option>
@@ -144,9 +145,6 @@
                                         <option value="UrinaryVoiding">Urinary Voiding Dysfunction</option>
                                     </select>
                                 </div>
-
-
-
                             </div>
                         </div>
 
