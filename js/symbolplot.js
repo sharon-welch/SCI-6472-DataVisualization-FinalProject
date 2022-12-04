@@ -13,7 +13,7 @@ class SymbolPlot {
     initVis(){
 
         let vis = this;
-        vis.margin = {top: 40, right: 40, bottom: 40, left: 40};
+        vis.margin = {top: 40, right: 40, bottom: 40, left: 50};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
@@ -70,7 +70,6 @@ class SymbolPlot {
 
         let vis = this;
         vis.xScale.domain(["Male","Female"]) // allows control over order
-            //.domain(d3.extent(vis.data, function (d) {return d.Gender}));
 
         vis.yScale.domain([0,
             (d3.max(vis.data, function (d)  {return d[selectedCategorySymbolY]}))])
@@ -117,45 +116,29 @@ class SymbolPlot {
             .attr('transform', `translate(${vis.width / 2}, -20)`)
             .attr('text-anchor', 'middle');
 
-        let yText = '';
-        if (selectedCategorySymbolY === "LUTS") {
-            yText = "Urinary Wellness"
-        } else if (selectedCategorySymbolY === "NumbScore") {
-            yText = "Degree of Genital Numbness"
-        } else if (selectedCategorySymbolY === "NumbTime") {
-            yText = "Length of Feeling of Numbness"
-        } else if (selectedCategoryScatterY === "UTI") {
-            yText = "History of UTI"
-        } else if (selectedCategoryScatterY === "UTINum") {
-            yText = "Number of Prior UTIs"
-        } else if (selectedCategoryScatterY === "Nodules") {
-            yText = "History of Genital + Perineal Nodules"
-        } else if (selectedCategoryScatterY === "SaddleSores") {
-            yText = "History of Saddle Sores"
-        } else if (selectedCategoryScatterY === "IPSS") {
-            yText = "Prostate Symptoms"
-        } else if (selectedCategoryScatterY === "UrinaryFilling") {
-            yText = "Urinary Filling Dysfunction"
-        } else if (selectedCategoryScatterY === "UrinaryVoiding") {
-            yText = "Urinary Voiding Dysfunction"
-        }
+        console.log(selectedCategorySymbolY)
 
+        yTextSymbol =  getTextSymbol(selectedCategorySymbolY)
+
+        console.log("test - " + yText)
 
         vis.xAxisGroup.call(d3.axisBottom(vis.xScale).ticks(2));
 
         vis.yAxisGroup.transition().duration(500)
             .call(d3.axisLeft(vis.yScale).ticks(5));
 
-        vis.yLab = vis.svg.append('g')
+        vis.yAxisLabel = vis.svg.selectAll('.yAxisLabel1')
+            .data(yTextSymbol)
 
-        vis.yLab
-            .attr('class', 'yAxisLabel')
-            .append('text')
-            .text(yText)
+        vis.yAxisLabel.enter().append("text")
+            .attr('class', 'yAxisLabel1')
+            .merge(vis.yAxisLabel)
+            .text(yTextSymbol)
             .attr('transform', `translate(-30, ${vis.height / 2})rotate(270)`)
             .attr('text-anchor', 'middle');
 
-        //vis.yLab.exit().remove();
+        vis.yAxisLabel.exit().remove();
+
     }
 
 }

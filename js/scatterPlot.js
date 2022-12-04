@@ -117,9 +117,6 @@ class ScatterPlot {
         vis.titletext = 'Effect of ' + xText + " on " + yText;
 
 
-
-
-
         vis.circles = vis.svg.selectAll('.circle')
             .data(vis.data)
 
@@ -185,28 +182,28 @@ class ScatterPlot {
             .call(d3.axisLeft(vis.yScale));
 
         vis.xAxisLabel = vis.svg.selectAll('.xAxisLabel')
-            .data(vis.data)
+            .data(xText)
 
-        vis.xAxisLabel.enter()
-            .append("text")
-            .attr('class', 'xAxislabel')
-            .attr("fill", "black")
+        vis.xAxisLabel.enter().append("text")
+            .attr('class', 'xAxisLabel')
             .merge(vis.xAxisLabel)
             .text(xText)
             .attr('transform', `translate(${(vis.width-vis.margin.left) / 2}, ${vis.height - vis.margin.top - vis.margin.right + 10})`)
             .attr('text-anchor', 'middle');
 
-        vis.yAxisLabel = vis.svg.selectAll('.yAxisLabel').append("g")
+        vis.xAxisLabel.exit().remove()
+
+        vis.yAxisLabel = vis.svg.selectAll('.yAxisLabel')
             .data(yText)
 
         vis.yAxisLabel.enter().append("text")
-            .attr('class', 'yAxislabel')
+            .attr('class', 'yAxisLabel')
             .merge(vis.yAxisLabel)
             .text(yText)
             .attr('transform', `translate(-30, ${vis.height / 2})rotate(270)`)
             .attr('text-anchor', 'middle');
 
-
+        vis.yAxisLabel.exit().remove()
 
 
 
