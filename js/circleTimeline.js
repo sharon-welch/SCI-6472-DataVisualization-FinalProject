@@ -28,24 +28,14 @@ class CircleTimeline {
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
-        if (vis.gender === "male") {
-            vis.legend = d3.select("#" + vis.id).append("svg")
-                .attr("width", 80)
-                .attr("height", 40)
-                .attr("style", "outline: thin solid black;");
-
-            vis.maleLegend = vis.legend.append("circle").attr("cx", 10).attr("cy", 10).attr("r", 6).attr('stroke', 'black').style("fill", "dodgerblue")
-            vis.maleLegendText = vis.legend.append("text").attr("x", 20).attr("y", 10).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
-            vis.femaleLegend = vis.legend.append("circle").attr("cx",10).attr("cy", 30).attr("r", 6).attr('stroke', 'black').style("fill", "hotpink")
-            vis.femaleLegendText = vis.legend.append("text").attr("x", 20).attr("y", 30).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
-        }
-
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
-            .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
+            .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")")
+            .style("display", "block")
+            .style("margin", "auto");
 
         vis.tooltip = d3.select("#" + vis.parentElement).append('div')
             .attr('class', "tooltip")
@@ -78,7 +68,14 @@ class CircleTimeline {
                 }
             })
             .attr('cx', (d,i) => {
-                return 25 + i*110;
+                if (i <= 4) {
+                    return (vis.width/2) - 50 - (100*(4-i))
+                    //return (vis.width/2) - (0.6*((vis.width/2)/5)) - ((4-i)*((vis.width/2)/5))
+                }
+                else {
+                    return (vis.width/2) + 50 + (100*(i-5))
+                    //return (vis.width/2) + (0.6*((vis.width/2)/5)) + ((i-5)*((vis.width/2)/5))
+                }
             })
             .attr('cy', function(d) {
                 if(vis.gender === "male") {
@@ -121,9 +118,32 @@ class CircleTimeline {
                     return d.year;
                 })
                 .attr('x', (d, i) => {
-                    return 5+i*110;
+                    if (i <= 4) {
+                        return (vis.width/2) - 50 - (100*(4-i)) - 20;
+                    }
+                    else {
+                        return (vis.width/2) + 50 + (100*(i-5)) - 20;
+                    }
                 })
                 .attr('y', 70)
+
+            vis.legend = d3.select("#" + vis.id).append("svg")
+                .attr("width", vis.width)
+                .attr("height", 50)
+                //.attr("style", "outline: thin solid black;")
+
+            vis.box = vis.legend.append("rect")
+                .attr("x", 200)
+                .attr("y", 5)
+                .attr("height", 40)
+                .attr("width", 90)
+                .attr("fill", "transparent")
+                .attr("style", "outline: thin solid black;");
+
+            vis.maleLegend = vis.legend.append("circle").attr("cx", 210).attr("cy", 15).attr("r", 6).attr('stroke', 'black').style("fill", "dodgerblue")
+            vis.maleLegendText = vis.legend.append("text").attr("x", 230).attr("y", 15).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
+            vis.femaleLegend = vis.legend.append("circle").attr("cx",210).attr("cy", 35).attr("r", 6).attr('stroke', 'black').style("fill", "hotpink")
+            vis.femaleLegendText = vis.legend.append("text").attr("x", 230).attr("y", 35).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
         }
 
     }
