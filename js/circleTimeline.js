@@ -14,8 +14,6 @@ class CircleTimeline {
         //     define male and female colors
         this.colors = ["dodgerblue", "hotpink"]
 
-        // console.log(timelineData);
-
         this.initVis()
     }
 
@@ -37,6 +35,7 @@ class CircleTimeline {
             .style("display", "block")
             .style("margin", "auto");
 
+        // init tooltip
         vis.tooltip = d3.select("#" + vis.parentElement).append('div')
             .attr('class', "tooltip")
             .attr('id', 'timelineTooltip')
@@ -55,6 +54,7 @@ class CircleTimeline {
 
         vis.circles = vis.svg.selectAll('circle').data(vis.timelineData);
 
+        // add circles to timeline
         vis.circles.enter().append('circle')
             .attr('class', 'circle')
             .merge(vis.circles)
@@ -70,11 +70,9 @@ class CircleTimeline {
             .attr('cx', (d,i) => {
                 if (i <= 4) {
                     return (vis.width/2) - 50 - (100*(4-i))
-                    //return (vis.width/2) - (0.6*((vis.width/2)/5)) - ((4-i)*((vis.width/2)/5))
                 }
                 else {
                     return (vis.width/2) + 50 + (100*(i-5))
-                    //return (vis.width/2) + (0.6*((vis.width/2)/5)) + ((i-5)*((vis.width/2)/5))
                 }
             })
             .attr('cy', function(d) {
@@ -93,6 +91,7 @@ class CircleTimeline {
                     return (d.female_trip_count/10000)/1.5;
                 }
             })
+            // add tooltips to timeline
             .on('mouseover', function(event, d) {
                 vis.tooltip
                     .style("opacity", 1)
@@ -113,6 +112,7 @@ class CircleTimeline {
                      .html(``)
             })
 
+        // add years to timeline
         if (vis.gender === "female") {
             vis.circles.enter().append("text")
                 .text(function(d) {
@@ -128,11 +128,12 @@ class CircleTimeline {
                 })
                 .attr('y', 70)
 
+            // add svg for the legend
             vis.legend = d3.select("#" + vis.id).append("svg")
                 .attr("width", vis.width)
                 .attr("height", 50)
-                //.attr("style", "outline: thin solid black;")
 
+            // add transparent rectangle with a border behind the legend
             vis.box = vis.legend.append("rect")
                 .attr("x", 200)
                 .attr("y", 5)
@@ -141,6 +142,7 @@ class CircleTimeline {
                 .attr("fill", "transparent")
                 .attr("style", "outline: thin solid black;");
 
+            // add symbols to the legend
             vis.maleLegend = vis.legend.append("circle").attr("cx", 210).attr("cy", 15).attr("r", 6).attr('stroke', 'black').style("fill", "dodgerblue")
             vis.maleLegendText = vis.legend.append("text").attr("x", 230).attr("y", 15).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
             vis.femaleLegend = vis.legend.append("circle").attr("cx",210).attr("cy", 35).attr("r", 6).attr('stroke', 'black').style("fill", "hotpink")

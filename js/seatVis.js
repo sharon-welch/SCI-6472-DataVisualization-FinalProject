@@ -13,8 +13,6 @@ class SeatVis {
         this.seatData = seatData;
         this.metricsData = metricsData;
         this.gender = gender;
-        //TODO - array of circle colors and call colors below by spot in array
-        // this.circleColors = ['#fff460', '#5d67f5'];
 
         //color gradient for male
         this.myMaleColor = d3.scaleLinear()
@@ -29,15 +27,13 @@ class SeatVis {
         //initial color
         this.initialColor = "white";
 
-        // console.log(seatData);
-
         // call initVis method
         this.initVis()
     }
 
     initVis() {
 
-        let vis = this
+        let vis = this;
 
         //margins
         vis.margin = {top: 10, right: 50, bottom: 10, left: 50};
@@ -47,16 +43,12 @@ class SeatVis {
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            // TODO - figure out why this isn't working and have to hardcode height in HTML
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
         vis.myRows = Array.from(new Set(vis.seatData.map(d => d.row)))
         vis.myColumns = Array.from(new Set(vis.seatData.map(d => d.column)))
-
-        // console.log(vis.myRows);
-        // console.log(vis.myColumns);
 
         //build x scale
         vis.xScale = d3.scaleBand()
@@ -93,8 +85,6 @@ class SeatVis {
                 return vis.yScale(d.column) + vis.circleRadius
             })
             .attr("r", vis.circleRadius)
-            // .attr("width", x.bandwidth() )
-            // .attr("height", y.bandwidth() )
             .style("fill", function (d) {
                 if (vis.gender === "female") {
                     console.log("updating female dots")
@@ -132,29 +122,26 @@ class SeatVis {
     }
 
     updateText() {
-        console.log("here");
         let vis = this;
+        // update the selected gender in the dropdown based on user input
         let selectBox = document.getElementById("gender");
         let selectedGender = selectBox.options[selectBox.selectedIndex].value;
         vis.gender = selectedGender;
-        console.log("vis gender is " + vis.gender);
         vis.updateVis();
-        console.log(selectedGender);
+
+        // get metrics from data file
         let age_metrics = Array.from(new Set (vis.metricsData.map(d => d.age)));
         let height_metrics = Array.from(new Set (vis.metricsData.map(d => d.height)));
         let weight_metrics = Array.from(new Set (vis.metricsData.map(d => d.weight)));
         let pressure_metrics = Array.from(new Set (vis.metricsData.map(d => d.pressure)));
-        console.log(age_metrics, height_metrics, weight_metrics, pressure_metrics);
-        console.log(age_metrics[0]);
+
+        // get metrics input by user
         let inputAge = document.getElementById("age");
         let selectedAge = inputAge.value;
-        console.log(selectedAge);
         let inputHeight = document.getElementById("height");
         let selectedHeight = inputHeight.value;
-        console.log(selectedHeight);
         let inputWeight = document.getElementById("weight");
         let selectedWeight = inputWeight.value;
-        console.log(selectedWeight);
 
         let mean_index, sd_index;
 
@@ -167,6 +154,7 @@ class SeatVis {
             sd_index = 3;
         }
 
+        // calculate average bike seat pressure based on user input
         let age_percentage = (selectedAge-age_metrics[mean_index])/age_metrics[sd_index];
         let height_percentage = (selectedHeight-height_metrics[mean_index])/height_metrics[sd_index];
         let weight_percentage = (selectedWeight-weight_metrics[mean_index])/weight_metrics[sd_index];
@@ -175,12 +163,14 @@ class SeatVis {
         let difference = (Math.round((avg_percentage*pressure_metrics[sd_index])*100))/100;
         let avg_pressure = pressure_metrics[mean_index];
         let user_pressure = avg_pressure + difference;
+
         // the seat pressure can't be negative, so round any seat negative pressures to 0
         if (user_pressure < 0) {
             user_pressure = 0;
             difference = -1*avg_pressure;
         }
 
+        // once the user has selected a gender, display the sentence with their estimated average bike seat pressure
         if (selectedGender !== "chooseGender") {
             document.getElementById("metric-text").innerText =
                 "The average standard saddle pressure for " + selectedGender + " riders with your metrics was " + user_pressure.toFixed(2) + " kPa, which is "
