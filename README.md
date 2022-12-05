@@ -19,3 +19,6 @@ To investigate this further, we plotted several <b>Symbol Plots</b>, each featur
 Our final visualization, the <b>Saddle Pressure Maps</b>, investigate one factor we feel may be mediating this effect -- <b>Pressure</b>. Here, the user can input their age, height, weight, and gender to see personalized pressure maps for each of the three saddle types in the symbol plots. When toggling back and forth between male and female data, one can appreciate how the distribution of pressure differs as an effect of sex, and, further, that this interacts with the shape and support offered by the saddle. Users can compare these results to the health outcomes on the prior slide to understand how pressure might affect the symptom prevalence. 
 
 We close the project with an overview of our content, as well as a call to action -- <b> this issue is not only a significant public health issue, it is an issue that is worthwhile for bicycle companies to invest in. These efforts can not only lead to improvements for the comfort of female riders, but can also translate to an increase in the number of female cyclists, and, ultimately, loyal customers, improving the company's profit.</b> 
+
+
+Layout relies on fullpage.js library. 
