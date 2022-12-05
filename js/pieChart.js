@@ -79,8 +79,6 @@ class PieChart {
     updateVis() {
         let vis = this;
 
-        //TODO - fix width of pie chart
-
         //define inner and outer radius
         let outerRadius = vis.height/2.5;
         // let outerRadius = 150;
@@ -120,8 +118,6 @@ class PieChart {
             .style("stroke-width", .25)
             .style("stroke", "black")
 
-
-            //TODO - fix position
             //tooltip
             .on('mouseover', function(event, d){
                 vis.tooltip
