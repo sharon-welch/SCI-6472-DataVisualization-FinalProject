@@ -98,6 +98,7 @@ class CircleTimeline {
                     .style("opacity", 1)
                     .style("left", event.offsetX - 80 + "px")
                     .style("top", event.offsetY + 5 + "px")
+                    .style("font-size", "10px")
                     .html(`
                          <div style="border: thin solid grey; border-radius: 5px; background: white; padding: 10px">
                              <p> Number of bike trips by male riders: ${d.male_trip_count}<p>

@@ -230,8 +230,8 @@
                         <h6 id="instructions">Enter in your metrics below to see how your average bike seat pressure would compare to other riders and view average pressure maps for your gender</h6>
                     </div>
                     <div class="row" id="bike-seat" style="height:1000px; width: 1320px">
-                        <div class="col" id="bike-seat-div">
-                            <div class="col-5 align-self-center" id="bike-seat-dropdowns">
+                        <div id="bike-seat-div">
+                            <div class="align-self-center" id="bike-seat-dropdowns" style="width: 45%">
                                 <div class="form-outline">
                                     <input type="number" value="0" id="age" class="form-control" style="width: 15%" onchange="updateBikeSeat()"/>
                                     <label class="form-label" for="age">Age (years)</label>
@@ -241,16 +241,19 @@
                                     <label class="form-label" for="weight">Weight (kg)</label>
                                 </div>
                             </div>
-                            <div class="dropdown col-10 align-self-center">
+                            </br>
+                            <div class="dropdown align-self-center">
                                 <select id="gender" class="user-control form-control form-group" style="width: 15%" onchange="updateBikeSeat()">
                                     <option value="chooseGender">Choose Gender</option>
                                     <option value="female">Female</option>
                                     <option value="male">Male</option>
                                 </select>
                             </div>
-                            <div class="col-6 text align-self-right" id="metric-text">
+                            </br>
+                            <div class="text align-self-right" id="metric-text" style="width: 100%">
                                 <p></p>
                             </div>
+                            </br>
 <!--                            //TODO - remove hardcoding of seat row height, test putting in column instead-->
                             <!--pressure map visualizations-->
                             <div class = "row" id="bike-seat-maps">
